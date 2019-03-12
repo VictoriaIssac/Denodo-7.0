@@ -1,0 +1,21 @@
+﻿CREATE OR REPLACE REST WEBSERVICE ws_sales_by_category_rest
+    CONNECTION (
+        CHUNKSIZE = 1000
+        CHUNKTIMEOUT = 90000
+        QUERYTIMEOUT = 900000
+        POOLENABLED = true
+        POOLINITSIZE = 0
+        POOLMAXACTIVE = 30
+    )
+    DEFAULTREPRESENTATION = JSON
+    SUPPORTEDREPRESENTATIONS (JSON)
+    RESOURCES (
+        VIEW dv_sales_by_category FIELDS (
+            categoryname : 'text' OBL, 
+            sales : '_array_register_seller_id_total_amount_ranking'
+        )
+    )
+    OPTIONS ( NULLVALUESASEMPTYXMLELEMENTS = false ) 
+    OPENAPI2 ( API_VERSION = '1.0.0' ) 
+    FOLDER = '/03 - derived views';
+

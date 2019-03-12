@@ -1,0 +1,41 @@
+﻿CREATE OR REPLACE WRAPPER JSON bv_example4
+    FOLDER = '/02 - base views'
+    DATASOURCENAME=ds_example
+    TUPLEROOT '/JSONFile'
+    OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
+        name = 'name' : 'java.lang.String',
+        age = 'age' : 'java.lang.Integer',
+        cars = 'cars' : ARRAY OF (
+            cars = 'cars' : REGISTER OF (
+                field_0 = 'field_0' : 'java.lang.String'
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE bv_example4_cars_cars AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE bv_example4_cars AS ARRAY OF bv_example4_cars_cars;
+
+CREATE OR REPLACE TABLE bv_example4 I18N au_cst (
+        name:text, 
+        age:int, 
+        cars:bv_example4_cars
+    )
+    FOLDER = '/02 - base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_example4(
+        I18N au_cst
+        CONSTRAINTS (
+             ADD name NOS ZERO ()
+             ADD age NOS ZERO ()
+             ADD cars NOS ZERO ()
+             ADD cars NOS ZERO ()
+             ADD cars.field_0 NOS ZERO ()
+        )
+        OUTPUTLIST (age, cars, name
+        )
+        WRAPPER (json bv_example4)
+    );
+

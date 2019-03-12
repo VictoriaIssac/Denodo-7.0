@@ -1,0 +1,35 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_prospect
+    FOLDER = '/02 - base views'
+    DATASOURCENAME=ds_hive
+    SCHEMANAME='${databases.denodo_training1.folder.02 - base views.views.jdbc.bv_prospect.SCHEMANAME}' ESCAPE
+    RELATIONNAME='prospect' 
+    OUTPUTSCHEMA (
+        name = 'name' :'java.lang.String' (OPT) (sourcetypename='STRING', sourcetypeid='12', sourcetypesize='2147483647')  SORTABLE,
+        last_name = 'last_name' :'java.lang.String' (OPT) (sourcetypename='STRING', sourcetypeid='12', sourcetypesize='2147483647')  SORTABLE,
+        client_type = 'client_type' :'java.lang.Integer' (OPT) (sourcetyperadix='10', sourcetypename='INT', sourcetypeid='4', sourcetypedecimals='0', sourcetypesize='10')  SORTABLE,
+        area_code = 'area_code' :'java.lang.Integer' (OPT) (sourcetyperadix='10', sourcetypename='INT', sourcetypeid='4', sourcetypedecimals='0', sourcetypesize='10')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_prospect I18N au_cst (
+        name:text (sourcetypesize = '2147483647', sourcetypeid = '12'), 
+        last_name:text (sourcetypesize = '2147483647', sourcetypeid = '12'), 
+        client_type:int (sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', sourcetypeid = '4'), 
+        area_code:int (sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', sourcetypeid = '4')
+    )
+    FOLDER = '/02 - base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_prospect(
+        I18N au_cst
+        CONSTRAINTS (
+             ADD name (any) OPT ANY
+             ADD last_name (any) OPT ANY
+             ADD client_type (any) OPT ANY
+             ADD area_code (any) OPT ANY
+        )
+        OUTPUTLIST (area_code, client_type, last_name, name
+        )
+        WRAPPER (jdbc bv_prospect)
+    );
+

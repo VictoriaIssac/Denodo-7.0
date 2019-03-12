@@ -1,0 +1,12 @@
+﻿CREATE OR REPLACE DATABASE denodo_training1;
+
+ALTER DATABASE denodo_training1
+  CHARSET DEFAULT;
+
+ALTER DATABASE denodo_training1
+  CACHE ON (
+    MAINTAINERPERIOD 21600
+    TIMETOLIVE 3600
+    DATASOURCE ds_victoria DATABASE denodo_training
+  );
+

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW dv_sales_by_category FOLDER = '/03 - derived views' AS SELECT categoryname AS categoryname, nest(seller_id, total_amount, ranking) AS sales FROM dv_seller_sales_array_selection GROUP BY categoryname, seller_id, total_amount, ranking;
+
+ALTER VIEW dv_sales_by_category
+ LAYOUT (dv_seller_sales_array_selection = [20, 20, 247, 106]);
+

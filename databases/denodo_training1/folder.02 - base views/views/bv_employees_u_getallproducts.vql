@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW bv_employees_u_getallproducts FOLDER = '/02 - base views' AS SELECT employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id FROM (SELECT productid AS employee_id FROM getallproducts UNION SELECT * FROM denodo_training.bv_hr_employees);
+
+ALTER VIEW bv_employees_u_getallproducts
+ LAYOUT (getallproducts = [400, 80, 200, 86], bv_hr_employees = [40, 30, 200, 225]);
+

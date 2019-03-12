@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON ds_example
+    FOLDER = '/03 - derived views'
+    ROUTE LOCAL 'LocalConnection' '${databases.denodo_training1.folder.03 - derived views.datasources.json.ds_example.ROUTE.LOCAL.PATH}';
+

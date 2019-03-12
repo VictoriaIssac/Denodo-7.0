@@ -1,0 +1,35 @@
+﻿CREATE OR REPLACE SOAP WEBSERVICE ws_sales_by_category
+    CONNECTION (
+        CHUNKSIZE = 1000
+        CHUNKTIMEOUT = 90000
+        QUERYTIMEOUT = 900000
+        POOLENABLED = true
+        POOLINITSIZE = 0
+        POOLMAXACTIVE = 30
+    )
+    I18N  = au_cst
+    DATETYPEMAPPING DATE
+    NOWRAPARRAYS
+    RAISEFAULTONIDU
+    DONOTAPPLYOUTPUTXSLTTOERRORS
+    OUTPUT 
+        ( STYLE DOCUMENT )
+    OPERATION 'getDV_SALES_BY_CATEGORYByCATEGORYNAMEAndSALES' (
+        TYPE SELECT
+        SCHEMA VIEW dv_sales_by_category
+        VQL = 'SELECT sales FROM dv_sales_by_category ^ExecuteIfIsNotNull("WHERE ",@WHEREEXPRESSION,"") CONTEXT (''i18n'' = ''au_cst''^ExecuteIfIsNotNull(", ",@VERBOSEERRORS,"")^ExecuteIfIsNotNull(", ",@CONTEXTEXPRESSION,""))'
+        INPUTS 'GetDV_SALES_BY_CATEGORYByCATEGORYNAMEAndSALES' (
+            'CATEGORYNAME' categoryname:'text' '=' OBL 
+        )
+        OUTPUT 
+            'DV_SALES_BY_CATEGORYReturn': Array of ( 'getDV_SALES_BY_CATEGORYByCATEGORYNAMEAndSALESRow': Register of (
+                sales : '_array_register_seller_id_total_amount_ranking'
+            ) (
+                    '/categoryname'='CATEGORYNAME',
+                    '/sales'='SALES':'_array_register_seller_id_total_amount_ranking' / '_register_seller_id_total_amount_ranking',
+                    '/sales/ranking'='RANKING',
+                    '/sales/seller_id'='SELLER_ID',
+                    '/sales/total_amount'='TOTAL_AMOUNT'))
+    )
+    FOLDER = '/09 - data services';
+
