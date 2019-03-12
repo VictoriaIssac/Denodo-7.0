@@ -1,5 +1,0 @@
-﻿CREATE OR REPLACE VIEW dv_emp FOLDER = '/03 - derived views' AS SELECT name, last_name, client_type, area_code, employee_id, first_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id FROM (SELECT * FROM bv_prospect UNION SELECT hire_date, salary, email, phone_number, last_name, manager_id, department_id, job_id, employee_id, first_name, commission_pct FROM bv_employee);
-
-ALTER VIEW dv_emp
- LAYOUT (bv_prospect = [20, 20, 200, 106], bv_employee = [370, 60, 200, 225]);
-
