@@ -1,5 +1,5 @@
 ﻿CREATE OR REPLACE TABLE bv_test I18N au_cst (
-        country:text (sourcetypeid = '12'), 
+        country:text (sourcetypeid = '12', description = 'ABCD test'), 
         sexdisaggregated_0:text (sourcetypeid = '12'), 
         date:text (sourcetypeid = '12'), 
         totalcases_0:double (sourcetypeid = '8'), 
