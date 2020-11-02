@@ -1,0 +1,33 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE CUSTOM ds_test
+    FOLDER = '/01-datasource'
+    CLASSNAME='com.denodo.vdb.contrib.wrapper.xls.ExcelWrapper';
+
+CREATE OR REPLACE WRAPPER CUSTOM ds_test
+    FOLDER = '/01-datasource'
+    DATASOURCENAME=ds_test
+    PARAMETERS (
+      'Type of file' = 'Excel 2007 or later (*.xlsx)',
+      'File location' = ROUTE LOCAL 'LocalConnection' '${databases.admin.folder.01-datasource.views.custom.ds_test.File location.ROUTE.LOCAL.PATH}',
+      'Extract data from all sheets' = false,
+      'Extract sheet name as a new column' = false,
+      'Has headers' = true,
+      'Stream tuples' = false
+    )
+    OUTPUTSCHEMA (
+        country = 'Country' : 'java.lang.String' (OPT) (sourcetypeid='12')  SORTABLE,
+        sexdisaggregated_0 = 'Sex-disaggregated?' : 'java.lang.String' (OPT) (sourcetypeid='12')  SORTABLE,
+        date = 'Date' : 'java.lang.String' (OPT) (sourcetypeid='12')  SORTABLE,
+        totalcases_0 = 'Total cases' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
+        casesmale_0 = 'Cases (% male)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
+        casesfemale_0 = 'Cases (% female)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
+        totaldeaths_0 = 'Total deaths' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
+        deathsmale_0 = 'deaths (% male)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
+        deathsfemale_0 = 'deaths (% female)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
+        deathsinconfirmedcasestotal_0 = 'deaths in confirmed cases (total)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
+        deathsinconfirmedcasesmale_0 = 'deaths in confirmed cases (male)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
+        deathsinconfirmedcasesfemale_0 = 'deaths in confirmed cases (female)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
+        deathsinconfirmedcasesmalefemaleratio_0 = 'deaths in confirmed cases (Male:female ratio)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
+        sources = 'Sources' : 'java.lang.String' (OPT) (sourcetypeid='12')  SORTABLE
+    );
+
