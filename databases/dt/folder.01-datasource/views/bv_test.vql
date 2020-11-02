@@ -6,7 +6,7 @@
         casesmale_0:double (sourcetypeid = '8'), 
         casesfemale_0:double (sourcetypeid = '8'), 
         totaldeaths_0:double (sourcetypeid = '8'), 
-        deathsmale_0:double (sourcetypeid = '8'), 
+        deathsmale_23_0:double (sourcetypeid = '8'), 
         deathsfemale_0:double (sourcetypeid = '8'), 
         deathsinconfirmedcasestotal_0:double (sourcetypeid = '8'), 
         deathsinconfirmedcasesmale_0:double (sourcetypeid = '8'), 
@@ -27,7 +27,7 @@
              ADD casesmale_0 (any) OPT ANY
              ADD casesfemale_0 (any) OPT ANY
              ADD totaldeaths_0 (any) OPT ANY
-             ADD deathsmale_0 (any) OPT ANY
+             ADD deathsmale_23_0 (any) OPT ANY
              ADD deathsfemale_0 (any) OPT ANY
              ADD deathsinconfirmedcasestotal_0 (any) OPT ANY
              ADD deathsinconfirmedcasesmale_0 (any) OPT ANY
@@ -35,7 +35,7 @@
              ADD deathsinconfirmedcasesmalefemaleratio_0 (any) OPT ANY
              ADD sources (any) OPT ANY
         )
-        OUTPUTLIST (casesfemale_0, casesmale_0, country, date, deathsfemale_0, deathsinconfirmedcasesfemale_0, deathsinconfirmedcasesmale_0, deathsinconfirmedcasesmalefemaleratio_0, deathsinconfirmedcasestotal_0, deathsmale_0, sexdisaggregated_0, sources, totalcases_0, totaldeaths_0
+        OUTPUTLIST (casesfemale_0, casesmale_0, country, date, deathsfemale_0, deathsinconfirmedcasesfemale_0, deathsinconfirmedcasesmale_0, deathsinconfirmedcasesmalefemaleratio_0, deathsinconfirmedcasestotal_0, deathsmale_23_0, sexdisaggregated_0, sources, totalcases_0, totaldeaths_0
         )
         WRAPPER (custom ds_test)
     );

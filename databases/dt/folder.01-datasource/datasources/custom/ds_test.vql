@@ -22,7 +22,7 @@ CREATE OR REPLACE WRAPPER CUSTOM ds_test
         casesmale_0 = 'Cases (% male)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
         casesfemale_0 = 'Cases (% female)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
         totaldeaths_0 = 'Total deaths' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
-        deathsmale_0 = 'deaths (% male)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
+        deathsmale_23_0 = 'deaths (% male_23)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
         deathsfemale_0 = 'deaths (% female)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
         deathsinconfirmedcasestotal_0 = 'deaths in confirmed cases (total)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
         deathsinconfirmedcasesmale_0 = 'deaths in confirmed cases (male)' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
