@@ -1,0 +1,205 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC days
+    FOLDER = '/01 sources/netezza/date'
+    DATASOURCENAME=edw_prd
+    CATALOGNAME='${databases.customer.folder.01 sources.folder.netezza.folder.date.views.jdbc.days.CATALOGNAME}' 
+    SCHEMANAME='${databases.customer.folder.01 sources.folder.netezza.folder.date.views.jdbc.days.SCHEMANAME}' 
+    RELATIONNAME='DAYS' 
+    OUTPUTSCHEMA (
+        day_dt = 'DAY_DT' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='6', sourcetyperadix='0', sourcetypesize='26', sourcetypeid='93', sourcetypename='TIMESTAMP')  NOT NULL SORTABLE,
+        business_day_flag = 'BUSINESS_DAY_FLAG' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='1', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        holiday_flag = 'HOLIDAY_FLAG' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='1', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        day_of_wk_name = 'DAY_OF_WK_NAME' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='9', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        day_of_wk_name_abbr = 'DAY_OF_WK_NAME_ABBR' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='3', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        day_of_wk_nbr = 'DAY_OF_WK_NBR' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT SORTABLE,
+        cal_day_of_mo_nbr = 'CAL_DAY_OF_MO_NBR' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT SORTABLE,
+        cal_day_of_yr_nbr = 'CAL_DAY_OF_YR_NBR' :'java.lang.Short' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='5', sourcetypeid='5', sourcetypename='SMALLINT')  SORTABLE,
+        cal_wk = 'CAL_WK' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='INTEGER')  SORTABLE,
+        cal_wk_nbr = 'CAL_WK_NBR' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT SORTABLE,
+        cal_mo = 'CAL_MO' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='INTEGER')  SORTABLE,
+        cal_mo_nbr = 'CAL_MO_NBR' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT SORTABLE,
+        cal_mo_name = 'CAL_MO_NAME' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='9', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        cal_mo_name_abbr = 'CAL_MO_NAME_ABBR' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='3', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        cal_qtr = 'CAL_QTR' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='INTEGER')  SORTABLE,
+        cal_qtr_nbr = 'CAL_QTR_NBR' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT SORTABLE,
+        cal_half = 'CAL_HALF' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='INTEGER')  SORTABLE,
+        cal_yr = 'CAL_YR' :'java.lang.Short' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='5', sourcetypeid='5', sourcetypename='SMALLINT')  SORTABLE,
+        fiscal_day_of_mo_nbr = 'FISCAL_DAY_OF_MO_NBR' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT SORTABLE,
+        fiscal_day_of_yr_nbr = 'FISCAL_DAY_OF_YR_NBR' :'java.lang.Short' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='5', sourcetypeid='5', sourcetypename='SMALLINT')  SORTABLE,
+        fiscal_wk = 'FISCAL_WK' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='INTEGER')  SORTABLE,
+        fiscal_wk_nbr = 'FISCAL_WK_NBR' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT SORTABLE,
+        fiscal_mo = 'FISCAL_MO' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='INTEGER')  SORTABLE,
+        fiscal_mo_nbr = 'FISCAL_MO_NBR' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT SORTABLE,
+        fiscal_mo_name = 'FISCAL_MO_NAME' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='9', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        fiscal_mo_name_abbr = 'FISCAL_MO_NAME_ABBR' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='3', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        fiscal_qtr = 'FISCAL_QTR' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='INTEGER')  SORTABLE,
+        fiscal_qtr_nbr = 'FISCAL_QTR_NBR' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT SORTABLE,
+        fiscal_half = 'FISCAL_HALF' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='INTEGER')  SORTABLE,
+        fiscal_yr = 'FISCAL_YR' :'java.lang.Short' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='5', sourcetypeid='5', sourcetypename='SMALLINT')  SORTABLE,
+        lyr_week_dt = 'LYR_WEEK_DT' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='6', sourcetyperadix='0', sourcetypesize='26', sourcetypeid='93', sourcetypename='TIMESTAMP')  NOT NULL SORTABLE,
+        lwk_week_dt = 'LWK_WEEK_DT' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='6', sourcetyperadix='0', sourcetypesize='26', sourcetypeid='93', sourcetypename='TIMESTAMP')  NOT NULL SORTABLE,
+        week_dt = 'WEEK_DT' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='6', sourcetyperadix='0', sourcetypesize='26', sourcetypeid='93', sourcetypename='TIMESTAMP')  NOT NULL SORTABLE,
+        est_time_conv_amt = 'EST_TIME_CONV_AMT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='6', sourcetyperadix='10', sourcetypesize='6', sourcetypeid='2', sourcetypename='NUMERIC')  NOT NULL SORTABLE,
+        est_time_conv_hrs = 'EST_TIME_CONV_HRS' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT NULL NOT SORTABLE,
+        es0_time_conv_amt = 'ES0_TIME_CONV_AMT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='6', sourcetyperadix='10', sourcetypesize='6', sourcetypeid='2', sourcetypename='NUMERIC')  NOT NULL SORTABLE,
+        es0_time_conv_hrs = 'ES0_TIME_CONV_HRS' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT NULL NOT SORTABLE,
+        cst_time_conv_amt = 'CST_TIME_CONV_AMT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='6', sourcetyperadix='10', sourcetypesize='6', sourcetypeid='2', sourcetypename='NUMERIC')  NOT NULL SORTABLE,
+        cst_time_conv_hrs = 'CST_TIME_CONV_HRS' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT NULL NOT SORTABLE,
+        cs0_time_conv_amt = 'CS0_TIME_CONV_AMT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='6', sourcetyperadix='10', sourcetypesize='6', sourcetypeid='2', sourcetypename='NUMERIC')  NOT NULL SORTABLE,
+        cs0_time_conv_hrs = 'CS0_TIME_CONV_HRS' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT NULL NOT SORTABLE,
+        mst_time_conv_amt = 'MST_TIME_CONV_AMT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='6', sourcetyperadix='10', sourcetypesize='6', sourcetypeid='2', sourcetypename='NUMERIC')  NOT NULL SORTABLE,
+        mst_time_conv_hrs = 'MST_TIME_CONV_HRS' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT NULL NOT SORTABLE,
+        ms0_time_conv_amt = 'MS0_TIME_CONV_AMT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='6', sourcetyperadix='10', sourcetypesize='6', sourcetypeid='2', sourcetypename='NUMERIC')  NOT NULL SORTABLE,
+        ms0_time_conv_hrs = 'MS0_TIME_CONV_HRS' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT NULL NOT SORTABLE,
+        pst_time_conv_amt = 'PST_TIME_CONV_AMT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='6', sourcetyperadix='10', sourcetypesize='6', sourcetypeid='2', sourcetypename='NUMERIC')  NOT NULL SORTABLE,
+        pst_time_conv_hrs = 'PST_TIME_CONV_HRS' :'java.lang.Byte' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='BYTEINT')  NOT NULL NOT SORTABLE
+    )
+    CONSTRAINT 'DAYS_PK_IDX2' PRIMARY KEY ( 'DAY_DT' );
+
+CREATE OR REPLACE TABLE days I18N us_mst (
+        day_dt:timestamp (sourcetypeid = '93', sourcetyperadix = '0', sourcetypedecimals = '6', sourcetypesize = '26', description = '► Day date (Sample: 2019-03-08 00:00:00)
+Keywords: day, date, day date'), 
+        business_day_flag:text (sourcetypeid = '1', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '1', description = '► Is Business Day (Sample: Y or N)
+Keywords: day, date, business day'), 
+        holiday_flag:text (sourcetypeid = '1', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '1', description = '► Is Holiday Day (Sample: Y or N)
+Keywords: day, date, holiday day'), 
+        day_of_wk_name:text (sourcetypeid = '1', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '9', description = '► Day Of Week Name (Sample: Monday)
+Keywords: day, date, day of week name'), 
+        day_of_wk_name_abbr:text (sourcetypeid = '1', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '3', description = '► Day Of Week Abbreviation (Sample: Mon)
+Keywords: day, date, day of week abbr'), 
+        day_of_wk_nbr:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3', description = '► Day of Week Number (Sample: Fri = 5)
+Keywords: day, weekday, weekday number'), 
+        cal_day_of_mo_nbr:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3', description = '► Calendar Day of Month Number (Sample: 30)
+Keywords: day, day of month, day of month number'), 
+        cal_day_of_yr_nbr:int (sourcetypeid = '5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '5', description = '► Calendar Day of Year Number (Sample: 356)
+Keywords: day, day of year, day of year number'), 
+        cal_wk:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = '► Calendar Week Number in Year (Year+Week nbr) (Sample: 201652)
+Keywords: day, week number, calendar week number'), 
+        cal_wk_nbr:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3', description = '► Calendar Week Number (Sample: 52)
+Keywords: day, week number, calendar week number'), 
+        cal_mo:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = '► Calendar Month in Year (Year+Month nbr) (Sample: 201612)
+Keywords: day, month number, calendar month number'), 
+        cal_mo_nbr:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3', description = '► Calendar Month Number (Sample: 12)
+Keywords: day, month number, calendar month number'), 
+        cal_mo_name:text (sourcetypeid = '1', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '9', description = '► Calendar Month Name (Sample: January)
+Keywords: day, month name, calendar month name'), 
+        cal_mo_name_abbr:text (sourcetypeid = '1', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '3', description = '► Calendar Month Name Abbreviation (Sample: Jan)
+Keywords: day, month name, calendar month name abbreviation, month name abbr'), 
+        cal_qtr:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = '► Calendar Quarter in Year (Year+Quarter nbr) (Sample: 201601)
+Keywords: day, quarter number, calendar quarter number'), 
+        cal_qtr_nbr:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3', description = '► Calendar Quarter Number (Sample: 2)
+Keywords: day, quarter number, calendar quarter number'), 
+        cal_half:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = '► Calendar Half in Year (Year+Half nbr) (Sample: 201601)
+Keywords: day, half number, calendar half number'), 
+        cal_yr:int (sourcetypeid = '5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '5', description = '► Calendar Year Number (Sample: 2019)
+Keywords: day, year nbr, calendar year number'), 
+        fiscal_day_of_mo_nbr:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3', description = '► Fiscal Day of Month Number (Sample: 30)
+Keywords: fiscal day, fiscal day of month, fiscal day of month number'), 
+        fiscal_day_of_yr_nbr:int (sourcetypeid = '5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '5', description = '► Fiscal Day of Year Number (Sample: 201930)
+Keywords: fiscal day, fiscal day of year, fiscal day of year number'), 
+        fiscal_wk:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = '► Fiscal Week (Sample: 201851)
+Keywords: fiscal, week, fiscal week'), 
+        fiscal_wk_nbr:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3', description = '► Fiscal Week Number (Sample: 51)
+Keywords: fiscal, week, fiscal week nbr'), 
+        fiscal_mo:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = '► Fiscal Month (Sample: 201903)
+Keywords: fiscal, month, fiscal month'), 
+        fiscal_mo_nbr:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3', description = '► Fiscal Month Number (Sample: 3)
+Keywords: fiscal, month, fiscal month number'), 
+        fiscal_mo_name:text (sourcetypeid = '1', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '9', description = '► Fiscal Month Name (Sample: January)
+Keywords: fiscal, month, fiscal month name'), 
+        fiscal_mo_name_abbr:text (sourcetypeid = '1', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '3', description = '► Fiscal Month Name Abbreviation (Sample: Jan)
+Keywords: fiscal, month, fiscal month name abbr'), 
+        fiscal_qtr:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = '► Fiscal Quarter (Sample: 201903)
+Keywords: fiscal, quarter, fiscal quarter, Q1, Q2, Q3, Q4'), 
+        fiscal_qtr_nbr:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3', description = '► Fiscal Quarter Number (Sample: 3)
+Keywords: fiscal, quarter, fiscal quarter, Q1, Q2, Q3, Q4'), 
+        fiscal_half:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = '► Fiscal Half (Sample: 201901)
+Keywords: fiscal, half, fiscal half'), 
+        fiscal_yr:int (sourcetypeid = '5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '5', description = '► Fiscal Year (Sample: 2019)
+Keywords: fiscal, year, fiscal year'), 
+        lyr_week_dt:timestamp (sourcetypeid = '93', sourcetyperadix = '0', sourcetypedecimals = '6', sourcetypesize = '26', description = '► Last Year Weekend Date(First Sunday after the specified date)(Sample: 2021-01-31 00:00:00)
+If current date is 2022-01-26 00:00:00 then lyr_week_dt will be 2021-01-31 00:00:00
+Keywords: year, last year, last year week date'), 
+        lwk_week_dt:timestamp (sourcetypeid = '93', sourcetyperadix = '0', sourcetypedecimals = '6', sourcetypesize = '26', description = '► Last Sunday (Sample: 2022-01-23 00:00:00)
+If current date is 2022-01-26 00:00:00 then lwk_week_dt will be 2022-01-23 00:00:00
+Keywords: week, last week, last week date'), 
+        week_dt:timestamp (sourcetypeid = '93', sourcetyperadix = '0', sourcetypedecimals = '6', sourcetypesize = '26', description = '► Next Sunday (Sample: 2022-01-30 00:00:00)
+If current date is 2022-01-26 00:00:00 then week_dt will be 2022-01-30 00:00:00
+Keywords: week, week date, dates'), 
+        est_time_conv_amt:decimal (sourcetypeid = '2', sourcetyperadix = '10', sourcetypedecimals = '6', sourcetypesize = '6'), 
+        est_time_conv_hrs:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3'), 
+        es0_time_conv_amt:decimal (sourcetypeid = '2', sourcetyperadix = '10', sourcetypedecimals = '6', sourcetypesize = '6'), 
+        es0_time_conv_hrs:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3'), 
+        cst_time_conv_amt:decimal (sourcetypeid = '2', sourcetyperadix = '10', sourcetypedecimals = '6', sourcetypesize = '6'), 
+        cst_time_conv_hrs:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3'), 
+        cs0_time_conv_amt:decimal (sourcetypeid = '2', sourcetyperadix = '10', sourcetypedecimals = '6', sourcetypesize = '6'), 
+        cs0_time_conv_hrs:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3'), 
+        mst_time_conv_amt:decimal (sourcetypeid = '2', sourcetyperadix = '10', sourcetypedecimals = '6', sourcetypesize = '6'), 
+        mst_time_conv_hrs:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3'), 
+        ms0_time_conv_amt:decimal (sourcetypeid = '2', sourcetyperadix = '10', sourcetypedecimals = '6', sourcetypesize = '6'), 
+        ms0_time_conv_hrs:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3'), 
+        pst_time_conv_amt:decimal (sourcetypeid = '2', sourcetyperadix = '10', sourcetypedecimals = '6', sourcetypesize = '6'), 
+        pst_time_conv_hrs:int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3')
+    )
+    FOLDER = '/01 sources/netezza/date'
+    CONSTRAINT 'DAYS_PK_IDX2' PRIMARY KEY ( 'day_dt' )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD days(
+        I18N us_mst
+        CONSTRAINTS (
+             ADD day_dt (any) OPT ANY
+             ADD business_day_flag (any) OPT ANY
+             ADD holiday_flag (any) OPT ANY
+             ADD day_of_wk_name (any) OPT ANY
+             ADD day_of_wk_name_abbr (any) OPT ANY
+             ADD day_of_wk_nbr (any) OPT ANY
+             ADD cal_day_of_mo_nbr (any) OPT ANY
+             ADD cal_day_of_yr_nbr (any) OPT ANY
+             ADD cal_wk (any) OPT ANY
+             ADD cal_wk_nbr (any) OPT ANY
+             ADD cal_mo (any) OPT ANY
+             ADD cal_mo_nbr (any) OPT ANY
+             ADD cal_mo_name (any) OPT ANY
+             ADD cal_mo_name_abbr (any) OPT ANY
+             ADD cal_qtr (any) OPT ANY
+             ADD cal_qtr_nbr (any) OPT ANY
+             ADD cal_half (any) OPT ANY
+             ADD cal_yr (any) OPT ANY
+             ADD fiscal_day_of_mo_nbr (any) OPT ANY
+             ADD fiscal_day_of_yr_nbr (any) OPT ANY
+             ADD fiscal_wk (any) OPT ANY
+             ADD fiscal_wk_nbr (any) OPT ANY
+             ADD fiscal_mo (any) OPT ANY
+             ADD fiscal_mo_nbr (any) OPT ANY
+             ADD fiscal_mo_name (any) OPT ANY
+             ADD fiscal_mo_name_abbr (any) OPT ANY
+             ADD fiscal_qtr (any) OPT ANY
+             ADD fiscal_qtr_nbr (any) OPT ANY
+             ADD fiscal_half (any) OPT ANY
+             ADD fiscal_yr (any) OPT ANY
+             ADD lyr_week_dt (any) OPT ANY
+             ADD lwk_week_dt (any) OPT ANY
+             ADD week_dt (any) OPT ANY
+             ADD est_time_conv_amt (any) OPT ANY
+             ADD est_time_conv_hrs (any) OPT ANY
+             ADD es0_time_conv_amt (any) OPT ANY
+             ADD es0_time_conv_hrs (any) OPT ANY
+             ADD cst_time_conv_amt (any) OPT ANY
+             ADD cst_time_conv_hrs (any) OPT ANY
+             ADD cs0_time_conv_amt (any) OPT ANY
+             ADD cs0_time_conv_hrs (any) OPT ANY
+             ADD mst_time_conv_amt (any) OPT ANY
+             ADD mst_time_conv_hrs (any) OPT ANY
+             ADD ms0_time_conv_amt (any) OPT ANY
+             ADD ms0_time_conv_hrs (any) OPT ANY
+             ADD pst_time_conv_amt (any) OPT ANY
+             ADD pst_time_conv_hrs (any) OPT ANY
+        )
+        OUTPUTLIST (business_day_flag, cal_day_of_mo_nbr, cal_day_of_yr_nbr, cal_half, cal_mo, cal_mo_name, cal_mo_name_abbr, cal_mo_nbr, cal_qtr, cal_qtr_nbr, cal_wk, cal_wk_nbr, cal_yr, cs0_time_conv_amt, cs0_time_conv_hrs, cst_time_conv_amt, cst_time_conv_hrs, day_dt, day_of_wk_name, day_of_wk_name_abbr, day_of_wk_nbr, es0_time_conv_amt, es0_time_conv_hrs, est_time_conv_amt, est_time_conv_hrs, fiscal_day_of_mo_nbr, fiscal_day_of_yr_nbr, fiscal_half, fiscal_mo, fiscal_mo_name, fiscal_mo_name_abbr, fiscal_mo_nbr, fiscal_qtr, fiscal_qtr_nbr, fiscal_wk, fiscal_wk_nbr, fiscal_yr, holiday_flag, lwk_week_dt, lyr_week_dt, ms0_time_conv_amt, ms0_time_conv_hrs, mst_time_conv_amt, mst_time_conv_hrs, pst_time_conv_amt, pst_time_conv_hrs, week_dt
+        )
+        WRAPPER (jdbc days)
+    )
+    SMART_THEN_ATSOURCE_THROUGH_VDP;
+

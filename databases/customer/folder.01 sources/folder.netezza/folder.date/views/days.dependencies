@@ -1,0 +1,6 @@
+﻿/databases/customer/folder.01 sources/01 sources.vql
+/databases/customer/folder.01 sources/folder.netezza/netezza.vql
+/databases/customer/folder.01 sources/folder.netezza/folder.date/date.vql
+/databases/customer/folder.00 connections/00 connections.vql
+/databases/customer/folder.00 connections/folder.netezza/netezza.vql
+/databases/customer/folder.00 connections/folder.netezza/datasources/jdbc/edw_prd.vql
