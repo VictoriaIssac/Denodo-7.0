@@ -1,0 +1,41 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_emp
+    FOLDER = '/01-datasource'
+    DATASOURCENAME=ds_sqlserver
+    CATALOGNAME='${databases.admin.folder.01-datasource.views.jdbc.bv_emp.CATALOGNAME}' 
+    SCHEMANAME='${databases.admin.folder.01-datasource.views.jdbc.bv_emp.SCHEMANAME}' 
+    RELATIONNAME='emp' 
+    OUTPUTSCHEMA (
+        id = 'id' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        firstname = 'Firstname' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        lastname = 'Lastname' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        age = 'age' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        lastmodified = 'lastmodified' :'java.time.OffsetDateTime' (OPT) (sourcetypedecimals='7', sourcetypesize='34', sourcetypeid='-155', sourcetypename='datetimeoffset')  NOT SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_emp I18N us_pst (
+        id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        firstname:text (sourcetypeid = '12', sourcetypesize = '50'),
+        lastname:text (sourcetypeid = '12', sourcetypesize = '50'),
+        age:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        lastmodified:timestamptz (sourcetypeid = '2014', sourcetypedecimals = '7', sourcetypesize = '34')
+    )
+    FOLDER = '/01-datasource'
+    CACHE FULL
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_emp(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD firstname (any) OPT ANY
+             ADD lastname (any) OPT ANY
+             ADD age (any) OPT ANY
+             ADD lastmodified (any) OPT ANY
+        )
+        OUTPUTLIST (age, firstname, id, lastmodified, lastname
+        )
+        WRAPPER (jdbc bv_emp)
+    )
+    SMART_ONLY;
+
