@@ -1,0 +1,30 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_rem
+    DATASOURCENAME=ds_oracle
+    SCHEMANAME = '${databases.admin.views.jdbc.bv_rem.SCHEMANAME}'
+    RELATIONNAME='BV_REM' 
+    OUTPUTSCHEMA (
+        o = 'O' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        soure = 'SOURE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='4000', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        mime = 'MIME' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_rem I18N us_pst (
+        o:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '10', sourcetypeid = '-5'), 
+        soure:text (sourcetyperadix = '10', sourcetypesize = '4000', sourcetypeid = '12'), 
+        mime:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '10', sourcetypeid = '-5')
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_rem(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD o (any) OPT ANY
+             ADD soure (any) OPT ANY
+             ADD mime (any) OPT ANY
+        )
+        OUTPUTLIST (mime, o, soure
+        )
+        WRAPPER (jdbc bv_rem)
+    );
+
