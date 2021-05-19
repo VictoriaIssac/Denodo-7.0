@@ -1,4 +1,4 @@
-﻿CREATE OR REPLACE VIEW p_bv_hr_countries AS SELECT bv_hr_countries.country_id AS country_id1, bv_hr_countries.country_name AS country_name, bv_hr_countries.region_id AS region_id FROM bv_hr_countries;
+﻿CREATE OR REPLACE VIEW p_bv_hr_countries AS SELECT bv_hr_countries.country_id1 AS country_id1, bv_hr_countries.country_name AS country_name, bv_hr_countries.region_id AS region_id FROM bv_hr_countries;
 
 ALTER VIEW p_bv_hr_countries
  LAYOUT (bv_hr_countries = [20, 20, 200, 86]);

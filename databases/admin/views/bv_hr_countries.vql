@@ -4,14 +4,14 @@ CREATE OR REPLACE WRAPPER JDBC bv_hr_countries
     SCHEMANAME = '${databases.admin.views.jdbc.bv_hr_countries.SCHEMANAME}'
     RELATIONNAME='BV_HR_COUNTRIES' 
     OUTPUTSCHEMA (
-        country_id = 'COUNTRY_ID' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='2', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
         country_name = 'COUNTRY_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='40', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
-        region_id = 'REGION_ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='20', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE
+        region_id = 'REGION_ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='20', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        country_id1 = 'COUNTRY_ID' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='2', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE
     )
     INDEX 'hug' CLUSTER UNIQUE ( 'COUNTRY_NAME' );
 
 CREATE OR REPLACE TABLE bv_hr_countries I18N us_pst (
-        country_id:text (sourcetyperadix = '10', sourcetypesize = '2', sourcetypeid = '1'), 
+        country_id1:text (sourcetyperadix = '10', sourcetypesize = '2', sourcetypeid = '-1'), 
         country_name:text (sourcetyperadix = '10', sourcetypesize = '40', sourcetypeid = '12'), 
         region_id:decimal (sourcetypedecimals = '20', sourcetyperadix = '10', sourcetypesize = '38', sourcetypeid = '3')
     )
@@ -20,11 +20,11 @@ CREATE OR REPLACE TABLE bv_hr_countries I18N us_pst (
     ADD SEARCHMETHOD bv_hr_countries(
         I18N us_pst
         CONSTRAINTS (
-             ADD country_id (any) OPT ANY
+             ADD country_id1 (any) OPT ANY
              ADD country_name (any) OPT ANY
              ADD region_id (any) OPT ANY
         )
-        OUTPUTLIST (country_id, country_name, region_id
+        OUTPUTLIST (country_id1, country_name, region_id
         )
         WRAPPER (jdbc bv_hr_countries)
     );
