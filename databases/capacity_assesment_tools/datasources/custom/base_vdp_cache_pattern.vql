@@ -1,0 +1,4 @@
+﻿CREATE OR REPLACE DATASOURCE CUSTOM base_vdp_cache_pattern
+    CLASSNAME='com.denodo.connect.log.LogCustomWrapper'
+    JARS 'denodo-log-customwrapper-dmr';
+

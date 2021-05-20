@@ -1,0 +1,4 @@
+﻿CREATE OR REPLACE PROCEDURE dmr_getcountbyvdpviewandqueryvdpcache
+    CLASSNAME='com.denodo.connect.dmr.vdp.denodo_dmr_storedprocedures.GetCountByVdpviewAndQueryVdpCache'
+    JARS 'denodo-storedprocedures-vdp-dmr';
+

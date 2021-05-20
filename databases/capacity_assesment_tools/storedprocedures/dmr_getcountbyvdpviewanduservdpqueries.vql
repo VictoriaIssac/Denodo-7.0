@@ -1,0 +1,4 @@
+﻿CREATE OR REPLACE PROCEDURE dmr_getcountbyvdpviewanduservdpqueries
+    CLASSNAME='com.denodo.connect.dmr.vdp.denodo_dmr_storedprocedures.GetCountByVdpviewAndUserVdpQueries'
+    JARS 'denodo-storedprocedures-vdp-dmr';
+

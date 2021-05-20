@@ -1,0 +1,4 @@
+﻿CREATE OR REPLACE PROCEDURE dmr_getquerybyvdpviewandhourvdpqueries
+    CLASSNAME='com.denodo.connect.dmr.vdp.denodo_dmr_storedprocedures.GetQueryByVdpviewAndHourVdpQueries'
+    JARS 'denodo-storedprocedures-vdp-dmr';
+
