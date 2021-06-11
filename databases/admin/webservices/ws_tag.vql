@@ -11,7 +11,7 @@
     SUPPORTEDREPRESENTATIONS (JSON)
     RESOURCES (
         VIEW "bv_TAG" FIELDS (
-            "TAG_NAME" : 'text', 
+            "TAG_NAME" : 'text' OBL, 
             "TAG_DESC" : 'text'
         )
     )
