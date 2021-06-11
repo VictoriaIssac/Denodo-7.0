@@ -21,9 +21,8 @@ CREATE OR REPLACE DATASOURCE JDBC ds_oracle
     NUMTESTPEREVICTION = 3
     MINEVICTABLETIME = 1800000
     POOLPREPAREDSTATEMENTS = false
-    MAXSLEEPINGPS = 4
-    INITIALCAPACITYPS = 8
-    PROPERTIES ('remarksReporting'='false', 'includeSynonyms'='false')
+    MAXOPENPREPAREDSTATEMENTS = -1
+    PROPERTIES ('includeSynonyms'='false', 'remarksReporting'='false')
     DATA_LOAD_CONFIGURATION (
         BATCHINSERTSIZE = 200
     );

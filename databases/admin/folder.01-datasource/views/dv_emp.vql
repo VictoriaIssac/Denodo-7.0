@@ -1,4 +1,4 @@
-﻿CREATE OR REPLACE VIEW dv_emp FOLDER = '/01-datasource' AS SELECT bv_emp.id AS id, bv_emp.firstname AS firstname, bv_emp.lastname AS lastname, bv_emp.age AS age, bv_emp.lastmodified AS lastmodified FROM bv_emp CONTEXT ('I18N' = 'us_pst', DATAMOVEMENTPLAN = bv_emp : JDBC ds_sqlserver);
+﻿CREATE OR REPLACE VIEW dv_emp FOLDER = '/01-datasource' AS SELECT bv_emp.id AS id, bv_emp.firstname AS firstname, bv_emp.lastname AS lastname, bv_emp.age AS age, bv_emp.lastmodified AS lastmodified FROM bv_emp WHERE id in (101, 102, 103) CONTEXT ('I18N' = 'us_pst');
 
 ALTER VIEW dv_emp
  LAYOUT (bv_emp = [20, 20, 203, 125]);
