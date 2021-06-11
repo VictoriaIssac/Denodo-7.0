@@ -1,0 +1,69 @@
+﻿CREATE OR REPLACE WRAPPER JSON ds_cou
+    DATASOURCENAME=ds_cou
+    TUPLEROOT '/JSONFile'
+    OUTPUTSCHEMA ("JSONFile" = 'JSONFile' : REGISTER OF (
+        name = 'name' : 'java.lang.String',
+        elements = 'elements' : ARRAY OF (
+            elements = 'elements' : REGISTER OF (
+                country_id = 'country_id' : 'java.lang.String',
+                country_name = 'country_name' : 'java.lang.String',
+                region_id = 'region_id' : 'java.lang.Integer',
+                links = 'links' : ARRAY OF (
+                    links = 'links' : REGISTER OF (
+                        rel = 'rel' : 'java.lang.String',
+                        href = 'href' : 'java.lang.String'
+                    )
+                )
+            )
+        ),
+        links = 'links' : ARRAY OF (
+            links = 'links' : REGISTER OF (
+                rel = 'rel' : 'java.lang.String',
+                href = 'href' : 'java.lang.String'
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE ds_cou_elements_elements_links_links AS REGISTER OF (rel:text, href:text);
+
+CREATE OR REPLACE TYPE ds_cou_elements_elements_links AS ARRAY OF ds_cou_elements_elements_links_links;
+
+CREATE OR REPLACE TYPE ds_cou_elements_elements AS REGISTER OF (country_id:text, country_name:text, region_id:int, links:ds_cou_elements_elements_links);
+
+CREATE OR REPLACE TYPE ds_cou_elements AS ARRAY OF ds_cou_elements_elements;
+
+CREATE OR REPLACE TYPE ds_cou_links_links AS REGISTER OF (rel:text, href:text);
+
+CREATE OR REPLACE TYPE ds_cou_links AS ARRAY OF ds_cou_links_links;
+
+CREATE OR REPLACE TABLE ds_cou I18N us_cst (
+        name:text,
+        elements:ds_cou_elements,
+        links:ds_cou_links
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_cou(
+        I18N us_cst
+        CONSTRAINTS (
+             ADD name NOS ZERO ()
+             ADD elements NOS ZERO ()
+             ADD elements NOS ZERO ()
+             ADD elements.country_id NOS ZERO ()
+             ADD elements.country_name NOS ZERO ()
+             ADD elements.region_id NOS ZERO ()
+             ADD elements.links NOS ZERO ()
+             ADD elements.links NOS ZERO ()
+             ADD elements.links.rel NOS ZERO ()
+             ADD elements.links.href NOS ZERO ()
+             ADD links NOS ZERO ()
+             ADD links NOS ZERO ()
+             ADD links.rel NOS ZERO ()
+             ADD links.href NOS ZERO ()
+        )
+        OUTPUTLIST (elements, links, name
+        )
+        WRAPPER (json ds_cou)
+    );
+

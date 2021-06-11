@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW dv_time AS SELECT to_timestamptz('dd-MMM-yyyy HH:mm:ss', '01-Nov-2009 01:59:00', true) FROM dual() CONTEXT ('I18N' = 'us_cst');
+

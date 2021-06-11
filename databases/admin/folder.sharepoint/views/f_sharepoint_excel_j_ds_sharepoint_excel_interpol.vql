@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW f_sharepoint_excel_j_ds_sharepoint_excel_interpol FOLDER = '/sharepoint' AS SELECT f_sharepoint_excel.content AS content, f_sharepoint_excel."d:ServerRelativeUrl" AS "d:ServerRelativeUrl", ds_sharepoint_excel_interpol."Column_0" AS "Column_0", ds_sharepoint_excel_interpol."Column_1" AS "Column_1", ds_sharepoint_excel_interpol."RELATIVE_URL" AS "RELATIVE_URL" FROM f_sharepoint_excel AS f_sharepoint_excel INNER JOIN ds_sharepoint_excel_interpol AS ds_sharepoint_excel_interpol ON f_sharepoint_excel."d:ServerRelativeUrl" = ds_sharepoint_excel_interpol."RELATIVE_URL"  CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW f_sharepoint_excel_j_ds_sharepoint_excel_interpol
+ LAYOUT (f_sharepoint_excel = [30, 20, 260, 66], ds_sharepoint_excel_interpol = [444, 129, 200, 86]);
+

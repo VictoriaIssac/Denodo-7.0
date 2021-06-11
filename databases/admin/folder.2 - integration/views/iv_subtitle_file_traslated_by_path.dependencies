@@ -1,0 +1,24 @@
+﻿/databases/admin/folder.2 - integration/2 - integration.vql
+/databases/admin/maps/translation_replacement.vql
+/databases/admin/maps/subtitles_unreplace.vql
+/databases/admin/maps/subtitles_replace.vql
+/databases/admin/folder.1 - connectivity/1 - connectivity.vql
+/databases/admin/folder.1 - connectivity/folder.2 - base views/2 - base views.vql
+/extensions/jars/denodo-filesystem-customwrapper.vql
+/databases/admin/folder.1 - connectivity/folder.1 - data sources/1 - data sources.vql
+/databases/admin/folder.1 - connectivity/folder.1 - data sources/datasources/custom/readsystem.vql
+/databases/admin/folder.1 - connectivity/folder.2 - base views/views/readsystem.vql
+/databases/admin/folder.2 - integration/views/iv_sections_path.vql
+/databases/admin/folder.4 - report views/4 - report views.vql
+/databases/admin/folder.1 - connectivity/folder.1 - data sources/datasources/df/ds_subtitles.vql
+/databases/admin/folder.1 - connectivity/folder.2 - base views/views/bv_subtitle_file.vql
+/databases/admin/folder.2 - integration/views/iv_subtitle_file_sentence_splittext.vql
+/databases/admin/folder.2 - integration/views/iv_subtitle_file_sentence_array.vql
+/databases/admin/folder.2 - integration/views/iv_subtitle_file_sentences.vql
+/databases/admin/folder.2 - integration/views/iv_subtitle_file_sentences_times_group.vql
+/databases/admin/folder.1 - connectivity/folder.2 - base views/views/wait.vql
+/databases/admin/folder.1 - connectivity/folder.1 - data sources/datasources/df/ds_google_translate_json_copy2.vql
+/databases/admin/folder.1 - connectivity/folder.2 - base views/views/bv_google_translate_json_multiple_translations.vql
+/databases/admin/folder.2 - integration/views/iv_google_translate_json_multiple_translations_regexp.vql
+/databases/admin/folder.2 - integration/views/iv_google_translate_json_translated.vql
+/databases/admin/folder.4 - report views/views/subtitle_file_translated.vql

@@ -1,0 +1,47 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC vic_sum
+    FOLDER = '/01-data source'
+    DATASOURCENAME=ds_oracle
+    SCHEMANAME='${databases.admin.folder.01-data source.views.jdbc.vic_sum.SCHEMANAME}' ESCAPE
+    RELATIONNAME='VIC_SUM' 
+    OUTPUTSCHEMA (
+        datetz = 'DATETZ' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='6', sourcetyperadix='10', sourcetypesize='11', sourcetypeid='93', sourcetypename='TIMESTAMP(6)')  SORTABLE,
+        total_pa = 'TOTAL_PA' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        datatzsatrt = 'DATATZSATRT' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='6', sourcetyperadix='10', sourcetypesize='11', sourcetypeid='93', sourcetypename='TIMESTAMP(6)')  SORTABLE,
+        total_decimal = 'TOTAL_DECIMAL' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        column1 = 'COLUMN1' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        x_total_pause = 'X_TOTAL_PAUSE' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        x_pause_time = 'X_PAUSE_TIME' :'java.lang.Double' (OPT) (sourcetyperadix='10', sourcetypesize='126', sourcetypeid='6', sourcetypename='FLOAT')  SORTABLE,
+        x_pause_deciaml = 'X_PAUSE_DECIAML' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='3', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE vic_sum I18N au_cst (
+        datetz:timestamp (sourcetypeid = '93', sourcetyperadix = '10', sourcetypedecimals = '6', sourcetypesize = '11'),
+        total_pa:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        datatzsatrt:timestamp (sourcetypeid = '93', sourcetyperadix = '10', sourcetypedecimals = '6', sourcetypesize = '11'),
+        total_decimal:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        column1:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        x_total_pause:timestamp (sourcetypeid = '93', sourcetyperadix = '10', sourcetypesize = '7'),
+        x_pause_time:double (sourcetypeid = '8', sourcetyperadix = '10', sourcetypesize = '126'),
+        x_pause_deciaml:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '3', sourcetypesize = '38')
+    )
+    FOLDER = '/01-data source'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD vic_sum(
+        I18N au_cst
+        CONSTRAINTS (
+             ADD datetz (any) OPT ANY
+             ADD total_pa (any) OPT ANY
+             ADD datatzsatrt (any) OPT ANY
+             ADD total_decimal (any) OPT ANY
+             ADD column1 (any) OPT ANY
+             ADD x_total_pause (any) OPT ANY
+             ADD x_pause_time (any) OPT ANY
+             ADD x_pause_deciaml (any) OPT ANY
+        )
+        OUTPUTLIST (column1, datatzsatrt, datetz, total_decimal, total_pa, x_pause_deciaml, x_pause_time, x_total_pause
+        )
+        WRAPPER (jdbc vic_sum)
+    );
+

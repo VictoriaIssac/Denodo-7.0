@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WEBSERVICE ds_csv_covid;
+
+DEPLOY WEBSERVICE ds_csv_covid LOGIN = '${databases.admin.webcontainer.webservices.ds_csv_covid.LOGIN}' PASSWORD = '${databases.admin.webcontainer.webservices.ds_csv_covid.PASSWORD}' ${databases.admin.webcontainer.webservices.ds_csv_covid.PASSWORD.ENCRYPTED};
+

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_google_translate_json_translated FOLDER = '/2 - integration' AS SELECT iv_google_translate_json_multiple_translations_regexp.target_lang AS target_lang, iv_google_translate_json_multiple_translations_regexp.source_lang AS source_lang, iv_google_translate_json_multiple_translations_regexp.text_to_translate AS text_to_translate, substring(array_to_string('', nest(replace(iv_google_translate_json_multiple_translations_regexp.column0, '<valid_line>', ''))), 1, (len(array_to_string('', nest(replace(iv_google_translate_json_multiple_translations_regexp.column0, '<valid_line>', ''))))-1)) AS translated_text FROM iv_google_translate_json_multiple_translations_regexp WHERE column0 like '%<valid_line>' GROUP BY iv_google_translate_json_multiple_translations_regexp.target_lang, iv_google_translate_json_multiple_translations_regexp.source_lang, iv_google_translate_json_multiple_translations_regexp.text_to_translate CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW iv_google_translate_json_translated
+ LAYOUT (iv_google_translate_json_multiple_translations_regexp = [20, 20, 369, 105]);
+

@@ -1,0 +1,9 @@
+﻿CREATE OR REPLACE MAP simple translation_replacement (
+    '\"' = '"'
+    '\\' = ''
+    '\u003c' = '<'
+    '\u003d' = '='
+    '\u003e' = '>'
+    '\u200b' = ';'
+);
+

@@ -1,0 +1,30 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_BAK"
+    DATASOURCENAME=ds_human
+    SCHEMANAME='${databases.admin.views.jdbc.bv_bak.SCHEMANAME}' ESCAPE
+    RELATIONNAME='BAK' 
+    OUTPUTSCHEMA (
+        "ALP" = 'ALP' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "NAME" = 'NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "IDDD" = 'IDDD' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE "bv_BAK" I18N ca_est (
+        "ALP":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        "NAME":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        "IDDD":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38')
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_BAK"(
+        I18N ca_est
+        CONSTRAINTS (
+             ADD "ALP" (any) OPT ANY
+             ADD "NAME" (any) OPT ANY
+             ADD "IDDD" (any) OPT ANY
+        )
+        OUTPUTLIST ("ALP", "IDDD", "NAME"
+        )
+        WRAPPER (jdbc "bv_BAK")
+    );
+

@@ -1,0 +1,67 @@
+﻿CREATE OR REPLACE WRAPPER JSON ds_reg_json_1
+    DATASOURCENAME=ds_reg_json
+    TUPLEROOT '/JSONFile'
+    OUTPUTSCHEMA ("JSONFile" = 'JSONFile' : REGISTER OF (
+        name = 'name' : 'java.lang.String',
+        elements = 'elements' : ARRAY OF (
+            elements = 'elements' : REGISTER OF (
+                country_id = 'country_id' : 'java.lang.String',
+                country_name = 'country_name' : 'java.lang.String',
+                region_id = 'region_id' : 'java.lang.Integer',
+                reg = 'reg' : ARRAY OF (
+                    reg = 'reg' : REGISTER OF (
+                        region_id = 'region_id' : 'java.lang.Integer'
+                    )
+                )
+            )
+        ),
+        links = 'links' : ARRAY OF (
+            links = 'links' : REGISTER OF (
+                rel = 'rel' : 'java.lang.String',
+                href = 'href' : 'java.lang.String'
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE ds_reg_json_elements_elements_reg_reg AS REGISTER OF (region_id:int);
+
+CREATE OR REPLACE TYPE "ds_reg_json_elements_elements_reg_48c3136b-02ec-4f80-91b1-60a2e18292c9" AS ARRAY OF ds_reg_json_elements_elements_reg_reg;
+
+CREATE OR REPLACE TYPE "ds_reg_json_elements_elements_893c4359-ac22-45d4-9afa-59975639c9f9" AS REGISTER OF (country_id:text, country_name:text, region_id:int, reg:"ds_reg_json_elements_elements_reg_48c3136b-02ec-4f80-91b1-60a2e18292c9");
+
+CREATE OR REPLACE TYPE "ds_reg_json_elements_719460d2-4aae-4081-a29e-29f8868e3ed3" AS ARRAY OF "ds_reg_json_elements_elements_893c4359-ac22-45d4-9afa-59975639c9f9";
+
+CREATE OR REPLACE TYPE ds_reg_json_links_links AS REGISTER OF (rel:text, href:text);
+
+CREATE OR REPLACE TYPE ds_reg_json_links AS ARRAY OF ds_reg_json_links_links;
+
+CREATE OR REPLACE TABLE ds_reg_json_1 I18N us_cst (
+        name:text,
+        elements:"ds_reg_json_elements_719460d2-4aae-4081-a29e-29f8868e3ed3",
+        links:ds_reg_json_links
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_reg_json_1(
+        I18N us_cst
+        CONSTRAINTS (
+             ADD name NOS ZERO ()
+             ADD elements NOS ZERO ()
+             ADD elements NOS ZERO ()
+             ADD elements.country_id NOS ZERO ()
+             ADD elements.country_name NOS ZERO ()
+             ADD elements.region_id NOS ZERO ()
+             ADD elements.reg NOS ZERO ()
+             ADD elements.reg NOS ZERO ()
+             ADD elements.reg.region_id NOS ZERO ()
+             ADD links NOS ZERO ()
+             ADD links NOS ZERO ()
+             ADD links.rel NOS ZERO ()
+             ADD links.href NOS ZERO ()
+        )
+        OUTPUTLIST (elements, links, name
+        )
+        WRAPPER (json ds_reg_json_1)
+    );
+

@@ -1,0 +1,12 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON "ds_LI"
+    FOLDER = '/01-data source'
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000000' GET '${databases.admin.folder.01-data source.datasources.json.ds_li.ROUTE.HTTP.URL}'
+    PAGINATION_SETTINGS (
+      PAGE_SIZE_PARAMETER = '$count'
+      PAGE_SIZE = 10
+      NEXT_TOKEN_PATH = '$start_index'
+      MAX_NUMBER_OF_REQUESTS = 5 )
+    AUTHENTICATION OFF
+    PROXY OFF;
+

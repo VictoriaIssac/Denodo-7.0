@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW final FOLDER = '/sharepoint' AS SELECT f_sharepoint_excel.content AS content, f_sharepoint_excel."d:ServerRelativeUrl" AS "d:ServerRelativeUrl", f_ds_sharepoint_excel_file_list."xml:base" AS "xml:base", f_ds_sharepoint_excel_file_list.id_0 AS id_0, f_ds_sharepoint_excel_file_list.updated_0 AS updated_0, f_ds_sharepoint_excel_file_list.id AS id, f_ds_sharepoint_excel_file_list.category AS category, f_ds_sharepoint_excel_file_list.updated AS updated, f_ds_sharepoint_excel_file_list.content AS content2, f_ds_sharepoint_excel_file_list.rel AS rel, f_ds_sharepoint_excel_file_list.href AS href, f_ds_sharepoint_excel_file_list.type AS type, f_ds_sharepoint_excel_file_list.title AS title FROM f_sharepoint_excel AS f_sharepoint_excel INNER JOIN f_ds_sharepoint_excel_file_list AS f_ds_sharepoint_excel_file_list ON f_sharepoint_excel."d:ServerRelativeUrl" = f_ds_sharepoint_excel_file_list.href  CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW final
+ LAYOUT (f_sharepoint_excel = [182, 85, 200, 66], f_ds_sharepoint_excel_file_list = [628, 167, 200, 225]);
+

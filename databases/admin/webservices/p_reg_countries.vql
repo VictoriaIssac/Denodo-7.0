@@ -1,0 +1,23 @@
+﻿CREATE OR REPLACE REST WEBSERVICE p_reg_countries
+    CONNECTION (
+        CHUNKSIZE = 1000
+        CHUNKTIMEOUT = 90000
+        QUERYTIMEOUT = 9223372036854775807
+        POOLENABLED = true
+        POOLINITSIZE = 0
+        POOLMAXACTIVE = 30
+    )
+    DEFAULTREPRESENTATION = JSON
+    SUPPORTEDREPRESENTATIONS (JSON)
+    RESOURCES (
+        VIEW p_reg_countries FIELDS (
+            country_id : 'text', 
+            country_name : 'text', 
+            reg : '_array_register_region_id', 
+            reg_array : '_register_reg_c787a99e-29aa-4c06-9a86-7758e40923d7'
+        )
+    )
+    OPTIONS ( NULLVALUESASEMPTYXMLELEMENTS = false
+        PROCESS_FUNCTIONS_IN_SELECT_PARAMETER = true ) 
+    OPENAPI2 ( API_VERSION = '1.0.0' ) ;
+

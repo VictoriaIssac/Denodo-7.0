@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_ds_excel AS SELECT ds_excel.column_0 AS column_0, ds_excel.column_1 AS column_1, hhhh FROM ds_excel WHERE column_0 = hhhh USING PARAMETERS ( hhhh : text) CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW p_ds_excel
+ LAYOUT (ds_excel = [20, 20, 200, 66]);
+

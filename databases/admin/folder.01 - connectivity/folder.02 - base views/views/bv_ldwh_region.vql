@@ -1,0 +1,75 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_ldwh_Region"
+    FOLDER = '/01 - connectivity/02 - base views'
+    DATASOURCENAME=ds_ldwh
+    CATALOGNAME='${databases.admin.folder.01 - connectivity.folder.02 - base views.views.jdbc.bv_ldwh_region.CATALOGNAME}' 
+    SCHEMANAME='${databases.admin.folder.01 - connectivity.folder.02 - base views.views.jdbc.bv_ldwh_region.SCHEMANAME}' 
+    RELATIONNAME='Region' 
+    OUTPUTSCHEMA (
+        "RegionID" = 'RegionID' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='6', sourcetypeid='12', sourcetypename='varchar')  NOT NULL SORTABLE,
+        "RegionName" = 'RegionName' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='60', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "BranchID" = 'BranchID' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='3', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "PMA" = 'PMA' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='6', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "UserID" = 'UserID' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='36', sourcetypeid='1', sourcetypename='uniqueidentifier')  NOT SORTABLE,
+        "NumOfPostcodes" = 'NumOfPostcodes' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        "Locality" = 'Locality' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='2', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "Active" = 'Active' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='10', sourcetypeid='1', sourcetypename='nchar')  SORTABLE,
+        "ZoneID" = 'ZoneID' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='2', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "UserID_New" = 'UserID_New' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='36', sourcetypeid='1', sourcetypename='uniqueidentifier')  NOT SORTABLE,
+        "CML_UserID" = 'CML_UserID' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='36', sourcetypeid='1', sourcetypename='uniqueidentifier')  NOT SORTABLE,
+        "NZLocality" = 'NZLocality' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "SegmentLocality" = 'SegmentLocality' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "EpicorRegionID" = 'EpicorRegionID' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='10', sourcetypeid='1', sourcetypename='nchar')  SORTABLE
+    )
+    CONSTRAINT 'PK_Region' PRIMARY KEY ( 'RegionID' )
+    CONSTRAINT 'FK_Region_Users' FOREIGN KEY ( 'UserID' ) 
+    REFERENCES 'Datawarehouse'.'dbo'.'Users'( 'UserID' )  ON UPDATE RESTRICT  ON DELETE RESTRICT NOT DEFERRABLE 
+    CONSTRAINT 'FK_Region_Zones' FOREIGN KEY ( 'ZoneID' ) 
+    REFERENCES 'Datawarehouse'.'dbo'.'Zones'( 'ZoneID' )  ON UPDATE RESTRICT  ON DELETE RESTRICT NOT DEFERRABLE 
+    INDEX 'PK_Region' CLUSTER UNIQUE PRIMARY ( 'RegionID' )
+    INDEX 'IX_Region' OTHER PRIMARY ( 'RegionID' )
+    INDEX 'IX_Region_UserID' OTHER ( 'UserID' );
+
+CREATE OR REPLACE TABLE "bv_ldwh_Region" I18N au_wst (
+        "RegionID":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '6'),
+        "RegionName":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '60'),
+        "BranchID":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '3'),
+        "PMA":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '6'),
+        "UserID":text (sourcetypeid = '1', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '36'),
+        "NumOfPostcodes":int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "Locality":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '2'),
+        "Active":text (sourcetypeid = '-15', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "ZoneID":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '2'),
+        "UserID_New":text (sourcetypeid = '1', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '36'),
+        "CML_UserID":text (sourcetypeid = '1', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '36'),
+        "NZLocality":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '50'),
+        "SegmentLocality":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '50'),
+        "EpicorRegionID":text (sourcetypeid = '-15', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '10')
+    )
+    FOLDER = '/01 - connectivity/02 - base views'
+    CONSTRAINT 'PK_Region' PRIMARY KEY ( 'RegionID' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_ldwh_Region"(
+        I18N au_wst
+        CONSTRAINTS (
+             ADD "RegionID" (any) OPT ANY
+             ADD "RegionName" (any) OPT ANY
+             ADD "BranchID" (any) OPT ANY
+             ADD "PMA" (any) OPT ANY
+             ADD "UserID" (any) OPT ANY
+             ADD "NumOfPostcodes" (any) OPT ANY
+             ADD "Locality" (any) OPT ANY
+             ADD "Active" (any) OPT ANY
+             ADD "ZoneID" (any) OPT ANY
+             ADD "UserID_New" (any) OPT ANY
+             ADD "CML_UserID" (any) OPT ANY
+             ADD "NZLocality" (any) OPT ANY
+             ADD "SegmentLocality" (any) OPT ANY
+             ADD "EpicorRegionID" (any) OPT ANY
+        )
+        OUTPUTLIST ("Active", "BranchID", "CML_UserID", "EpicorRegionID", "Locality", "NZLocality", "NumOfPostcodes", "PMA", "RegionID", "RegionName", "SegmentLocality", "UserID", "UserID_New", "ZoneID"
+        )
+        WRAPPER (jdbc "bv_ldwh_Region")
+    );
+

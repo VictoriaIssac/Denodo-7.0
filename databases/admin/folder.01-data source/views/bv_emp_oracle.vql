@@ -1,0 +1,37 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_emp_oracle
+    FOLDER = '/01-data source'
+    DATASOURCENAME=ds_oracle
+    SCHEMANAME='${databases.admin.folder.01-data source.views.jdbc.bv_emp_oracle.SCHEMANAME}' ESCAPE
+    RELATIONNAME='C_BV_EMP97126138434164865794' 
+    OUTPUTSCHEMA (
+        id = 'ID' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        field_0 = 'FIELD_0' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        expirationdate = 'EXPIRATIONDATE' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        rowstatus = 'ROWSTATUS' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='255', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_emp_oracle I18N us_pst (
+        id:long (sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        field_0:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        expirationdate:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        rowstatus:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255')
+    )
+    FOLDER = '/01-data source'
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_emp_oracle(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD field_0 (any) OPT ANY
+             ADD expirationdate (any) OPT ANY
+             ADD rowstatus (any) OPT ANY
+        )
+        OUTPUTLIST (expirationdate, field_0, id, rowstatus
+        )
+        WRAPPER (jdbc bv_emp_oracle)
+    )
+    SMART_ONLY;
+

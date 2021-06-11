@@ -1,0 +1,9 @@
+﻿/databases/admin/folder.02 - integration/02 - integration.vql
+/databases/admin/folder.01 - connectivity/01 - connectivity.vql
+/databases/admin/folder.01 - connectivity/folder.02 - base views/02 - base views.vql
+/databases/admin/folder.01 - connectivity/folder.01 - data sources/01 - data sources.vql
+/databases/admin/folder.01 - connectivity/folder.01 - data sources/datasources/jdbc/ds_ldwh.vql
+/databases/admin/folder.01 - connectivity/folder.02 - base views/views/bv_ldwh_bisales.vql
+/databases/admin/folder.01 - connectivity/folder.02 - base views/views/bv_ldwh_region.vql
+/databases/admin/folder.01 - connectivity/folder.02 - base views/views/bv_ldwh_users.vql
+/databases/admin/folder.01 - connectivity/folder.02 - base views/views/bv_ldwh_timeperiod.vql

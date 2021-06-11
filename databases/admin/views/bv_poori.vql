@@ -1,0 +1,75 @@
+﻿CREATE OR REPLACE WRAPPER DF bv_poori
+    DATASOURCENAME=ds_poori
+    OUTPUTSCHEMA (
+        aff_id = 'aff_id' (OPT),
+        aff_code = 'aff_code' (OPT),
+        aff_lib = 'aff_lib' (OPT),
+        irve_prac = 'irve_prac' (OPT),
+        irve = 'irve' (OPT),
+        aff_etat_iep = 'aff_etat_iep' (OPT),
+        etat_libelle = 'etat_libelle' (OPT),
+        pdl = 'pdl' (OPT),
+        loilom_prac = 'loilom_prac' (OPT),
+        loilom = 'loilom' (OPT),
+        puiss_soutirage = 'puiss_soutirage' (OPT),
+        gps_longitude = 'gps_longitude' (OPT),
+        gps_latitude = 'gps_latitude' (OPT),
+        cli_catcli = 'cli_catcli' (OPT),
+        cli_siren = 'cli_siren' (OPT),
+        cli_siret = 'cli_siret' (OPT),
+        corr_nom = 'corr_nom' (OPT),
+        corr_prenom = 'corr_prenom' (OPT),
+        corr_rs = 'corr_rs' (OPT)
+    );
+
+CREATE OR REPLACE TABLE bv_poori I18N us_est (
+        aff_id:text,
+        aff_code:text,
+        aff_lib:text,
+        irve_prac:text,
+        irve:text,
+        aff_etat_iep:text,
+        etat_libelle:text,
+        pdl:text,
+        loilom_prac:text,
+        loilom:text,
+        puiss_soutirage:text,
+        gps_longitude:text,
+        gps_latitude:text,
+        cli_catcli:text,
+        cli_siren:text,
+        cli_siret:text,
+        corr_nom:text,
+        corr_prenom:text,
+        corr_rs:text
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_poori(
+        I18N us_est
+        CONSTRAINTS (
+             ADD aff_id (=,in) OPT ANY
+             ADD aff_code (=,in) OPT ANY
+             ADD aff_lib (=,in) OPT ANY
+             ADD irve_prac (=,in) OPT ANY
+             ADD irve (=,in) OPT ANY
+             ADD aff_etat_iep (=,in) OPT ANY
+             ADD etat_libelle (=,in) OPT ANY
+             ADD pdl (=,in) OPT ANY
+             ADD loilom_prac (=,in) OPT ANY
+             ADD loilom (=,in) OPT ANY
+             ADD puiss_soutirage (=,in) OPT ANY
+             ADD gps_longitude (=,in) OPT ANY
+             ADD gps_latitude (=,in) OPT ANY
+             ADD cli_catcli (=,in) OPT ANY
+             ADD cli_siren (=,in) OPT ANY
+             ADD cli_siret (=,in) OPT ANY
+             ADD corr_nom (=,in) OPT ANY
+             ADD corr_prenom (=,in) OPT ANY
+             ADD corr_rs (=,in) OPT ANY
+        )
+        OUTPUTLIST (aff_code, aff_etat_iep, aff_id, aff_lib, cli_catcli, cli_siren, cli_siret, corr_nom, corr_prenom, corr_rs, etat_libelle, gps_latitude, gps_longitude, irve, irve_prac, loilom, loilom_prac, pdl, puiss_soutirage
+        )
+        WRAPPER (df bv_poori)
+    );
+

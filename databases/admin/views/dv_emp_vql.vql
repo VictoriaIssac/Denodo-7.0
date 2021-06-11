@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW dv_emp_vql AS SELECT * FROM bv_emp CONTEXT ('I18N' = 'us_pst', DATAMOVEMENTPLAN = bv_emp : JDBC ds_sqlserver);
+

@@ -1,0 +1,37 @@
+﻿CREATE OR REPLACE WRAPPER JSON ds_li_2
+    FOLDER = '/01-data source'
+    DATASOURCENAME=ds_li_2
+    TUPLEROOT '/JSONFile/elements'
+    OUTPUTSCHEMA ("JSONFile" = 'JSONFile' : REGISTER OF (
+        name = 'name' : 'java.lang.String',
+        "Column_0" = 'JSONFile.elements.Column_0' : 'java.lang.String',
+        "Column_1" = 'JSONFile.elements.Column_1' : 'java.lang.String',
+        "Column_2" = 'JSONFile.elements.Column_2' : 'java.lang.String',
+        "Column_3" = 'JSONFile.elements.Column_3' : 'java.lang.String'
+    )
+    );
+
+CREATE OR REPLACE TABLE ds_li_2 I18N at (
+        name:text,
+        "Column_0":text,
+        "Column_1":text,
+        "Column_2":text,
+        "Column_3":text
+    )
+    FOLDER = '/01-data source'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_li_2(
+        I18N at
+        CONSTRAINTS (
+             ADD name NOS ZERO ()
+             ADD "Column_0" NOS ZERO ()
+             ADD "Column_1" NOS ZERO ()
+             ADD "Column_2" NOS ZERO ()
+             ADD "Column_3" NOS ZERO ()
+        )
+        OUTPUTLIST ("Column_0", "Column_1", "Column_2", "Column_3", name
+        )
+        WRAPPER (json ds_li_2)
+    );
+

@@ -1,0 +1,31 @@
+﻿CREATE OR REPLACE WRAPPER DF ds_csv
+    DATASOURCENAME=ds_csv
+    OUTPUTSCHEMA (
+        cardtypecode_0 = 'Card Type Code' (OPT),
+        cardtypefullname_0 = 'Card Type Full Name' (OPT),
+        issuingbank_0 = 'Issuing Bank' (OPT),
+        ttt = 'ttt' (OPT)
+    );
+
+CREATE OR REPLACE TABLE ds_csv I18N au_cst (
+        cardtypecode_0:text,
+        cardtypefullname_0:text,
+        issuingbank_0:text,
+        ttt:text
+    )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_csv(
+        I18N au_cst
+        CONSTRAINTS (
+             ADD cardtypefullname_0 (=,in) OPT ANY
+             ADD issuingbank_0 (=,in) OPT ANY
+             ADD ttt (=,in) OPT ANY
+             ADD cardtypecode_0 (=,in) OPT ONE
+        )
+        OUTPUTLIST (cardtypecode_0, cardtypefullname_0, issuingbank_0, ttt
+        )
+        WRAPPER (df ds_csv)
+    );
+

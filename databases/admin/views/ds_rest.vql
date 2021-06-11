@@ -1,0 +1,33 @@
+﻿CREATE OR REPLACE WRAPPER JSON ds_rest
+    DATASOURCENAME=ds_rest
+    TUPLEROOT '/JSONFile/elements'
+    OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
+        view_0 = 'VIEW' : 'java.lang.String' (OBL) (DEFAULTVALUE='101') EXTERN,
+        name = 'name' : 'java.lang.String',
+        id = 'JSONFile.elements.id' : 'java.lang.Integer',
+        date = 'JSONFile.elements.date' : 'java.lang.String'
+    )
+    );
+
+CREATE OR REPLACE TABLE ds_rest I18N at (
+        view_0:text (extern),
+        name:text,
+        id:int,
+        date:text
+    )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_rest(
+        I18N at
+        CONSTRAINTS (
+             ADD view_0 (=) OBL ONE
+             ADD name NOS ZERO ()
+             ADD id NOS ZERO ()
+             ADD date NOS ZERO ()
+        )
+        OUTPUTLIST (date, id, name
+        )
+        WRAPPER (json ds_rest)
+    );
+

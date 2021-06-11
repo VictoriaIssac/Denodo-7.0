@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_subtitle_file_sentence_splittext FOLDER = '/2 - integration' AS SELECT bv_subtitle_file.path AS path, bv_subtitle_file.id AS id, bv_subtitle_file.start_time AS start_time, bv_subtitle_file.end_time AS end_time, bv_subtitle_file.text AS text, replace(replace(replace(replacemap(text, 'subtitles_replace'), '.', ('. #'||id)), '!', ('! #'||id)), '?', ('? #'||id)) AS new_ttext FROM bv_subtitle_file CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW iv_subtitle_file_sentence_splittext
+ LAYOUT (bv_subtitle_file = [20, 20, 200, 125]);
+

@@ -1,0 +1,19 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE XML ds_sharepoint_excel_file_list
+    FOLDER = '/sharepoint'
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.admin.folder.sharepoint.datasources.xml.ds_sharepoint_excel_file_list.ROUTE.HTTP.URL}'
+    AUTHENTICATION OAUTH20 ( 
+      ACCESSTOKEN = '${databases.admin.folder.sharepoint.datasources.xml.ds_sharepoint_excel_file_list.ROUTE.HTTP.ACCESSTOKEN}' ${databases.admin.folder.sharepoint.datasources.xml.ds_sharepoint_excel_file_list.ROUTE.HTTP.ACCESSTOKEN.ENCRYPTED}
+      REQUESTSIGNINGMETHOD = ${databases.admin.folder.sharepoint.datasources.xml.ds_sharepoint_excel_file_list.ROUTE.HTTP.REQUESTSIGNINGMETHOD}
+      AUTHENTICATION_GRANT = ${databases.admin.folder.sharepoint.datasources.xml.ds_sharepoint_excel_file_list.ROUTE.AUTHENTICATION.GRANT}
+      TOKENENDPOINTURL = '${databases.admin.folder.sharepoint.datasources.xml.ds_sharepoint_excel_file_list.ROUTE.HTTP.TOKENENDPOINTURL}'
+      EXTRA_PARAMETERS_OF_REFRESH_TOKEN_REQUEST (
+          'resource'='00000003-0000-0ff1-ce00-000000000000/denodorw.sharepoint.com@82955fe5-f266-4fa0-aed5-ee0d1d73cbb1'
+      )
+      CLIENTIDENTIFIER = '${databases.admin.folder.sharepoint.datasources.xml.ds_sharepoint_excel_file_list.ROUTE.HTTP.CLIENTIDENTIFIER}'
+      CLIENTSECRET = '${databases.admin.folder.sharepoint.datasources.xml.ds_sharepoint_excel_file_list.ROUTE.HTTP.CLIENTSECRET}' ${databases.admin.folder.sharepoint.datasources.xml.ds_sharepoint_excel_file_list.ROUTE.HTTP.CLIENTSECRET.ENCRYPTED}
+      REFRESHTOKEN = '${databases.admin.folder.sharepoint.datasources.xml.ds_sharepoint_excel_file_list.ROUTE.HTTP.REFRESHTOKEN}' ${databases.admin.folder.sharepoint.datasources.xml.ds_sharepoint_excel_file_list.ROUTE.HTTP.REFRESHTOKEN.ENCRYPTED}
+      ACCESSTOKENEXPIRESIN = ${databases.admin.folder.sharepoint.datasources.xml.ds_sharepoint_excel_file_list.ROUTE.HTTP.ACCESSTOKENEXPIRESIN}
+    )
+    PROXY OFF;
+

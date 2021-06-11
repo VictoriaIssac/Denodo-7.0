@@ -1,0 +1,11 @@
+﻿/databases/admin/datasources/custom/ds_excel.vql
+/databases/admin/views/ds_excel.vql
+/databases/admin/datasources/custom/ds_excel_sharepoint_book.vql
+/databases/admin/views/ds_excel_sharepoint_book.vql
+/databases/admin/datasources/custom/ds_sharepoint_excel.vql
+/databases/admin/views/bv_sharepoint_excel.vql
+/databases/admin/folder.sharepoint/sharepoint.vql
+/databases/admin/folder.sharepoint/datasources/custom/ds_sharepoint_excel_interpol.vql
+/databases/admin/views/ds_sharepoint_excel_interpol.vql
+/databases/admin/folder.sharepoint/datasources/xml/ds_sharepoint_excel_file_list.vql
+/databases/admin/views/ds_sharepoint_excel_file_list.vql

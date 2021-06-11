@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE PROCEDURE savefile
+    CLASSNAME='com.denodo.training.SaveFileProcedure'
+    JARS 'training-subtitles'
+    FOLDER = '/2 - integration';
+

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW "dv_excel zip" AS SELECT "ds excel zip"."Column_0" AS "Column_0", "ds excel zip"."Column_1" AS "Column_1", "ds excel zip"."Column_2" AS "Column_2", "ds excel zip"."Column_3" AS "Column_3" FROM "ds excel zip" CONTEXT ('I18N' = 'us_est');
+
+ALTER VIEW "dv_excel zip"
+ LAYOUT ("ds excel zip" = [20, 20, 200, 106]);
+

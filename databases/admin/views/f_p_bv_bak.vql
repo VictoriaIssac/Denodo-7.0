@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW "f_p_bv_BAK" AS SELECT v."ALP" FROM FLATTEN "p_bv_BAK" AS v ( v.nestarray) GROUP BY v."ALP";
+
+ALTER VIEW "f_p_bv_BAK"
+ LAYOUT ("p_bv_BAK" = [20, 20, 279, 105]);
+

@@ -1,0 +1,33 @@
+﻿CREATE OR REPLACE WRAPPER JSON bv_intel_json_2
+    DATASOURCENAME=ds_intel
+    TUPLEROOT '/JSONFile/elements'
+    OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
+        input_database_name = 'INPUT_DATABASE_NAME' : 'java.lang.String' (OBL) (DEFAULTVALUE='admin') EXTERN,
+        input_type = 'INPUT_TYPE' : 'java.lang.String' (OBL) (DEFAULTVALUE='view') EXTERN,
+        name = 'name' : 'java.lang.String',
+        field_0 = 'JSONFile.elements.field_0' : 'java.lang.String'
+    )
+    );
+
+CREATE OR REPLACE TABLE bv_intel_json_2 I18N us_pst (
+        input_database_name:text (extern),
+        input_type:text (extern),
+        name:text,
+        field_0:text
+    )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_intel_json_2(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD name NOS ZERO ()
+             ADD field_0 NOS ZERO ()
+             ADD input_database_name (=) OPT ONE
+             ADD input_type (=) OPT ONE
+        )
+        OUTPUTLIST (field_0, name
+        )
+        WRAPPER (json bv_intel_json_2)
+    );
+

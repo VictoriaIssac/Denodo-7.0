@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW bv_intel AS SELECT input_database_name AS input_database_name, input_name AS input_name, input_type AS input_type, input_user_creator AS input_user_creator, input_last_user_modifier AS input_last_user_modifier, input_init_create_date AS input_init_create_date, input_end_create_date AS input_end_create_date, input_init_last_modification_date AS input_init_last_modification_date, input_end_last_modification_date AS input_end_last_modification_date, input_description AS input_description, input_internal_id AS input_internal_id, database_name AS database_name, name AS name, type AS type, subtype AS subtype, user_creator AS user_creator, last_user_modifier AS last_user_modifier, create_date AS create_date, last_modification_date AS last_modification_date, description AS description, folder AS folder, base_view_type AS base_view_type, internal_id AS internal_id FROM get_elements() WHERE (type = 'datasource' AND type = 'view') CONTEXT ('I18N' = 'us_pst');
+
+ALTER VIEW bv_intel
+ LAYOUT (get_elements = [20, 20, 200, 105]);
+

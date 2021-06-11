@@ -1,0 +1,16 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON ds_visa_ip
+    FOLDER = '/01-data source'
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' POST '${databases.admin.folder.01-data source.datasources.json.ds_visa_ip.ROUTE.HTTP.URL}'
+    POSTBODY '\{{
+@inp
+\}}'
+    MIME 'application/json'
+    HEADERS (
+        'X-HTTP-Method-Override'='GET', 
+        'Accept'='application/json', 
+        'Content-Type'='application/json;charset=UTF-8'
+    )
+    AUTHENTICATION OFF
+    PROXY OFF;
+

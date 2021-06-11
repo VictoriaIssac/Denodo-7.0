@@ -1,0 +1,43 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC vic_nest
+    DATASOURCENAME=ds_oracle
+    SCHEMANAME='${databases.admin.views.jdbc.vic_nest.SCHEMANAME}' ESCAPE
+    RELATIONNAME='VIC_NEST' 
+    OUTPUTSCHEMA (
+        id = 'ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        descr = 'DESCR' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        vaule = 'VAULE' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        category = 'CATEGORY' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        tttt = 'TTTT' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        sales = 'SALES' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        rate = 'RATE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE vic_nest I18N au_cst (
+        id:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        descr:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        vaule:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        category:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        tttt:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        sales:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        rate:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20')
+    )
+    CACHE FULL
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD vic_nest(
+        I18N au_cst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD descr (any) OPT ANY
+             ADD vaule (any) OPT ANY
+             ADD tttt (any) OPT ANY
+             ADD sales (any) OPT ANY
+             ADD rate (any) OPT ANY
+             ADD category (any) OBL ONE
+        )
+        OUTPUTLIST (category, descr, id, rate, sales, tttt, vaule
+        )
+        WRAPPER (jdbc vic_nest)
+    );
+

@@ -1,0 +1,36 @@
+﻿CREATE OR REPLACE WRAPPER DF bv_subtitle_file
+    FOLDER = '/1 - connectivity/2 - base views'
+    DATASOURCENAME=ds_subtitles
+    OUTPUTSCHEMA (
+        path = 'path' (OBL) (DEFAULTVALUE='C:\Training\On-demand\DEN70EDUS1001 - Defining Deployment Conf\FinalTest\DEN70EDUS1001 - Defining Deployment Conf - Section 1 - Video_ja-jp.srt') EXTERN,
+        id = 'Column0' (OPT),
+        start_time = 'Column1' (OPT),
+        end_time = 'Column2' (OPT),
+        text = 'Column3' (OPT)
+    );
+
+CREATE OR REPLACE TABLE bv_subtitle_file I18N us_pst (
+        path:text (extern),
+        id:int,
+        start_time:text,
+        end_time:text,
+        text:text
+    )
+    FOLDER = '/1 - connectivity/2 - base views'
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE NOEXPIRE
+    ADD SEARCHMETHOD bv_subtitle_file(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD path (=) OBL ONE
+             ADD id (=,in) OPT ANY
+             ADD start_time (=,in) OPT ANY
+             ADD end_time (=,in) OPT ANY
+             ADD text (=,in) OPT ANY
+        )
+        OUTPUTLIST (end_time, id, start_time, text
+        )
+        WRAPPER (df bv_subtitle_file)
+    );
+

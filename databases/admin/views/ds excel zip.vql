@@ -1,0 +1,22 @@
+﻿CREATE OR REPLACE TABLE "ds excel zip" I18N at (
+        "Column_0":text (sourcetypeid = '12'),
+        "Column_1":text (sourcetypeid = '12'),
+        "Column_2":text (sourcetypeid = '12'),
+        "Column_3":text (sourcetypeid = '12')
+    )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_excel_zip(
+        I18N at
+        CONSTRAINTS (
+             ADD "Column_0" (any) OPT ANY
+             ADD "Column_1" (any) OPT ANY
+             ADD "Column_2" (any) OPT ANY
+             ADD "Column_3" (any) OPT ANY
+        )
+        OUTPUTLIST ("Column_0", "Column_1", "Column_2", "Column_3"
+        )
+        WRAPPER (custom ds_excel_zip)
+    );
+

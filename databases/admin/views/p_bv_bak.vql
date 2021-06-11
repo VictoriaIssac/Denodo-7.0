@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW "p_bv_BAK" AS SELECT "ALP" AS "ALP", nest("NAME", "IDDD") AS nestarray FROM "bv_BAK" GROUP BY "ALP";
+
+ALTER VIEW "p_bv_BAK"
+ LAYOUT ("bv_BAK" = [20, 20, 200, 85]);
+

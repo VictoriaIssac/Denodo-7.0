@@ -1,0 +1,24 @@
+﻿CREATE OR REPLACE WRAPPER DF ds_xml
+    DATASOURCENAME=ds_df
+    OUTPUTSCHEMA (
+        "Column0" = 'Column0' (OPT),
+        "Column1" = 'Column1' (OPT)
+    );
+
+CREATE OR REPLACE TABLE ds_xml I18N at (
+        "Column0":text,
+        "Column1":text
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_xml(
+        I18N at
+        CONSTRAINTS (
+             ADD "Column0" (=,in) OPT ANY
+             ADD "Column1" (=,in) OPT ANY
+        )
+        OUTPUTLIST ("Column0", "Column1"
+        )
+        WRAPPER (df ds_xml)
+    );
+

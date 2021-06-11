@@ -1,0 +1,7 @@
+﻿CREATE OR REPLACE INTERFACE VIEW i_intit (
+        name:text (sourcetypedecimals = '0', sourcetypesize = '65536', sourcetypeid = '12'),
+        description:text (sourcetypedecimals = '0', sourcetypesize = '65536', sourcetypeid = '12'),
+        roles:text (sourcetypedecimals = '0', sourcetypesize = '65536', sourcetypeid = '12'),
+        varible_name:text
+    );
+

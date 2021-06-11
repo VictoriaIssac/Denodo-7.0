@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_countries_ar AS SELECT country_id AS country_id, country_name AS country_name, region_id AS region_id, nest(country_id) AS a, nest(country_name) AS b FROM countries GROUP BY country_id, country_name, region_id;
+
+ALTER VIEW p_countries_ar
+ LAYOUT (countries = [20, 20, 223, 85]);
+

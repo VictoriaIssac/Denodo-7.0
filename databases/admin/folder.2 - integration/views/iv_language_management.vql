@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_language_management FOLDER = '/2 - integration' AS SELECT inputlanguage AS inputlanguage, trim(string) AS language FROM FLATTEN iv_language_management_array AS v ( v.language) CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW iv_language_management
+ LAYOUT (iv_language_management_array = [20, 20, 276, 86]);
+

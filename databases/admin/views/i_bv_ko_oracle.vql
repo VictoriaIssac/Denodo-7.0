@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE INTERFACE VIEW i_bv_ko_oracle (
+        id:text (sourcetypesize = '50', sourcetypeid = '12'),
+        name:text (sourcetypesize = '50', sourcetypeid = '12')
+    );
+

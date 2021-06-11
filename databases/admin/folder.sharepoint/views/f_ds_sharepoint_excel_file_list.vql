@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW f_ds_sharepoint_excel_file_list FOLDER = '/sharepoint' AS SELECT "xml:base", id_0, updated_0, id, category, updated, content, rel, href, type, title FROM FLATTEN ds_sharepoint_excel_file_list AS v ( v.entry.link) CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW f_ds_sharepoint_excel_file_list
+ LAYOUT (ds_sharepoint_excel_file_list = [20, 20, 609, 818]);
+

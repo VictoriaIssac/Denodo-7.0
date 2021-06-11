@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_bv_con AS SELECT country_id AS country_id, country_name AS country_name, region_id AS region_id, nest(country_name) AS arr FROM bv_con GROUP BY country_id, country_name, region_id;
+
+ALTER VIEW p_bv_con
+ LAYOUT (bv_con = [20, 20, 200, 85]);
+

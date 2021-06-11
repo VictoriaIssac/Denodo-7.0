@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW dv_countries AS SELECT region_id AS region_id, nest(country_id, country_name) AS nest_country FROM countries GROUP BY region_id;
+
+ALTER VIEW dv_countries
+ LAYOUT (countries = [20, 20, 223, 85]);
+

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW f_dv_countries AS SELECT region_id AS region_id, country_id AS country_id, country_name AS country_name FROM FLATTEN dv_countries AS v ( v.nest_country);
+
+ALTER VIEW f_dv_countries
+ LAYOUT (dv_countries = [20, 20, 343, 105]);
+

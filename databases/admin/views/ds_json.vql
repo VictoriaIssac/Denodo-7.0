@@ -1,0 +1,98 @@
+﻿CREATE OR REPLACE WRAPPER JSON ds_json
+    DATASOURCENAME=ds_json
+    TUPLEROOT '/JSONFile'
+    OUTPUTSCHEMA ("JSONFile" = 'JSONFile' : REGISTER OF (
+        rates = 'rates' : REGISTER OF (
+            "CAD" = 'CAD' : 'java.lang.Double',
+            "HKD" = 'HKD' : 'java.lang.Double',
+            "ISK" = 'ISK' : 'java.lang.Double',
+            "PHP" = 'PHP' : 'java.lang.Double',
+            "DKK" = 'DKK' : 'java.lang.Double',
+            "HUF" = 'HUF' : 'java.lang.Double',
+            "CZK" = 'CZK' : 'java.lang.Double',
+            "GBP" = 'GBP' : 'java.lang.Double',
+            "RON" = 'RON' : 'java.lang.Double',
+            "SEK" = 'SEK' : 'java.lang.Double',
+            "IDR" = 'IDR' : 'java.lang.Double',
+            "INR" = 'INR' : 'java.lang.Double',
+            "BRL" = 'BRL' : 'java.lang.Double',
+            "RUB" = 'RUB' : 'java.lang.Double',
+            "HRK" = 'HRK' : 'java.lang.Double',
+            "JPY" = 'JPY' : 'java.lang.Double',
+            "THB" = 'THB' : 'java.lang.Double',
+            "CHF" = 'CHF' : 'java.lang.Double',
+            "EUR" = 'EUR' : 'java.lang.Double',
+            "MYR" = 'MYR' : 'java.lang.Double',
+            "BGN" = 'BGN' : 'java.lang.Double',
+            "TRY" = 'TRY' : 'java.lang.Double',
+            "CNY" = 'CNY' : 'java.lang.Double',
+            "NOK" = 'NOK' : 'java.lang.Double',
+            "NZD" = 'NZD' : 'java.lang.Double',
+            "ZAR" = 'ZAR' : 'java.lang.Double',
+            "USD" = 'USD' : 'java.lang.Double',
+            "MXN" = 'MXN' : 'java.lang.Double',
+            "SGD" = 'SGD' : 'java.lang.Double',
+            "AUD" = 'AUD' : 'java.lang.Double',
+            "ILS" = 'ILS' : 'java.lang.Double',
+            "KRW" = 'KRW' : 'java.lang.Double',
+            "PLN" = 'PLN' : 'java.lang.Double'
+        ),
+        "base" = 'base' : 'java.lang.String',
+        date = 'date' : 'java.lang.String'
+    )
+    );
+
+CREATE OR REPLACE TYPE ds_json_rates AS REGISTER OF ("CAD":double, "HKD":double, "ISK":double, "PHP":double, "DKK":double, "HUF":double, "CZK":double, "GBP":double, "RON":double, "SEK":double, "IDR":double, "INR":double, "BRL":double, "RUB":double, "HRK":double, "JPY":double, "THB":double, "CHF":double, "EUR":double, "MYR":double, "BGN":double, "TRY":double, "CNY":double, "NOK":double, "NZD":double, "ZAR":double, "USD":double, "MXN":double, "SGD":double, "AUD":double, "ILS":double, "KRW":double, "PLN":double);
+
+CREATE OR REPLACE TABLE ds_json I18N at (
+        rates:ds_json_rates,
+        "base":text,
+        date:text
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_json(
+        I18N at
+        CONSTRAINTS (
+             ADD rates NOS ZERO ()
+             ADD rates."CAD" NOS ZERO ()
+             ADD rates."HKD" NOS ZERO ()
+             ADD rates."ISK" NOS ZERO ()
+             ADD rates."PHP" NOS ZERO ()
+             ADD rates."DKK" NOS ZERO ()
+             ADD rates."HUF" NOS ZERO ()
+             ADD rates."CZK" NOS ZERO ()
+             ADD rates."GBP" NOS ZERO ()
+             ADD rates."RON" NOS ZERO ()
+             ADD rates."SEK" NOS ZERO ()
+             ADD rates."IDR" NOS ZERO ()
+             ADD rates."INR" NOS ZERO ()
+             ADD rates."BRL" NOS ZERO ()
+             ADD rates."RUB" NOS ZERO ()
+             ADD rates."HRK" NOS ZERO ()
+             ADD rates."JPY" NOS ZERO ()
+             ADD rates."THB" NOS ZERO ()
+             ADD rates."CHF" NOS ZERO ()
+             ADD rates."EUR" NOS ZERO ()
+             ADD rates."MYR" NOS ZERO ()
+             ADD rates."BGN" NOS ZERO ()
+             ADD rates."TRY" NOS ZERO ()
+             ADD rates."CNY" NOS ZERO ()
+             ADD rates."NOK" NOS ZERO ()
+             ADD rates."NZD" NOS ZERO ()
+             ADD rates."ZAR" NOS ZERO ()
+             ADD rates."USD" NOS ZERO ()
+             ADD rates."MXN" NOS ZERO ()
+             ADD rates."SGD" NOS ZERO ()
+             ADD rates."AUD" NOS ZERO ()
+             ADD rates."ILS" NOS ZERO ()
+             ADD rates."KRW" NOS ZERO ()
+             ADD rates."PLN" NOS ZERO ()
+             ADD "base" NOS ZERO ()
+             ADD date NOS ZERO ()
+        )
+        OUTPUTLIST ("base", date, rates
+        )
+        WRAPPER (json ds_json)
+    );
+

@@ -1,0 +1,8 @@
+﻿CREATE OR REPLACE ASSOCIATION bv_gat_sta_bv_tag REFERENTIAL CONSTRAINT 
+    ENDPOINT bv_gat_sta "bv_TAG" (0,1)
+    ENDPOINT bv_tag bv_gat_sta PRINCIPAL (1)
+    ADD MAPPING "TAG_NAME"="NAME";
+
+ALTER ASSOCIATION bv_gat_sta_bv_tag
+ LAYOUT ("bv_TAG" = [87, 92, 200, 65], bv_gat_sta = [387, 98, 200, 45]);
+

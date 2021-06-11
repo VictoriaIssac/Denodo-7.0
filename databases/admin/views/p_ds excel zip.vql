@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW "p_ds excel zip" AS SELECT "Column_0" AS "Column_0", "Column_2" AS "Column_2", "Column_3" AS "Column_3", min("Column_2") AS min_2 FROM "ds excel zip" GROUP BY "Column_0", "Column_2", "Column_3" CONTEXT ('I18N' = 'us_est');
+
+ALTER VIEW "p_ds excel zip"
+ LAYOUT ("ds excel zip" = [20, 20, 200, 106]);
+

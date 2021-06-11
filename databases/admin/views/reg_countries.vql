@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW reg_countries AS SELECT country_id AS country_id, country_name AS country_name, region_id AS region_id, nest(region_id) AS reg FROM countries GROUP BY country_id, country_name, region_id CONTEXT ('I18N' = 'us_cst');
+
+ALTER VIEW reg_countries
+ LAYOUT (countries = [20, 20, 223, 85]);
+

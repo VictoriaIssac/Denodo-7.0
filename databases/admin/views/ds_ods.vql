@@ -1,0 +1,21 @@
+﻿CREATE OR REPLACE WRAPPER DF ds_ods
+    DATASOURCENAME=ds_ods
+    OUTPUTSCHEMA (
+        pk = 'PK' (OPT)
+    );
+
+CREATE OR REPLACE TABLE ds_ods I18N us_est (
+        pk:text
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_ods(
+        I18N us_est
+        CONSTRAINTS (
+             ADD pk (=,in) OPT ANY
+        )
+        OUTPUTLIST (pk
+        )
+        WRAPPER (df ds_ods)
+    );
+

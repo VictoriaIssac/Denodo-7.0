@@ -1,0 +1,37 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC describe_mssql
+    DATASOURCENAME=ds_mssql
+    CATALOGNAME='${databases.admin.views.jdbc.describe_mssql.CATALOGNAME}' ESCAPE
+    SCHEMANAME='${databases.admin.views.jdbc.describe_mssql.SCHEMANAME}' 
+    RELATIONNAME='describe_mssql' 
+    OUTPUTSCHEMA (
+        id = 'id' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        describe = 'describe' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='1000', sourcetypeid='12', sourcetypename='varchar')  ESCAPE SORTABLE,
+        new_test_col = 'new_test_col' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        hi = 'hi' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='10', sourcetypeid='1', sourcetypename='nchar')  SORTABLE,
+        fdd = 'fdd' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='10', sourcetypeid='1', sourcetypename='nchar')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE describe_mssql I18N au_cst (
+        id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        describe:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '1000'),
+        new_test_col:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '50'),
+        hi:text (sourcetypeid = '-15', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '10'),
+        fdd:text (sourcetypeid = '-15', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '10')
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD describe_mssql(
+        I18N au_cst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD describe (any) OPT ANY
+             ADD new_test_col (any) OPT ANY
+             ADD hi (any) OPT ANY
+             ADD fdd (any) OPT ANY
+        )
+        OUTPUTLIST (describe, fdd, hi, id, new_test_col
+        )
+        WRAPPER (jdbc describe_mssql)
+    );
+

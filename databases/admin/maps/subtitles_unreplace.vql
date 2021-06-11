@@ -1,0 +1,15 @@
+﻿CREATE OR REPLACE MAP simple subtitles_unreplace (
+    '***' = '...'
+    '*jar' = '.jar'
+    '*zip' = '.zip'
+    '2*0' = '2.0'
+    '3*0' = '3.0'
+    '6*0' = '6.0'
+    '7*0' = '7.0'
+    '8*0' = '8.0'
+    'community*denodo' = 'community.denodo'
+    'denodo*com' = 'denodo.com'
+    'dsi*iu*edu' = 'dsi.iu.edu'
+    'support*denodo' = 'support.denodo'
+);
+

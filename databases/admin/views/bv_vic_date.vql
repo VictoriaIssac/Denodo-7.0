@@ -1,0 +1,32 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_VIC_DATE"
+    DATASOURCENAME=ds_human
+    SCHEMANAME='${databases.admin.views.jdbc.bv_vic_date.SCHEMANAME}' ESCAPE
+    RELATIONNAME='VIC_DATE' 
+    OUTPUTSCHEMA (
+        "CUSTOMER" = 'CUSTOMER' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "SEARCHDATE" = 'SEARCHDATE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "TRAINID" = 'TRAINID' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE "bv_VIC_DATE" I18N ca_est (
+        "CUSTOMER":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        "SEARCHDATE":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        "TRAINID":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20')
+    )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_VIC_DATE"(
+        I18N ca_est
+        CONSTRAINTS (
+             ADD "CUSTOMER" (any) OPT ANY
+             ADD "SEARCHDATE" (any) OPT ANY
+             ADD "TRAINID" (any) OPT ANY
+        )
+        OUTPUTLIST ("CUSTOMER", "SEARCHDATE", "TRAINID"
+        )
+        WRAPPER (jdbc "bv_VIC_DATE")
+    )
+    SMART_ONLY;
+

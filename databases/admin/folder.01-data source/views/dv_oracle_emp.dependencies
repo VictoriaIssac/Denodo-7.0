@@ -1,0 +1,6 @@
+﻿/databases/admin/folder.01-data source/01-data source.vql
+/databases/admin/datasources/jdbc/ds_oracle.vql
+/databases/admin/folder.01-data source/views/bv_emp_oracle.vql
+/databases/admin/folder.01-datasource/01-datasource.vql
+/databases/admin/folder.01-datasource/datasources/jdbc/ds_sqlserver.vql
+/databases/admin/folder.01-datasource/views/bv_emp.vql

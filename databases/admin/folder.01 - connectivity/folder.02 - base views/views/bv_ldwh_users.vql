@@ -1,0 +1,58 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_ldwh_Users"
+    FOLDER = '/01 - connectivity/02 - base views'
+    DATASOURCENAME=ds_ldwh
+    CATALOGNAME='${databases.admin.folder.01 - connectivity.folder.02 - base views.views.jdbc.bv_ldwh_users.CATALOGNAME}' 
+    SCHEMANAME='${databases.admin.folder.01 - connectivity.folder.02 - base views.views.jdbc.bv_ldwh_users.SCHEMANAME}' 
+    RELATIONNAME='Users' 
+    OUTPUTSCHEMA (
+        "UserID" = 'UserID' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='36', sourcetypeid='1', sourcetypename='uniqueidentifier')  NOT NULL NOT SORTABLE,
+        "Username" = 'Username' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='60', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "UserNTLogin" = 'UserNTLogin' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='30', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "AccessLevel" = 'AccessLevel' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='10', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "DefaultZoneID" = 'DefaultZoneID' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='2', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "Active" = 'Active' :'java.lang.Boolean' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='1', sourcetypeid='-7', sourcetypename='bit')  SORTABLE,
+        "UserType" = 'UserType' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "ParentUserID" = 'ParentUserID' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='36', sourcetypeid='1', sourcetypename='uniqueidentifier')  NOT SORTABLE,
+        "TerritoryCode" = 'TerritoryCode' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int identity')  NOT NULL NOT SORTABLE IS_AUTOINCREMENT,
+        "TerritoryCodeOld" = 'TerritoryCodeOld' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='10', sourcetypeid='1', sourcetypename='nchar')  SORTABLE
+    )
+    CONSTRAINT 'PK_Users' PRIMARY KEY ( 'UserID' )
+    INDEX 'PK_Users' CLUSTER UNIQUE PRIMARY ( 'UserID' )
+    INDEX 'IX_UserNTLogin' OTHER UNIQUE ( 'UserNTLogin' );
+
+CREATE OR REPLACE TABLE "bv_ldwh_Users" I18N au_wst (
+        "UserID":text (sourcetypeid = '1', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '36'),
+        "Username":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '60'),
+        "UserNTLogin":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '30'),
+        "AccessLevel":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "DefaultZoneID":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '2'),
+        "Active":boolean (sourcetypeid = '-7', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '1'),
+        "UserType":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '50'),
+        "ParentUserID":text (sourcetypeid = '1', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '36'),
+        "TerritoryCode":int (autoincrement, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "TerritoryCodeOld":text (sourcetypeid = '-15', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '10')
+    )
+    FOLDER = '/01 - connectivity/02 - base views'
+    CONSTRAINT 'PK_Users' PRIMARY KEY ( 'UserID' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_ldwh_Users"(
+        I18N au_wst
+        CONSTRAINTS (
+             ADD "UserID" (any) OPT ANY
+             ADD "Username" (any) OPT ANY
+             ADD "UserNTLogin" (any) OPT ANY
+             ADD "AccessLevel" (any) OPT ANY
+             ADD "DefaultZoneID" (any) OPT ANY
+             ADD "Active" (any) OPT ANY
+             ADD "UserType" (any) OPT ANY
+             ADD "ParentUserID" (any) OPT ANY
+             ADD "TerritoryCode" (any) OPT ANY
+             ADD "TerritoryCodeOld" (any) OPT ANY
+        )
+        OUTPUTLIST ("AccessLevel", "Active", "DefaultZoneID", "ParentUserID", "TerritoryCode", "TerritoryCodeOld", "UserID", "UserNTLogin", "UserType", "Username"
+        )
+        WRAPPER (jdbc "bv_ldwh_Users")
+    );
+

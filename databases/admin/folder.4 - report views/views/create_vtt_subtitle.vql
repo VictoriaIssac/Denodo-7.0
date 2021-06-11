@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW create_vtt_subtitle FOLDER = '/4 - report views' AS SELECT iv_subtitle_file_fixed_vtt_format.path AS path, iv_subtitle_file_fixed_vtt_format.file_content AS file_output, savefile.content AS content, savefile.result AS result FROM iv_subtitle_file_fixed_vtt_format AS iv_subtitle_file_fixed_vtt_format NESTED INNER JOIN savefile() AS savefile ON (iv_subtitle_file_fixed_vtt_format.file_content = savefile.content AND iv_subtitle_file_fixed_vtt_format.output_path = savefile.outputpath)  CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW create_vtt_subtitle
+ LAYOUT (iv_subtitle_file_fixed_vtt_format = [30, 20, 200, 85], savefile = [490, 140, 200, 86]);
+

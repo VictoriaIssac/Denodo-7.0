@@ -1,0 +1,10 @@
+﻿CREATE OR REPLACE INTERFACE VIEW i_bv_con (
+        country_id:text (sourcetyperadix = '10', sourcetypesize = '2', sourcetypeid = '1'),
+        country_name:text (sourcetyperadix = '10', sourcetypesize = '40', sourcetypeid = '12'),
+        region_id:decimal (sourcetypedecimals = '20', sourcetyperadix = '10', sourcetypesize = '38', sourcetypeid = '3')
+    )
+    SET IMPLEMENTATION bv_con;
+
+ALTER VIEW i_bv_con
+ LAYOUT (bv_con = [416, 35, 200, 85]);
+

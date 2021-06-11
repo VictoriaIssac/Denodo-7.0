@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_subtitle_file_sentences_times_group FOLDER = '/2 - integration' AS SELECT path AS path, first_id AS first_id, substring(array_to_string('. ', nest(sentence)), 1, (len(array_to_string('. ', nest(sentence)))-1)) AS sentence, case WHEN (last_id = 1) THEN 2 ELSE last_id END AS last_id FROM iv_subtitle_file_sentences GROUP BY path, first_id, last_id CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW iv_subtitle_file_sentences_times_group
+ LAYOUT (iv_subtitle_file_sentences = [20, 20, 200, 105]);
+

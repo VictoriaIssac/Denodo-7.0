@@ -1,0 +1,119 @@
+﻿CREATE OR REPLACE WRAPPER JSON ds_commun
+    DATASOURCENAME=ds_commun
+    TUPLEROOT '/JSONFile/rates'
+    OUTPUTSCHEMA ("JSONFile" = 'JSONFile' : REGISTER OF (
+        "CAD" = 'JSONFile.rates.CAD' : 'java.lang.Double',
+        "HKD" = 'JSONFile.rates.HKD' : 'java.lang.Double',
+        "ISK" = 'JSONFile.rates.ISK' : 'java.lang.Double',
+        "PHP" = 'JSONFile.rates.PHP' : 'java.lang.Double',
+        "DKK" = 'JSONFile.rates.DKK' : 'java.lang.Double',
+        "HUF" = 'JSONFile.rates.HUF' : 'java.lang.Double',
+        "CZK" = 'JSONFile.rates.CZK' : 'java.lang.Double',
+        "GBP" = 'JSONFile.rates.GBP' : 'java.lang.Double',
+        "RON" = 'JSONFile.rates.RON' : 'java.lang.Double',
+        "SEK" = 'JSONFile.rates.SEK' : 'java.lang.Double',
+        "IDR" = 'JSONFile.rates.IDR' : 'java.lang.Double',
+        "INR" = 'JSONFile.rates.INR' : 'java.lang.Double',
+        "BRL" = 'JSONFile.rates.BRL' : 'java.lang.Double',
+        "RUB" = 'JSONFile.rates.RUB' : 'java.lang.Double',
+        "HRK" = 'JSONFile.rates.HRK' : 'java.lang.Double',
+        "JPY" = 'JSONFile.rates.JPY' : 'java.lang.Double',
+        "THB" = 'JSONFile.rates.THB' : 'java.lang.Double',
+        "CHF" = 'JSONFile.rates.CHF' : 'java.lang.Double',
+        "EUR" = 'JSONFile.rates.EUR' : 'java.lang.Double',
+        "MYR" = 'JSONFile.rates.MYR' : 'java.lang.Double',
+        "BGN" = 'JSONFile.rates.BGN' : 'java.lang.Double',
+        "TRY" = 'JSONFile.rates.TRY' : 'java.lang.Double',
+        "CNY" = 'JSONFile.rates.CNY' : 'java.lang.Double',
+        "NOK" = 'JSONFile.rates.NOK' : 'java.lang.Double',
+        "NZD" = 'JSONFile.rates.NZD' : 'java.lang.Double',
+        "ZAR" = 'JSONFile.rates.ZAR' : 'java.lang.Double',
+        "USD" = 'JSONFile.rates.USD' : 'java.lang.Double',
+        "MXN" = 'JSONFile.rates.MXN' : 'java.lang.Double',
+        "SGD" = 'JSONFile.rates.SGD' : 'java.lang.Double',
+        "AUD" = 'JSONFile.rates.AUD' : 'java.lang.Double',
+        "ILS" = 'JSONFile.rates.ILS' : 'java.lang.Double',
+        "KRW" = 'JSONFile.rates.KRW' : 'java.lang.Double',
+        "PLN" = 'JSONFile.rates.PLN' : 'java.lang.Double'
+    )
+    );
+
+CREATE OR REPLACE TABLE ds_commun I18N at (
+        "CAD":double,
+        "HKD":double,
+        "ISK":double,
+        "PHP":double,
+        "DKK":double,
+        "HUF":double,
+        "CZK":double,
+        "GBP":double,
+        "RON":double,
+        "SEK":double,
+        "IDR":double,
+        "INR":double,
+        "BRL":double,
+        "RUB":double,
+        "HRK":double,
+        "JPY":double,
+        "THB":double,
+        "CHF":double,
+        "EUR":double,
+        "MYR":double,
+        "BGN":double,
+        "TRY":double,
+        "CNY":double,
+        "NOK":double,
+        "NZD":double,
+        "ZAR":double,
+        "USD":double,
+        "MXN":double,
+        "SGD":double,
+        "AUD":double,
+        "ILS":double,
+        "KRW":double,
+        "PLN":double
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_commun(
+        I18N at
+        CONSTRAINTS (
+             ADD "CAD" NOS ZERO ()
+             ADD "HKD" NOS ZERO ()
+             ADD "ISK" NOS ZERO ()
+             ADD "PHP" NOS ZERO ()
+             ADD "DKK" NOS ZERO ()
+             ADD "HUF" NOS ZERO ()
+             ADD "CZK" NOS ZERO ()
+             ADD "GBP" NOS ZERO ()
+             ADD "RON" NOS ZERO ()
+             ADD "SEK" NOS ZERO ()
+             ADD "IDR" NOS ZERO ()
+             ADD "INR" NOS ZERO ()
+             ADD "BRL" NOS ZERO ()
+             ADD "RUB" NOS ZERO ()
+             ADD "HRK" NOS ZERO ()
+             ADD "JPY" NOS ZERO ()
+             ADD "THB" NOS ZERO ()
+             ADD "CHF" NOS ZERO ()
+             ADD "EUR" NOS ZERO ()
+             ADD "MYR" NOS ZERO ()
+             ADD "BGN" NOS ZERO ()
+             ADD "TRY" NOS ZERO ()
+             ADD "CNY" NOS ZERO ()
+             ADD "NOK" NOS ZERO ()
+             ADD "NZD" NOS ZERO ()
+             ADD "ZAR" NOS ZERO ()
+             ADD "USD" NOS ZERO ()
+             ADD "MXN" NOS ZERO ()
+             ADD "SGD" NOS ZERO ()
+             ADD "AUD" NOS ZERO ()
+             ADD "ILS" NOS ZERO ()
+             ADD "KRW" NOS ZERO ()
+             ADD "PLN" NOS ZERO ()
+        )
+        OUTPUTLIST ("AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HRK", "HUF", "IDR", "ILS", "INR", "ISK", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PLN", "RON", "RUB", "SEK", "SGD", "THB", "TRY", "USD", "ZAR"
+        )
+        WRAPPER (json ds_commun)
+    );
+

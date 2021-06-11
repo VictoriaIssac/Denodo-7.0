@@ -1,0 +1,31 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_tag_java
+    DATASOURCENAME=ds_human
+    SCHEMANAME='${databases.admin.views.jdbc.bv_tag_java.SCHEMANAME}' ESCAPE
+    RELATIONNAME='BV_TAG_JAVA' 
+    OUTPUTSCHEMA (
+        tag_id = 'TAG_ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        tag_name = 'TAG_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE
+    )
+    CONSTRAINT 'BV_TAG_JAVA_PK' PRIMARY KEY ( 'TAG_ID' , 'TAG_NAME' )
+    INDEX 'BV_TAG_JAVA_PK' CLUSTER UNIQUE PRIMARY ( 'TAG_ID' , 'TAG_NAME' );
+
+CREATE OR REPLACE TABLE bv_tag_java I18N au_cst (
+        tag_id:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        tag_name:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20')
+    )
+    CONSTRAINT 'BV_TAG_JAVA_PK' PRIMARY KEY ( 'tag_id' , 'tag_name' )
+    CACHE FULL
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_tag_java(
+        I18N au_cst
+        CONSTRAINTS (
+             ADD tag_id (any) OPT ANY
+             ADD tag_name (any) OPT ANY
+        )
+        OUTPUTLIST (tag_id, tag_name
+        )
+        WRAPPER (jdbc bv_tag_java)
+    );
+

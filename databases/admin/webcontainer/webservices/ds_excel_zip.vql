@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WEBSERVICE ds_excel_zip;
+
+DEPLOY WEBSERVICE ds_excel_zip LOGIN = '${databases.admin.webcontainer.webservices.ds_excel_zip.LOGIN}' PASSWORD = '${databases.admin.webcontainer.webservices.ds_excel_zip.PASSWORD}' ${databases.admin.webcontainer.webservices.ds_excel_zip.PASSWORD.ENCRYPTED};
+

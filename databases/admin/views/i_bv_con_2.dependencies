@@ -1,0 +1,3 @@
+﻿/databases/admin/datasources/jdbc/ds_human.vql
+/databases/admin/views/bv_con.vql
+/databases/admin/views/p_bv_con.vql

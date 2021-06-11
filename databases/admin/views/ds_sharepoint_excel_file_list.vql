@@ -1,0 +1,205 @@
+﻿CREATE OR REPLACE WRAPPER XML ds_sharepoint_excel_file_list
+    DATASOURCENAME=ds_sharepoint_excel_file_list
+    TUPLEROOT 'feed'
+    OUTPUTSCHEMA (feed = 'feed' : REGISTER OF (
+        "xml:base" = '#xml:base' : 'java.lang.String',
+        id_0 = 'id' : 'java.lang.String',
+        updated_0 = 'updated' : 'java.lang.String',
+        entry = 'entry' : ARRAY OF (
+            entry = 'entry' : REGISTER OF (
+                id = 'id' : 'java.lang.String',
+                category = 'category' : REGISTER OF (
+                    term = '#term' : 'java.lang.String',
+                    scheme = '#scheme' : 'java.lang.String'
+                ),
+                link = 'link' : ARRAY OF (
+                    link = 'link' : REGISTER OF (
+                        rel = '#rel' : 'java.lang.String',
+                        href = '#href' : 'java.lang.String',
+                        type = '#type' : 'java.lang.String',
+                        title = '#title' : 'java.lang.String'
+                    )
+                ),
+                updated = 'updated' : 'java.lang.String',
+                content = 'content' : REGISTER OF (
+                    type = '#type' : 'java.lang.String',
+                    "m:properties" = 'm:properties' : REGISTER OF (
+                        "d:CheckOutType" = 'd:CheckOutType' : REGISTER OF (
+                            "m:type" = '#m:type' : 'java.lang.String',
+                            "d:CheckOutType" = 'd:CheckOutType' : 'java.lang.Short'
+                        ),
+                        "d:ContentTag" = 'd:ContentTag' : 'java.lang.String',
+                        "d:CustomizedPageStatus" = 'd:CustomizedPageStatus' : REGISTER OF (
+                            "m:type" = '#m:type' : 'java.lang.String',
+                            "d:CustomizedPageStatus" = 'd:CustomizedPageStatus' : 'java.lang.Short'
+                        ),
+                        "d:ETag" = 'd:ETag' : 'java.lang.String',
+                        "d:Exists" = 'd:Exists' : REGISTER OF (
+                            "m:type" = '#m:type' : 'java.lang.String',
+                            "d:Exists" = 'd:Exists' : 'java.lang.Boolean'
+                        ),
+                        "d:IrmEnabled" = 'd:IrmEnabled' : REGISTER OF (
+                            "m:type" = '#m:type' : 'java.lang.String',
+                            "d:IrmEnabled" = 'd:IrmEnabled' : 'java.lang.Boolean'
+                        ),
+                        "d:Length" = 'd:Length' : REGISTER OF (
+                            "m:type" = '#m:type' : 'java.lang.String',
+                            "d:Length" = 'd:Length' : 'java.lang.Short'
+                        ),
+                        "d:Level" = 'd:Level' : REGISTER OF (
+                            "m:type" = '#m:type' : 'java.lang.String',
+                            "d:Level" = 'd:Level' : 'java.lang.Short'
+                        ),
+                        "d:LinkingUri" = 'd:LinkingUri' : 'java.lang.String',
+                        "d:LinkingUrl" = 'd:LinkingUrl' : 'java.lang.String',
+                        "d:MajorVersion" = 'd:MajorVersion' : REGISTER OF (
+                            "m:type" = '#m:type' : 'java.lang.String',
+                            "d:MajorVersion" = 'd:MajorVersion' : 'java.lang.Short'
+                        ),
+                        "d:MinorVersion" = 'd:MinorVersion' : REGISTER OF (
+                            "m:type" = '#m:type' : 'java.lang.String',
+                            "d:MinorVersion" = 'd:MinorVersion' : 'java.lang.Short'
+                        ),
+                        "d:Name" = 'd:Name' : 'java.lang.String',
+                        "d:ServerRelativeUrl" = 'd:ServerRelativeUrl' : 'java.lang.String',
+                        "d:TimeCreated" = 'd:TimeCreated' : REGISTER OF (
+                            "m:type" = '#m:type' : 'java.lang.String',
+                            "d:TimeCreated" = 'd:TimeCreated' : 'java.lang.String'
+                        ),
+                        "d:TimeLastModified" = 'd:TimeLastModified' : REGISTER OF (
+                            "m:type" = '#m:type' : 'java.lang.String',
+                            "d:TimeLastModified" = 'd:TimeLastModified' : 'java.lang.String'
+                        ),
+                        "d:UIVersion" = 'd:UIVersion' : REGISTER OF (
+                            "m:type" = '#m:type' : 'java.lang.String',
+                            "d:UIVersion" = 'd:UIVersion' : 'java.lang.Short'
+                        ),
+                        "d:UIVersionLabel" = 'd:UIVersionLabel' : 'java.lang.Float',
+                        "d:UniqueId" = 'd:UniqueId' : REGISTER OF (
+                            "m:type" = '#m:type' : 'java.lang.String',
+                            "d:UniqueId" = 'd:UniqueId' : 'java.lang.String'
+                        )
+                    )
+                )
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE ds_sharepoint_excel_file_list_entry_entry_category AS REGISTER OF (term:text, scheme:text);
+
+CREATE OR REPLACE TYPE ds_sharepoint_excel_file_list_entry_entry_link_link AS REGISTER OF (rel:text, href:text, type:text, title:text);
+
+CREATE OR REPLACE TYPE ds_sharepoint_excel_file_list_entry_entry_link AS ARRAY OF ds_sharepoint_excel_file_list_entry_entry_link_link;
+
+CREATE OR REPLACE TYPE "ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:CheckOutType" AS REGISTER OF ("m:type":text, "d:CheckOutType":int);
+
+CREATE OR REPLACE TYPE "ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:CustomizedPageStatus" AS REGISTER OF ("m:type":text, "d:CustomizedPageStatus":int);
+
+CREATE OR REPLACE TYPE "ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:Exists" AS REGISTER OF ("m:type":text, "d:Exists":boolean);
+
+CREATE OR REPLACE TYPE "ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:IrmEnabled" AS REGISTER OF ("m:type":text, "d:IrmEnabled":boolean);
+
+CREATE OR REPLACE TYPE "ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:Length" AS REGISTER OF ("m:type":text, "d:Length":int);
+
+CREATE OR REPLACE TYPE "ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:Level" AS REGISTER OF ("m:type":text, "d:Level":int);
+
+CREATE OR REPLACE TYPE "ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:MajorVersion" AS REGISTER OF ("m:type":text, "d:MajorVersion":int);
+
+CREATE OR REPLACE TYPE "ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:MinorVersion" AS REGISTER OF ("m:type":text, "d:MinorVersion":int);
+
+CREATE OR REPLACE TYPE "ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:TimeCreated" AS REGISTER OF ("m:type":text, "d:TimeCreated":text);
+
+CREATE OR REPLACE TYPE "ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:TimeLastModified" AS REGISTER OF ("m:type":text, "d:TimeLastModified":text);
+
+CREATE OR REPLACE TYPE "ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:UIVersion" AS REGISTER OF ("m:type":text, "d:UIVersion":int);
+
+CREATE OR REPLACE TYPE "ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:UniqueId" AS REGISTER OF ("m:type":text, "d:UniqueId":text);
+
+CREATE OR REPLACE TYPE "ds_sharepoint_excel_file_list_entry_entry_content_m:properties" AS REGISTER OF ("d:CheckOutType":"ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:CheckOutType", "d:ContentTag":text, "d:CustomizedPageStatus":"ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:CustomizedPageStatus", "d:ETag":text, "d:Exists":"ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:Exists", "d:IrmEnabled":"ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:IrmEnabled", "d:Length":"ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:Length", "d:Level":"ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:Level", "d:LinkingUri":text, "d:LinkingUrl":text, "d:MajorVersion":"ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:MajorVersion", "d:MinorVersion":"ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:MinorVersion", "d:Name":text, "d:ServerRelativeUrl":text, "d:TimeCreated":"ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:TimeCreated", "d:TimeLastModified":"ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:TimeLastModified", "d:UIVersion":"ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:UIVersion", "d:UIVersionLabel":float, "d:UniqueId":"ds_sharepoint_excel_file_list_entry_entry_content_m:properties_d:UniqueId");
+
+CREATE OR REPLACE TYPE ds_sharepoint_excel_file_list_entry_entry_content AS REGISTER OF (type:text, "m:properties":"ds_sharepoint_excel_file_list_entry_entry_content_m:properties");
+
+CREATE OR REPLACE TYPE ds_sharepoint_excel_file_list_entry_entry AS REGISTER OF (id:text, category:ds_sharepoint_excel_file_list_entry_entry_category, link:ds_sharepoint_excel_file_list_entry_entry_link, updated:text, content:ds_sharepoint_excel_file_list_entry_entry_content);
+
+CREATE OR REPLACE TYPE ds_sharepoint_excel_file_list_entry AS ARRAY OF ds_sharepoint_excel_file_list_entry_entry;
+
+CREATE OR REPLACE TABLE ds_sharepoint_excel_file_list I18N us_mst (
+        "xml:base":text,
+        id_0:text,
+        updated_0:text,
+        entry:ds_sharepoint_excel_file_list_entry
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_sharepoint_excel_file_list(
+        I18N us_mst
+        CONSTRAINTS (
+             ADD "xml:base" NOS ZERO ()
+             ADD id_0 NOS ZERO ()
+             ADD updated_0 NOS ZERO ()
+             ADD entry NOS ZERO ()
+             ADD entry NOS ZERO ()
+             ADD entry.id NOS ZERO ()
+             ADD entry.category NOS ZERO ()
+             ADD entry.category.term NOS ZERO ()
+             ADD entry.category.scheme NOS ZERO ()
+             ADD entry.link NOS ZERO ()
+             ADD entry.link NOS ZERO ()
+             ADD entry.link.rel NOS ZERO ()
+             ADD entry.link.href NOS ZERO ()
+             ADD entry.link.type NOS ZERO ()
+             ADD entry.link.title NOS ZERO ()
+             ADD entry.updated NOS ZERO ()
+             ADD entry.content NOS ZERO ()
+             ADD entry.content.type NOS ZERO ()
+             ADD entry.content."m:properties" NOS ZERO ()
+             ADD entry.content."m:properties"."d:CheckOutType" NOS ZERO ()
+             ADD entry.content."m:properties"."d:CheckOutType"."m:type" NOS ZERO ()
+             ADD entry.content."m:properties"."d:CheckOutType"."d:CheckOutType" NOS ZERO ()
+             ADD entry.content."m:properties"."d:ContentTag" NOS ZERO ()
+             ADD entry.content."m:properties"."d:CustomizedPageStatus" NOS ZERO ()
+             ADD entry.content."m:properties"."d:CustomizedPageStatus"."m:type" NOS ZERO ()
+             ADD entry.content."m:properties"."d:CustomizedPageStatus"."d:CustomizedPageStatus" NOS ZERO ()
+             ADD entry.content."m:properties"."d:ETag" NOS ZERO ()
+             ADD entry.content."m:properties"."d:Exists" NOS ZERO ()
+             ADD entry.content."m:properties"."d:Exists"."m:type" NOS ZERO ()
+             ADD entry.content."m:properties"."d:Exists"."d:Exists" NOS ZERO ()
+             ADD entry.content."m:properties"."d:IrmEnabled" NOS ZERO ()
+             ADD entry.content."m:properties"."d:IrmEnabled"."m:type" NOS ZERO ()
+             ADD entry.content."m:properties"."d:IrmEnabled"."d:IrmEnabled" NOS ZERO ()
+             ADD entry.content."m:properties"."d:Length" NOS ZERO ()
+             ADD entry.content."m:properties"."d:Length"."m:type" NOS ZERO ()
+             ADD entry.content."m:properties"."d:Length"."d:Length" NOS ZERO ()
+             ADD entry.content."m:properties"."d:Level" NOS ZERO ()
+             ADD entry.content."m:properties"."d:Level"."m:type" NOS ZERO ()
+             ADD entry.content."m:properties"."d:Level"."d:Level" NOS ZERO ()
+             ADD entry.content."m:properties"."d:LinkingUri" NOS ZERO ()
+             ADD entry.content."m:properties"."d:LinkingUrl" NOS ZERO ()
+             ADD entry.content."m:properties"."d:MajorVersion" NOS ZERO ()
+             ADD entry.content."m:properties"."d:MajorVersion"."m:type" NOS ZERO ()
+             ADD entry.content."m:properties"."d:MajorVersion"."d:MajorVersion" NOS ZERO ()
+             ADD entry.content."m:properties"."d:MinorVersion" NOS ZERO ()
+             ADD entry.content."m:properties"."d:MinorVersion"."m:type" NOS ZERO ()
+             ADD entry.content."m:properties"."d:MinorVersion"."d:MinorVersion" NOS ZERO ()
+             ADD entry.content."m:properties"."d:Name" NOS ZERO ()
+             ADD entry.content."m:properties"."d:ServerRelativeUrl" NOS ZERO ()
+             ADD entry.content."m:properties"."d:TimeCreated" NOS ZERO ()
+             ADD entry.content."m:properties"."d:TimeCreated"."m:type" NOS ZERO ()
+             ADD entry.content."m:properties"."d:TimeCreated"."d:TimeCreated" NOS ZERO ()
+             ADD entry.content."m:properties"."d:TimeLastModified" NOS ZERO ()
+             ADD entry.content."m:properties"."d:TimeLastModified"."m:type" NOS ZERO ()
+             ADD entry.content."m:properties"."d:TimeLastModified"."d:TimeLastModified" NOS ZERO ()
+             ADD entry.content."m:properties"."d:UIVersion" NOS ZERO ()
+             ADD entry.content."m:properties"."d:UIVersion"."m:type" NOS ZERO ()
+             ADD entry.content."m:properties"."d:UIVersion"."d:UIVersion" NOS ZERO ()
+             ADD entry.content."m:properties"."d:UIVersionLabel" NOS ZERO ()
+             ADD entry.content."m:properties"."d:UniqueId" NOS ZERO ()
+             ADD entry.content."m:properties"."d:UniqueId"."m:type" NOS ZERO ()
+             ADD entry.content."m:properties"."d:UniqueId"."d:UniqueId" NOS ZERO ()
+        )
+        OUTPUTLIST (entry, id_0, updated_0, "xml:base"
+        )
+        WRAPPER (xml ds_sharepoint_excel_file_list)
+    );
+

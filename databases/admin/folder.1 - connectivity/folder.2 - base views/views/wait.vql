@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW wait FOLDER = '/1 - connectivity/2 - base views' AS SELECT * FROM (SELECT timeinmillis AS timeinmillis FROM wait(20000) EXTENDED UNION ALL SELECT dummy AS timeinmillis FROM dual()) USING PARAMETERS ( dummy : text) CONTEXT ('I18N' = 'es_euro');
+

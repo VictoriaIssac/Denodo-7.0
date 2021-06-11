@@ -1,0 +1,9 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON ds_nth
+    FOLDER = '/01 - connectivity'
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.admin.folder.01 - connectivity.datasources.json.ds_nth.ROUTE.HTTP.URL}'
+    AUTHENTICATION BASIC ( 
+      USER '${databases.admin.folder.01 - connectivity.datasources.json.ds_nth.ROUTE.HTTP.USER}'
+      PASSWORD '${databases.admin.folder.01 - connectivity.datasources.json.ds_nth.ROUTE.HTTP.PASSWORD}' ${databases.admin.folder.01 - connectivity.datasources.json.ds_nth.ROUTE.HTTP.PASSWORD.ENCRYPTED} )
+    PROXY OFF;
+

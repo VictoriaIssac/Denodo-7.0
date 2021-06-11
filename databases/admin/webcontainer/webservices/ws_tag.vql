@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WEBSERVICE "ws_TAG";
+
+DEPLOY WEBSERVICE "ws_TAG" LOGIN = '${databases.admin.webcontainer.webservices.ws_tag.LOGIN}' PASSWORD = '${databases.admin.webcontainer.webservices.ws_tag.PASSWORD}' ${databases.admin.webcontainer.webservices.ws_tag.PASSWORD.ENCRYPTED};
+

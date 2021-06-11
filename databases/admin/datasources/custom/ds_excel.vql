@@ -1,0 +1,30 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE CUSTOM ds_excel
+    CLASSNAME='com.denodo.vdb.contrib.wrapper.xls.ExcelWrapper';
+
+CREATE OR REPLACE WRAPPER CUSTOM ds_excel
+    DATASOURCENAME=ds_excel
+    PARAMETERS (
+      'Type of file' = 'Excel 2007 or later (*.xlsx)',
+      'File location' = ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.admin.views.custom.ds_excel.File location.ROUTE.HTTP.URL}'
+        AUTHENTICATION OAUTH20 ( 
+          ACCESSTOKEN = '${databases.admin.views.custom.ds_excel.File location.ROUTE.HTTP.ACCESSTOKEN}' ${databases.admin.views.custom.ds_excel.File location.ROUTE.HTTP.ACCESSTOKEN.ENCRYPTED}
+          REQUESTSIGNINGMETHOD = ${databases.admin.views.custom.ds_excel.File location.ROUTE.HTTP.REQUESTSIGNINGMETHOD}
+          AUTHENTICATION_GRANT = ${databases.admin.views.custom.ds_excel.File location.ROUTE.AUTHENTICATION.GRANT}
+          TOKENENDPOINTURL = '${databases.admin.views.custom.ds_excel.File location.ROUTE.HTTP.TOKENENDPOINTURL}'
+          CLIENTIDENTIFIER = '${databases.admin.views.custom.ds_excel.File location.ROUTE.HTTP.CLIENTIDENTIFIER}'
+          CLIENTSECRET = '${databases.admin.views.custom.ds_excel.File location.ROUTE.HTTP.CLIENTSECRET}' ${databases.admin.views.custom.ds_excel.File location.ROUTE.HTTP.CLIENTSECRET.ENCRYPTED}
+          REFRESHTOKEN = '${databases.admin.views.custom.ds_excel.File location.ROUTE.HTTP.REFRESHTOKEN}' ${databases.admin.views.custom.ds_excel.File location.ROUTE.HTTP.REFRESHTOKEN.ENCRYPTED}
+          ACCESSTOKENEXPIRESIN = ${databases.admin.views.custom.ds_excel.File location.ROUTE.HTTP.ACCESSTOKENEXPIRESIN}
+        )
+        PROXY OFF,
+      'Extract data from all sheets' = false,
+      'Extract sheet name as a new column' = false,
+      'Has headers' = false,
+      'Stream tuples' = true
+    )
+    OUTPUTSCHEMA (
+        column_0 = 'Column_0' : 'java.lang.Integer' (OPT) (sourcetypeid='4')  SORTABLE,
+        column_1 = 'Column_1' : 'java.lang.String' (OPT) (sourcetypeid='12')  SORTABLE
+    );
+

@@ -1,0 +1,8 @@
+﻿CREATE OR REPLACE ASSOCIATION p_ds_excel_ds_excel REFERENTIAL CONSTRAINT 
+    ENDPOINT ds_csv p_ds_excel PRINCIPAL (1)
+    ENDPOINT p_ds_excel ds_csv (0,1)
+    ADD MAPPING column_1=cardtypefullname_0;
+
+ALTER ASSOCIATION p_ds_excel_ds_excel
+ LAYOUT (p_ds_excel = [20, 20, 200, 86], ds_csv = [448, 119, 200, 106]);
+

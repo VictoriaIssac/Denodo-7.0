@@ -1,0 +1,14 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON ds_cou
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' POST '${databases.admin.datasources.json.ds_cou.ROUTE.HTTP.URL}'
+    POSTBODY '\{{ 
+"$$filter":"region_id =2"
+
+\}}'
+    MIME 'application/json'
+    HEADERS (
+        'X-HTTP-Method-Override'='GET'
+    )
+    AUTHENTICATION OFF
+    PROXY OFF;
+

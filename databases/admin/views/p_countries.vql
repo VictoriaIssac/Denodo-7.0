@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW p_countries AS SELECT countries.country_id AS id, countries.country_name AS country_name, countries.region_id AS region_id FROM countries CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW p_countries
+ CACHE FULL
+     BATCHSIZEINCACHE DEFAULT TIMETOLIVEINCACHE DEFAULT;
+

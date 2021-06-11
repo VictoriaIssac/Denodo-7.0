@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_subtitle_file_traslated_by_path FOLDER = '/2 - integration' AS SELECT dv_sections_path.parentfolder AS parentfolder, subtitle_file_translated.path AS path, subtitle_file_translated.target_lang AS target_lang, subtitle_file_translated.source_lang AS source_lang, subtitle_file_translated.translated_text AS translated_text, concat(regexp(dv_sections_path.fullpath, '(.*)\.en\.srt', '$$1'), '.', subtitle_file_translated.target_lang, '.srt') AS fileoutputpath, inputlanguage FROM iv_sections_path AS dv_sections_path LEFT OUTER JOIN subtitle_file_translated AS subtitle_file_translated ON dv_sections_path.fullpath = subtitle_file_translated.path  WHERE subtitle_file_translated.source_lang = inputlanguage USING PARAMETERS ( inputlanguage : text 'en') CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW iv_subtitle_file_traslated_by_path
+ LAYOUT (iv_sections_path = [70, 30, 200, 86], subtitle_file_translated = [370, 30, 200, 106]);
+

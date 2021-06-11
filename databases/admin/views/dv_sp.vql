@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW dv_sp AS SELECT * FROM ping_data_source() CONTEXT ('I18N' = 'at');
+

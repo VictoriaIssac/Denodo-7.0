@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_final_create_subtittles_file_by_path_group_by FOLDER = '/2 - integration' AS SELECT parentfolder AS parentfolder, target_lang AS target_lang FROM iv_final_create_subtittles_file_by_path GROUP BY parentfolder, target_lang CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW iv_final_create_subtittles_file_by_path_group_by
+ LAYOUT (iv_final_create_subtittles_file_by_path = [20, 20, 262, 226]);
+

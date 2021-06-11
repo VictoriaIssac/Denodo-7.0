@@ -1,0 +1,28 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "POORI_SIZE"
+    DATASOURCENAME=ds_human
+    SCHEMANAME='${databases.admin.views.jdbc.poori_size.SCHEMANAME}' ESCAPE
+    RELATIONNAME='POORI_SIZE' 
+    OUTPUTSCHEMA (
+        "VVVV" = 'VVVV' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='2555', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "COLUMN1" = 'COLUMN1' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='255', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE "POORI_SIZE" I18N us_cst (
+        "VVVV":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '1000'),
+        "COLUMN1":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255')
+    )
+    CACHE FULL
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "POORI_SIZE"(
+        I18N us_cst
+        CONSTRAINTS (
+             ADD "VVVV" (any) OPT ANY
+             ADD "COLUMN1" (any) OPT ANY
+        )
+        OUTPUTLIST ("COLUMN1", "VVVV"
+        )
+        WRAPPER (jdbc "POORI_SIZE")
+    );
+

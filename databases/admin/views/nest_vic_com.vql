@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW nest_vic_com AS SELECT equipment, nest(measurements, additional) AS technical_data FROM (SELECT nest(descr, vaule) AS equipment, nest(tttt) AS measurements, nest(sales) AS additional FROM vic_nest GROUP BY category) GROUP BY equipment CONTEXT ('I18N' = 'au_cst');
+

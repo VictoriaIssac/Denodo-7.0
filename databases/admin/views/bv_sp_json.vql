@@ -1,0 +1,56 @@
+﻿CREATE OR REPLACE WRAPPER JSON bv_sp_json
+    DATASOURCENAME=ds_sp_json
+    TUPLEROOT '/JSONFile/elements'
+    OUTPUTSCHEMA ("JSONFile" = 'JSONFile' : REGISTER OF (
+        "DATA_SOURCE_TYPE" = 'DATA_SOURCE_TYPE' : 'java.lang.String' (OBL) (DEFAULTVALUE='JDBC') EXTERN,
+        "DATA_SOURCE_NAME" = 'DATA_SOURCE_NAME' : 'java.lang.String' (OBL) (DEFAULTVALUE='ds_sql') EXTERN,
+        "DATABASE_NAME" = 'DATABASE_NAME' : 'java.lang.String' (OBL) (DEFAULTVALUE='admin') EXTERN,
+        name = 'name' : 'java.lang.String',
+        database_name_2 = 'JSONFile.elements.database_name' : 'java.lang.String',
+        data_source_type_2 = 'JSONFile.elements.data_source_type' : 'java.lang.String',
+        data_source_name_2 = 'JSONFile.elements.data_source_name' : 'java.lang.String',
+        timeout = 'JSONFile.elements.timeout' : 'java.lang.String',
+        status = 'JSONFile.elements.status' : 'java.lang.String',
+        start_time = 'JSONFile.elements.start_time' : 'java.lang.String',
+        duration = 'JSONFile.elements.duration' : 'java.lang.Integer',
+        down_cause = 'JSONFile.elements.down_cause' : 'java.lang.String'
+    )
+    );
+
+CREATE OR REPLACE TABLE bv_sp_json I18N at (
+        "DATA_SOURCE_TYPE":text (extern),
+        "DATA_SOURCE_NAME":text (extern),
+        "DATABASE_NAME":text (extern),
+        name:text,
+        database_name_2:text,
+        data_source_type_2:text,
+        data_source_name_2:text,
+        timeout:text,
+        status:text,
+        start_time:text,
+        duration:int,
+        down_cause:text
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_sp_json(
+        I18N at
+        CONSTRAINTS (
+             ADD "DATA_SOURCE_TYPE" (=) OBL ONE
+             ADD "DATA_SOURCE_NAME" (=) OBL ONE
+             ADD "DATABASE_NAME" (=) OBL ONE
+             ADD name NOS ZERO ()
+             ADD database_name_2 NOS ZERO ()
+             ADD data_source_type_2 NOS ZERO ()
+             ADD data_source_name_2 NOS ZERO ()
+             ADD timeout NOS ZERO ()
+             ADD status NOS ZERO ()
+             ADD start_time NOS ZERO ()
+             ADD duration NOS ZERO ()
+             ADD down_cause NOS ZERO ()
+        )
+        OUTPUTLIST (data_source_name_2, data_source_type_2, database_name_2, down_cause, duration, name, start_time, status, timeout
+        )
+        WRAPPER (json bv_sp_json)
+    );
+

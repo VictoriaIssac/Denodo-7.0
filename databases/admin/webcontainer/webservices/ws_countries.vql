@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WEBSERVICE ws_countries;
+
+DEPLOY WEBSERVICE ws_countries LOGIN = '${databases.admin.webcontainer.webservices.ws_countries.LOGIN}' PASSWORD = '${databases.admin.webcontainer.webservices.ws_countries.PASSWORD}' ${databases.admin.webcontainer.webservices.ws_countries.PASSWORD.ENCRYPTED};
+

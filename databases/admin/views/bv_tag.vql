@@ -1,0 +1,29 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_TAG"
+    DATASOURCENAME=ds_human
+    SCHEMANAME='${databases.admin.views.jdbc.bv_tag.SCHEMANAME}' ESCAPE
+    RELATIONNAME='TAG' 
+    OUTPUTSCHEMA (
+        "TAG_NAME" = 'TAG_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "TAG_DESC" = 'TAG_DESC' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE "bv_TAG" I18N us_cst (
+        "TAG_NAME":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        "TAG_DESC":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20')
+    )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_TAG"(
+        I18N us_cst
+        CONSTRAINTS (
+             ADD "TAG_NAME" (any) OPT ANY
+             ADD "TAG_DESC" (any) OPT ANY
+        )
+        OUTPUTLIST ("TAG_DESC", "TAG_NAME"
+        )
+        WRAPPER (jdbc "bv_TAG")
+    )
+    SMART_ONLY;
+

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_dv_countries AS SELECT region_id AS region_id, nest_country AS nest_country, dense_rank() OVER ( PARTITION BY region_id ORDER BY region_id ASC ) AS deee FROM dv_countries GROUP BY region_id, nest_country;
+
+ALTER VIEW p_dv_countries
+ LAYOUT (dv_countries = [20, 20, 369, 65]);
+

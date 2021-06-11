@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW "dv_BAK_array" AS SELECT "p_bv_BAK"."ALP" AS "ALP", "p_bv_BAK".nestarray AS nestarray FROM "p_bv_BAK";
+
+ALTER VIEW "dv_BAK_array"
+ LAYOUT ("p_bv_BAK" = [20, 20, 279, 65]);
+

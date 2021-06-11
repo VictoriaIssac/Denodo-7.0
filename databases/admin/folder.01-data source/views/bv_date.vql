@@ -1,0 +1,27 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_date
+    FOLDER = '/01-data source'
+    DATASOURCENAME=ds_oracle
+    SCHEMANAME='${databases.admin.folder.01-data source.views.jdbc.bv_date.SCHEMANAME}' ESCAPE
+    RELATIONNAME='BV_DATE' 
+    OUTPUTSCHEMA (
+        date2 = 'DATE2' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_date I18N us_cst (
+        date2:localdate (sourcetypeid = '91', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '7')
+    )
+    FOLDER = '/01-data source'
+    CACHE FULL
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_date(
+        I18N us_cst
+        CONSTRAINTS (
+             ADD date2 (any) OPT ANY
+        )
+        OUTPUTLIST (date2
+        )
+        WRAPPER (jdbc bv_date)
+    );
+

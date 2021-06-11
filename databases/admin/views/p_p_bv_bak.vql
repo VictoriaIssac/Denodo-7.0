@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW "p_p_bv_BAK" AS SELECT "ALP" AS "ALP", nest(nestarray, dense_rank() OVER ( PARTITION BY "ALP" ORDER BY nestarray ASC )) AS den FROM "p_bv_BAK" GROUP BY "ALP", nestarray;
+
+ALTER VIEW "p_p_bv_BAK"
+ LAYOUT ("p_bv_BAK" = [20, 20, 280, 65]);
+

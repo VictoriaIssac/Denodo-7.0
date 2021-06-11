@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW nest_vic AS SELECT equipment, technical_data FROM (SELECT equipment, nest(measurements, additional) AS technical_data FROM (SELECT nest(cardtypefullname_0) AS measurements, nest(issuingbank_0, ttt) AS additional, nest(cardtypecode_0) AS equipment FROM ds_csv) GROUP BY equipment) CONTEXT ('I18N' = 'au_cst');
+

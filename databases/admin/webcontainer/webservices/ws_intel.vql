@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WEBSERVICE ws_intel;
+
+DEPLOY WEBSERVICE ws_intel LOGIN = '${databases.admin.webcontainer.webservices.ws_intel.LOGIN}' PASSWORD = '${databases.admin.webcontainer.webservices.ws_intel.PASSWORD}' ${databases.admin.webcontainer.webservices.ws_intel.PASSWORD.ENCRYPTED};
+

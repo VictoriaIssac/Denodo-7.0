@@ -1,0 +1,9 @@
+﻿CREATE OR REPLACE INTERFACE VIEW iv_excel (
+        column_0:int (sourcetypeid = '4'),
+        column_1:text (sourcetypeid = '12')
+    )
+    SET IMPLEMENTATION ds_excel;
+
+ALTER VIEW iv_excel
+ LAYOUT (ds_excel = [281, 73, 200, 66]);
+

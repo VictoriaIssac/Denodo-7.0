@@ -1,0 +1,7 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON ds_cvid
+    FOLDER = '/01-data source'
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.admin.folder.01-data source.datasources.json.ds_cvid.ROUTE.HTTP.URL}'
+    AUTHENTICATION OFF
+    PROXY OFF;
+

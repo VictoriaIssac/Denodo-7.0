@@ -1,0 +1,8 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF ds_subtitles
+    FOLDER = '/1 - connectivity/1 - data sources'
+    ROUTE LOCAL 'LocalConnection' '${databases.admin.folder.1 - connectivity.folder.1 - data sources.datasources.df.ds_subtitles.ROUTE.LOCAL.PATH}' FILENAMEPATTERN = '.*\.srt'
+    TUPLEPATTERN = '\n*([0-9]+)\n([0-9:,]+) --> ([0-9:,]+)\n(.*)'
+    ENDOFLINEDELIMITER = '\n\n'
+    HEADER = FALSE;
+

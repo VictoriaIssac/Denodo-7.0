@@ -1,0 +1,25 @@
+﻿CREATE OR REPLACE WRAPPER DF bv_df_bio
+    DATASOURCENAME=ds_df_bio
+    OUTPUTSCHEMA (
+        source = 'source' (OPT),
+        ftes = 'ftes' (OPT)
+    );
+
+CREATE OR REPLACE TABLE bv_df_bio I18N at (
+        source:text,
+        ftes:decimal
+    )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_df_bio(
+        I18N at
+        CONSTRAINTS (
+             ADD source (=,in) OPT ANY
+             ADD ftes (=,in) OPT ANY
+        )
+        OUTPUTLIST (ftes, source
+        )
+        WRAPPER (df bv_df_bio)
+    );
+

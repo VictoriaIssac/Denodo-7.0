@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_sections_path FOLDER = '/2 - integration' AS SELECT readsystem.parentfolder AS parentfolder, readsystem.fullpath AS fullpath, readsystem.filename AS filename FROM readsystem WHERE (recursive = true AND extension = 'srt' AND filename like '%.en.srt') CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW iv_sections_path
+ LAYOUT (readsystem = [20, 20, 200, 286]);
+

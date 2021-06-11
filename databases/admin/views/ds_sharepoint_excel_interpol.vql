@@ -1,0 +1,20 @@
+﻿CREATE OR REPLACE TABLE ds_sharepoint_excel_interpol I18N us_mst (
+        "Column_0":int (sourcetypeid = '4'),
+        "Column_1":text (sourcetypeid = '12'),
+        "RELATIVE_URL":text
+    )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_sharepoint_excel_interpol(
+        I18N us_mst
+        CONSTRAINTS (
+             ADD "Column_0" (any) OPT ANY
+             ADD "Column_1" (any) OPT ANY
+             ADD "RELATIVE_URL" (=) OBL ONE
+        )
+        OUTPUTLIST ("Column_0", "Column_1"
+        )
+        WRAPPER (custom ds_sharepoint_excel_interpol)
+    );
+

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_f_dv_countries AS SELECT f_dv_countries.region_id AS region_id, f_dv_countries.country_id AS country_id, f_dv_countries.country_name AS country_name, rank() WITHIN GROUP (ORDER BY country_id ASC ) AS den FROM f_dv_countries;
+
+ALTER VIEW p_f_dv_countries
+ LAYOUT (f_dv_countries = [20, 20, 200, 85]);
+

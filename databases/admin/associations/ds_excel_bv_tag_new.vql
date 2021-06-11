@@ -1,0 +1,8 @@
+﻿CREATE OR REPLACE ASSOCIATION ds_excel_bv_tag_new REFERENTIAL CONSTRAINT 
+    ENDPOINT bv_tag_new ds_excel (0,*)
+    ENDPOINT ds_excel ps.bv_tag_new PRINCIPAL (1)
+    ADD MAPPING column_1=tag_name;
+
+ALTER ASSOCIATION ds_excel_bv_tag_new
+ LAYOUT (ds_excel = [20, 20, 210, 79], bv_tag_new = [377, 61, 200, 66]);
+

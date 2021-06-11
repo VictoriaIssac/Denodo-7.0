@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_subtitle_file_sentences FOLDER = '/2 - integration' AS SELECT path AS path, string AS plain_sentence, regexp(replacemap(string, 'subtitles_unreplace'), '([^\d]*)(#\d+ )', ' $$1') AS sentence, cast('int', regexp(regexp(string, '([^\d]*)(\d+ )([^\d]*)', ' $$2'), ' ([0-9]*) .*', '$$1')) AS first_id, cast('int', regexp(regexp(string, '([^\d]*)(#\d+ )', ' $$2'), '.*#([0-9]+).*', '$$1')) AS last_id FROM FLATTEN iv_subtitle_file_sentence_array AS v ( v.sentences) CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW iv_subtitle_file_sentences
+ LAYOUT (iv_subtitle_file_sentence_array = [0, 0, 200, 65]);
+

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW f_sharepoint_excel FOLDER = '/sharepoint' AS SELECT v.content AS content, (v.content)."m:properties"."d:ServerRelativeUrl" AS "d:ServerRelativeUrl" FROM FLATTEN ds_sharepoint_excel_file_list AS v ( v.entry) WHERE (v.content)."m:properties"."d:ServerRelativeUrl" like '%Week 9%' GROUP BY v.content CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW f_sharepoint_excel
+ LAYOUT (ds_sharepoint_excel_file_list = [20, 20, 510, 540]);
+

@@ -1,0 +1,39 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JDBC ds_ldwh
+    FOLDER = '/01 - connectivity/01 - data sources'
+    DRIVERCLASSNAME = 'net.sourceforge.jtds.jdbc.Driver'
+    DATABASEURI = '${databases.admin.folder.01 - connectivity.folder.01 - data sources.datasources.jdbc.ds_ldwh.DATABASEURI}'
+    USERNAME = '${databases.admin.folder.01 - connectivity.folder.01 - data sources.datasources.jdbc.ds_ldwh.USERNAME}'
+    USERPASSWORD = '${databases.admin.folder.01 - connectivity.folder.01 - data sources.datasources.jdbc.ds_ldwh.USERPASSWORD}' ${databases.admin.folder.01 - connectivity.folder.01 - data sources.datasources.jdbc.ds_ldwh.USERPASSWORD.ENCRYPTED}
+    CLASSPATH = 'denodo-jtds-1.3.1'
+    DATABASENAME = 'sqlserver'
+    DATABASEVERSION = '2016'
+    FETCHSIZE = 1000
+    VALIDATIONQUERY = 'Select 1'
+    INITIALSIZE = 4
+    MAXIDLE = -1
+    MINIDLE = 0
+    MAXACTIVE = 20
+    EXHAUSTEDACTION = 1
+    TESTONBORROW = true
+    TESTONRETURN = false
+    TESTWHILEIDLE = false
+    TIMEBETWEENEVICTION = -1
+    NUMTESTPEREVICTION = 3
+    MINEVICTABLETIME = 1800000
+    POOLPREPAREDSTATEMENTS = false
+    MAXOPENPREPAREDSTATEMENTS = -1
+    DATA_LOAD_CONFIGURATION (
+        BATCHINSERTSIZE = 1000
+        BULK_LOAD_CONFIGURATION (
+            BCP_EXECUTABLE_LOCATION = 'C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\bcp.exe'
+        )
+        USEEXTERNALTABLES ( 
+            ONMOVEREAD = false,
+            ONMOVEWRITE = true
+        )
+    )
+    SOURCECONFIGURATION (
+        delegatescalarfunctionslist = (abs, acos, addday, addhour, addminute, addmonth, addsecond, addweek, addyear, ascii, asin, atan, atan2, case, cast, ceil, char, coalesce, concat, cos, cot, current_date, degrees, div, exp, firstdayofmonth, firstdayofweek, floor, formatdate, getday, getdayofweek, getdayofyear, getdaysbetween, gethour, getmicrosecond, getmillisecond, getminute, getmonth, getmonthsbetween, getnanosecond, getsecond, gettimeinmillis, getyear, instr, lastdayofmonth, lastdayofweek, len, ln, log, lower, ltrim, mod, mult, nextweekday, now, nullif, pi, position, pow, power, previousweekday, radians, rand, removeaccents, repeat, replace, round, rtrim, sign, sin, sqrt, substr, substring, subtract, sum, tan, textcat, textconstant, to_date(literal), to_localdate(literal), to_time(literal), to_timestamp(literal), to_timestamptz(literal), trim, trunc, upper, xmlquery, xpath)
+    );
+

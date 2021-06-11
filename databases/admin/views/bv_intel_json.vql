@@ -1,0 +1,86 @@
+﻿CREATE OR REPLACE WRAPPER JSON bv_intel_json
+    DATASOURCENAME=ds_intel
+    TUPLEROOT '/JSONFile/elements'
+    OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
+        name_0 = 'name' : 'java.lang.String',
+        input_database_name = 'JSONFile.elements.input_database_name' : 'java.lang.String',
+        input_name = 'JSONFile.elements.input_name' : 'java.lang.String',
+        input_type = 'JSONFile.elements.input_type' : 'java.lang.String',
+        input_user_creator = 'JSONFile.elements.input_user_creator' : 'java.lang.String',
+        input_last_user_modifier = 'JSONFile.elements.input_last_user_modifier' : 'java.lang.String',
+        input_init_create_date = 'JSONFile.elements.input_init_create_date' : 'java.lang.String',
+        input_end_create_date = 'JSONFile.elements.input_end_create_date' : 'java.lang.String',
+        input_init_last_modification_date = 'JSONFile.elements.input_init_last_modification_date' : 'java.lang.String',
+        input_end_last_modification_date = 'JSONFile.elements.input_end_last_modification_date' : 'java.lang.String',
+        input_description = 'JSONFile.elements.input_description' : 'java.lang.String',
+        database_name = 'JSONFile.elements.database_name' : 'java.lang.String',
+        name = 'JSONFile.elements.name' : 'java.lang.String',
+        type = 'JSONFile.elements.type' : 'java.lang.String',
+        subtype = 'JSONFile.elements.subtype' : 'java.lang.String',
+        user_creator = 'JSONFile.elements.user_creator' : 'java.lang.String',
+        last_user_modifier = 'JSONFile.elements.last_user_modifier' : 'java.lang.String',
+        create_date = 'JSONFile.elements.create_date' : 'java.lang.String',
+        last_modification_date = 'JSONFile.elements.last_modification_date' : 'java.lang.String',
+        folder = 'JSONFile.elements.folder' : 'java.lang.String',
+        base_view_type = 'JSONFile.elements.base_view_type' : 'java.lang.String',
+        description = 'JSONFile.elements.description' : 'java.lang.String'
+    )
+    );
+
+CREATE OR REPLACE TABLE bv_intel_json I18N us_pst (
+        name_0:text,
+        input_database_name:text,
+        input_name:text,
+        input_type:text,
+        input_user_creator:text,
+        input_last_user_modifier:text,
+        input_init_create_date:text,
+        input_end_create_date:text,
+        input_init_last_modification_date:text,
+        input_end_last_modification_date:text,
+        input_description:text,
+        database_name:text,
+        name:text,
+        type:text,
+        subtype:text,
+        user_creator:text,
+        last_user_modifier:text,
+        create_date:text,
+        last_modification_date:text,
+        folder:text,
+        base_view_type:text,
+        description:text
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_intel_json(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD name_0 NOS ZERO ()
+             ADD input_database_name NOS ZERO ()
+             ADD input_name NOS ZERO ()
+             ADD input_type NOS ZERO ()
+             ADD input_user_creator NOS ZERO ()
+             ADD input_last_user_modifier NOS ZERO ()
+             ADD input_init_create_date NOS ZERO ()
+             ADD input_end_create_date NOS ZERO ()
+             ADD input_init_last_modification_date NOS ZERO ()
+             ADD input_end_last_modification_date NOS ZERO ()
+             ADD input_description NOS ZERO ()
+             ADD database_name NOS ZERO ()
+             ADD name NOS ZERO ()
+             ADD type NOS ZERO ()
+             ADD subtype NOS ZERO ()
+             ADD user_creator NOS ZERO ()
+             ADD last_user_modifier NOS ZERO ()
+             ADD create_date NOS ZERO ()
+             ADD last_modification_date NOS ZERO ()
+             ADD folder NOS ZERO ()
+             ADD base_view_type NOS ZERO ()
+             ADD description NOS ZERO ()
+        )
+        OUTPUTLIST (base_view_type, create_date, database_name, description, folder, input_database_name, input_description, input_end_create_date, input_end_last_modification_date, input_init_create_date, input_init_last_modification_date, input_last_user_modifier, input_name, input_type, input_user_creator, last_modification_date, last_user_modifier, name, name_0, subtype, type, user_creator
+        )
+        WRAPPER (json bv_intel_json)
+    );
+

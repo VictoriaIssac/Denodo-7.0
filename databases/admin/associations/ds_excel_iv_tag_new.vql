@@ -1,0 +1,8 @@
+﻿CREATE OR REPLACE ASSOCIATION ds_excel_iv_tag_new REFERENTIAL CONSTRAINT 
+    ENDPOINT iv_tag_new ds_excel (0,*)
+    ENDPOINT ds_excel ps.iv_tag_new PRINCIPAL (1)
+    ADD MAPPING column_1=tag_name;
+
+ALTER ASSOCIATION ds_excel_iv_tag_new
+ LAYOUT (ds_excel = [20, 20, 220, 79], iv_tag_new = [324, 76, 200, 66]);
+

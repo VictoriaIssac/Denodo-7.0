@@ -1,0 +1,32 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_con
+    DATASOURCENAME=ds_human
+    SCHEMANAME='${databases.admin.views.jdbc.bv_con.SCHEMANAME}' ESCAPE
+    RELATIONNAME='BV_COUNTRY' 
+    OUTPUTSCHEMA (
+        country_id = 'COUNTRY_ID' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='2', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        country_name = 'COUNTRY_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='40', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        region_id = 'REGION_ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='20', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_con I18N au_cst (
+        country_id:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '2'),
+        country_name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '40'),
+        region_id:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '20', sourcetypesize = '38')
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_con(
+        I18N au_cst
+        CONSTRAINTS (
+             ADD country_id (any) OPT ANY
+             ADD country_name (any) OPT ANY
+             ADD region_id (any) OPT ANY
+        )
+        OUTPUTLIST (country_id, country_name, region_id
+        )
+        WRAPPER (jdbc bv_con)
+    )
+    DATA_LOAD_QUERY = 'SELECT country_id, country_name, region_id
+FROM countries';
+

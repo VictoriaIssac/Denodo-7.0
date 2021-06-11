@@ -1,0 +1,15 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON ds_sp_json
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' POST '${databases.admin.datasources.json.ds_sp_json.ROUTE.HTTP.URL}'
+    POSTBODY '\{{
+"DATE2":@inp
+\}}'
+    MIME 'application/json'
+    HEADERS (
+        'X-HTTP-Method-Override'='GET', 
+        'Accept'='application/json', 
+        'Content-Type'='application/json;charset=UTF-8'
+    )
+    AUTHENTICATION OFF
+    PROXY OFF;
+

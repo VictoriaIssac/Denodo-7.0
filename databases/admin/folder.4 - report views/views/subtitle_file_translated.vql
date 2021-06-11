@@ -1,0 +1,13 @@
+﻿CREATE OR REPLACE VIEW subtitle_file_translated FOLDER = '/4 - report views' DESCRIPTION = 'This view is used for translating a "srt" file from one specific language to another
+
+japanese: ''ja''
+chinese: ''zh-CN'''  AS SELECT iv_subtitle_file_sentences_times_group.path AS path, iv_google_translate_json_translated.target_lang AS target_lang, iv_google_translate_json_translated.source_lang AS source_lang, replacemap(substring(array_to_string('
+
+', nest(((((((bv_subtitle_file.id||'
+')||bv_subtitle_file.start_time)||' --> ')||bv_subtitle_file.end_time)||'
+')||iv_google_translate_json_translated.translated_text))), 1, (len(array_to_string('
+
+', nest(((((((bv_subtitle_file.id||'
+')||bv_subtitle_file.start_time)||' --> ')||bv_subtitle_file.end_time)||'
+')||iv_google_translate_json_translated.translated_text))))-1)), 'translation_replacement') AS translated_text FROM (iv_subtitle_file_sentences_times_group AS iv_subtitle_file_sentences_times_group NESTED INNER JOIN (wait AS wait NESTED INNER JOIN iv_google_translate_json_translated AS iv_google_translate_json_translated ON wait.dummy = iv_google_translate_json_translated.text_to_translate ) ON iv_subtitle_file_sentences_times_group.sentence = wait.dummy ) INNER JOIN bv_subtitle_file AS bv_subtitle_file ON (iv_subtitle_file_sentences_times_group.path = bv_subtitle_file.path AND iv_subtitle_file_sentences_times_group.first_id <= bv_subtitle_file.id AND iv_subtitle_file_sentences_times_group.last_id > bv_subtitle_file.id)  GROUP BY iv_subtitle_file_sentences_times_group.path, iv_google_translate_json_translated.target_lang, iv_google_translate_json_translated.source_lang CONTEXT ('I18N' = 'au_cst');
+

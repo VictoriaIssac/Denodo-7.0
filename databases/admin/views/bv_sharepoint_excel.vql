@@ -1,0 +1,18 @@
+﻿CREATE OR REPLACE TABLE bv_sharepoint_excel I18N au_cst (
+        "Column_0":int (sourcetypeid = '4'),
+        "Column_1":text (sourcetypeid = '12')
+    )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_sharepoint_excel(
+        I18N au_cst
+        CONSTRAINTS (
+             ADD "Column_0" (any) OPT ANY
+             ADD "Column_1" (any) OPT ANY
+        )
+        OUTPUTLIST ("Column_0", "Column_1"
+        )
+        WRAPPER (custom ds_sharepoint_excel)
+    );
+

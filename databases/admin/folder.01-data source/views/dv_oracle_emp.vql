@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW dv_oracle_emp FOLDER = '/01-data source' AS SELECT bv_emp.firstname AS firstname, bv_emp.lastname AS lastname, bv_emp.age AS age, bv_emp.lastmodified AS lastmodified, bv_emp_oracle.id AS id, bv_emp_oracle.field_0 AS field_0, bv_emp_oracle.expirationdate AS expirationdate, bv_emp_oracle.rowstatus AS rowstatus FROM bv_emp_oracle AS bv_emp_oracle INNER JOIN bv_emp AS bv_emp ON bv_emp_oracle.id = bv_emp.id  CONTEXT ('I18N' = 'us_pst', DATAMOVEMENTPLAN = bv_emp_oracle : JDBC ds_sqlserver);
+
+ALTER VIEW dv_oracle_emp
+ LAYOUT (bv_emp_oracle = [120, 26, 200, 105], bv_emp = [398, 39, 200, 125]);
+

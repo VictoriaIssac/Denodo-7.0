@@ -1,0 +1,25 @@
+﻿CREATE OR REPLACE WRAPPER JDBC bv_gat_sta
+    DATASOURCENAME=ds_human
+    SQLSENTENCE='SELECT NAME AS NAME FROM 
+"SYSTEM".MADHUTEST1'   
+    OUTPUTSCHEMA (
+        "NAME" = 'NAME' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE NOT UPDATEABLE
+    );
+
+CREATE OR REPLACE TABLE bv_gat_sta I18N us_cst (
+        "NAME":text (sourcetypeid = '12', sourcetypedecimals = '0', sourcetypesize = '255')
+    )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_gat_sta(
+        I18N us_cst
+        CONSTRAINTS (
+             ADD "NAME" NOS ZERO ()
+        )
+        OUTPUTLIST ("NAME"
+        )
+        WRAPPER (jdbc bv_gat_sta)
+    )
+    ATSOURCE_THROUGH_VDP_ONLY;
+

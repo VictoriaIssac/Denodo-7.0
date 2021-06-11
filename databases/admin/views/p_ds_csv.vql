@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW p_ds_csv AS SELECT ds_csv.cardtypecode_0 AS cardtypecode_0, ds_csv.cardtypefullname_0 AS cardtypefullname_0, ds_csv.issuingbank_0 AS issuingbank_0, ds_csv.ttt AS ttt FROM ds_csv CONTEXT ('I18N' = 'au_cst');
+

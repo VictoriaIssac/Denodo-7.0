@@ -1,0 +1,53 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC custom_action
+    FOLDER = '/01-data source'
+    DATASOURCENAME=ds_oracle
+    SCHEMANAME='${databases.admin.folder.01-data source.views.jdbc.custom_action.SCHEMANAME}' ESCAPE
+    RELATIONNAME='CUSTOM_ACTION' 
+    OUTPUTSCHEMA (
+        id = 'ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        apply_to = 'APPLY_TO' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='255', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE,
+        description = 'DESCRIPTION' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='255', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE,
+        name = 'NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='128', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE,
+        n_order = 'N_ORDER' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        scope = 'SCOPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='255', sourcetypeid='12', sourcetypename='VARCHAR2')  ESCAPE NOT NULL SORTABLE,
+        script_file = 'SCRIPT_FILE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='255', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE,
+        type = 'TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='255', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE,
+        value = 'VALUE' :'java.sql.Blob' (OPT) (sourcetyperadix='10', sourcetypeid='2004', sourcetypename='BLOB')  ESCAPE NOT NULL NOT SORTABLE
+    )
+    CONSTRAINT 'SYS_C007211' PRIMARY KEY ( 'ID' )
+    INDEX 'SYS_C007211' CLUSTER UNIQUE PRIMARY ( 'ID' );
+
+CREATE OR REPLACE TABLE custom_action I18N au_cst (
+        id:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19'),
+        apply_to:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255'),
+        description:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255'),
+        name:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '128'),
+        n_order:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19'),
+        scope:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255'),
+        script_file:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255'),
+        type:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255'),
+        value:blob (notnull, sourcetypeid = '2004', sourcetyperadix = '10')
+    )
+    FOLDER = '/01-data source'
+    CONSTRAINT 'SYS_C007211' PRIMARY KEY ( 'id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD custom_action(
+        I18N au_cst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD apply_to (any) OPT ANY
+             ADD description (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD n_order (any) OPT ANY
+             ADD scope (any) OPT ANY
+             ADD script_file (any) OPT ANY
+             ADD type (any) OPT ANY
+             ADD value NOS ZERO ()
+        )
+        OUTPUTLIST (apply_to, description, id, n_order, name, scope, script_file, type, value
+        )
+        WRAPPER (jdbc custom_action)
+    );
+

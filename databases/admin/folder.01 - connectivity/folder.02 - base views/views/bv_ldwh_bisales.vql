@@ -1,0 +1,87 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_ldwh_BISalesBISales"
+    FOLDER = '/01 - connectivity/02 - base views'
+    DATASOURCENAME=ds_ldwh
+    CATALOGNAME='${databases.admin.folder.01 - connectivity.folder.02 - base views.views.jdbc.bv_ldwh_bisalesbisales.CATALOGNAME}' 
+    SCHEMANAME='${databases.admin.folder.01 - connectivity.folder.02 - base views.views.jdbc.bv_ldwh_bisalesbisales.SCHEMANAME}' 
+    RELATIONNAME='BISales' 
+    OUTPUTSCHEMA (
+        "Id" = 'Id' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int identity')  NOT NULL NOT SORTABLE IS_AUTOINCREMENT,
+        "Currency" = 'Currency' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "Country" = 'Country' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "RegionID" = 'RegionID' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='6', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "BusinessTypeID" = 'BusinessTypeID' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='10', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "CustType" = 'CustType' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='10', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        time = 'time' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetyperadix='0', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  ESCAPE SORTABLE,
+        "ACTSAmt" = 'ACTSAmt' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='4', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='3', sourcetypename='money')  NOT SORTABLE,
+        "BUDSAmt" = 'BUDSAmt' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='4', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='3', sourcetypename='money')  NOT SORTABLE,
+        "LTYSAmt" = 'LTYSAmt' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='4', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='3', sourcetypename='money')  NOT SORTABLE,
+        keyid = 'keyid' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='28', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "NewSiteA" = 'NewSiteA' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        "ExistSiteB" = 'ExistSiteB' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        "ExistSiteC" = 'ExistSiteC' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        "Redemptions" = 'Redemptions' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        current = 'current' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  ESCAPE SORTABLE,
+        "BudNewSiteA" = 'BudNewSiteA' :'java.lang.Float' (OPT) (sourcetypedecimals='0', sourcetyperadix='2', sourcetypesize='24', sourcetypeid='7', sourcetypename='real')  SORTABLE,
+        "BudRedmpt" = 'BudRedmpt' :'java.lang.Float' (OPT) (sourcetypedecimals='0', sourcetyperadix='2', sourcetypesize='24', sourcetypeid='7', sourcetypename='real')  SORTABLE,
+        "Locality" = 'Locality' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='2', sourcetypeid='1', sourcetypename='nchar')  SORTABLE
+    )
+    CONSTRAINT 'FK_BISales_BusinessType' FOREIGN KEY ( 'BusinessTypeID' ) 
+    REFERENCES 'Datawarehouse'.'dbo'.'BusinessType'( 'BusinessTypeID' )  ON UPDATE RESTRICT  ON DELETE RESTRICT NOT DEFERRABLE 
+    CONSTRAINT 'FK_BISales_Region' FOREIGN KEY ( 'RegionID' ) 
+    REFERENCES 'Datawarehouse'.'dbo'.'Region'( 'RegionID' )  ON UPDATE RESTRICT  ON DELETE RESTRICT NOT DEFERRABLE ;
+
+CREATE OR REPLACE TABLE "bv_ldwh_BISales" I18N au_wst (
+        "Id":int (autoincrement, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "Currency":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '50'),
+        "Country":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255'),
+        "RegionID":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '6'),
+        "BusinessTypeID":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "CustType":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '10'),
+        time:timestamp (sourcetypeid = '93', sourcetyperadix = '0', sourcetypedecimals = '3', sourcetypesize = '23'),
+        "ACTSAmt":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '4', sourcetypesize = '19'),
+        "BUDSAmt":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '4', sourcetypesize = '19'),
+        "LTYSAmt":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '4', sourcetypesize = '19'),
+        keyid:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '28'),
+        "NewSiteA":int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "ExistSiteB":int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "ExistSiteC":int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "Redemptions":int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        current:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "BudNewSiteA":float (sourcetypeid = '7', sourcetyperadix = '2', sourcetypedecimals = '0', sourcetypesize = '24'),
+        "BudRedmpt":float (sourcetypeid = '7', sourcetyperadix = '2', sourcetypedecimals = '0', sourcetypesize = '24'),
+        "Locality":text (sourcetypeid = '-15', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '2')
+    )
+    FOLDER = '/01 - connectivity/02 - base views'
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_ldwh_BISalesBISales"(
+        I18N au_wst
+        CONSTRAINTS (
+             ADD "Id" (any) OPT ANY
+             ADD "Currency" (any) OPT ANY
+             ADD "Country" (any) OPT ANY
+             ADD "RegionID" (any) OPT ANY
+             ADD "BusinessTypeID" (any) OPT ANY
+             ADD "CustType" (any) OPT ANY
+             ADD time (any) OPT ANY
+             ADD "ACTSAmt" (any) OPT ANY
+             ADD "BUDSAmt" (any) OPT ANY
+             ADD "LTYSAmt" (any) OPT ANY
+             ADD keyid (any) OPT ANY
+             ADD "NewSiteA" (any) OPT ANY
+             ADD "ExistSiteB" (any) OPT ANY
+             ADD "ExistSiteC" (any) OPT ANY
+             ADD "Redemptions" (any) OPT ANY
+             ADD current (any) OPT ANY
+             ADD "BudNewSiteA" (any) OPT ANY
+             ADD "BudRedmpt" (any) OPT ANY
+             ADD "Locality" (any) OPT ANY
+        )
+        OUTPUTLIST ("ACTSAmt", "BUDSAmt", "BudNewSiteA", "BudRedmpt", "BusinessTypeID", "Country", "Currency", "CustType", "ExistSiteB", "ExistSiteC", "Id", "LTYSAmt", "Locality", "NewSiteA", "Redemptions", "RegionID", current, keyid, time
+        )
+        WRAPPER (jdbc "bv_ldwh_BISalesBISales")
+    )
+    SMART_ONLY;
+

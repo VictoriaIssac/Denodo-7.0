@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_language_management_array FOLDER = '/2 - integration' AS SELECT split(',', inputlanguage) AS language, inputlanguage FROM dual() USING PARAMETERS ( inputlanguage : text) CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW iv_language_management_array
+ LAYOUT (dual = [20, 20, 200, 45]);
+

@@ -1,0 +1,31 @@
+﻿CREATE OR REPLACE WRAPPER JSON ds_rest_ps
+    DATASOURCENAME=ds_rest_ps
+    TUPLEROOT '/JSONFile/elements'
+    OUTPUTSCHEMA ("JSONFile" = 'JSONFile' : REGISTER OF (
+        name = 'name' : 'java.lang.String',
+        "TAG_NAME" = 'JSONFile.elements.TAG_NAME' : 'java.lang.String',
+        "TAG_DESC" = 'JSONFile.elements.TAG_DESC' : 'java.lang.String'
+    )
+    );
+
+CREATE OR REPLACE TABLE ds_rest_ps I18N us_cst (
+        name:text,
+        "TAG_NAME":text,
+        "TAG_DESC":text
+    )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_rest_ps(
+        I18N us_cst
+        CONSTRAINTS (
+             ADD name NOS ZERO ()
+             ADD "TAG_NAME" NOS ZERO ()
+             ADD "TAG_DESC" NOS ZERO ()
+        )
+        OUTPUTLIST ("TAG_DESC", "TAG_NAME", name
+        )
+        WRAPPER (json ds_rest_ps)
+    )
+    ATSOURCE_THROUGH_VDP_ONLY;
+

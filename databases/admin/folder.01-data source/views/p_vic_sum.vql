@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_vic_sum FOLDER = '/01-data source' AS SELECT column1 AS column1, rank() OVER ( ORDER BY column1 ASC ) AS ww FROM vic_sum GROUP BY column1 CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW p_vic_sum
+ LAYOUT (vic_sum = [20, 20, 225, 185]);
+

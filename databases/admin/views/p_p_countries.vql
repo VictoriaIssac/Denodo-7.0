@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_p_countries AS SELECT p_countries.countryid AS country_id, p_countries.country_name AS country_name, p_countries.region_id AS region_id FROM p_countries CONTEXT ('I18N' = 'us_cst');
+
+ALTER VIEW p_p_countries
+ LAYOUT (p_countries = [20, 20, 200, 85]);
+

@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WEBSERVICE dv_sp;
+
+DEPLOY WEBSERVICE dv_sp LOGIN = '${databases.admin.webcontainer.webservices.dv_sp.LOGIN}' PASSWORD = '${databases.admin.webcontainer.webservices.dv_sp.PASSWORD}' ${databases.admin.webcontainer.webservices.dv_sp.PASSWORD.ENCRYPTED};
+

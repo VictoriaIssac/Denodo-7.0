@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW cache_status AS SELECT name AS view_name FROM get_views() WHERE cache_status > 0 CONTEXT ('I18N' = 'us_est');
+

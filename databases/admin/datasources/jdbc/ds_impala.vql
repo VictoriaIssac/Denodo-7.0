@@ -1,0 +1,36 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JDBC ds_impala
+    DRIVERCLASSNAME = 'com.cloudera.impala.jdbc41.Driver'
+    DATABASEURI = '${databases.admin.datasources.jdbc.ds_impala.DATABASEURI}'
+    USERNAME = '${databases.admin.datasources.jdbc.ds_impala.USERNAME}'
+    USERPASSWORD = ''
+    CLASSPATH = 'impala-2.3'
+    DATABASENAME = 'impala'
+    DATABASEVERSION = '1_2_4'
+    FETCHSIZE = 1000
+    VALIDATIONQUERY = 'select 1'
+    INITIALSIZE = 4
+    MAXIDLE = -1
+    MINIDLE = 0
+    MAXACTIVE = 20
+    EXHAUSTEDACTION = 1
+    TESTONBORROW = true
+    TESTONRETURN = false
+    TESTWHILEIDLE = false
+    TIMEBETWEENEVICTION = -1
+    NUMTESTPEREVICTION = 3
+    MINEVICTABLETIME = 1800000
+    POOLPREPAREDSTATEMENTS = false
+    MAXOPENPREPAREDSTATEMENTS = -1
+    DATA_LOAD_CONFIGURATION (
+        BATCHINSERTSIZE = 200
+    )
+    PROCESSING_UNITS = 8
+    CPUS_PER_PROCESSING_UNIT = 8
+    SOURCECONFIGURATION (
+        delegatealloperators = true,
+        delegatecompoundfieldprojection = true,
+        supportsnaturaljoin = true,
+        supportsusingjoin = true
+    );
+

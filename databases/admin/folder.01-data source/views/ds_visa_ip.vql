@@ -1,0 +1,62 @@
+﻿CREATE OR REPLACE WRAPPER JSON ds_visa_ip
+    FOLDER = '/01-data source'
+    DATASOURCENAME=ds_visa_ip
+    TUPLEROOT '/JSONFile'
+    OUTPUTSCHEMA ("JSONFile" = 'JSONFile' : REGISTER OF (
+        "INPUT" = 'INPUT' : 'java.lang.String' (OBL) (DEFAULTVALUE='"id":"1"') EXTERN,
+        name = 'name' : 'java.lang.String',
+        elements = 'elements' : ARRAY OF (
+            elements = 'elements' : REGISTER OF (
+                id = 'id' : 'java.lang.Integer',
+                sum_1 = 'sum_1' : 'java.lang.Integer',
+                sum = 'sum' : 'java.lang.Integer',
+                cal = 'cal' : 'java.lang.Integer'
+            )
+        ),
+        links = 'links' : ARRAY OF (
+            links = 'links' : REGISTER OF (
+                rel = 'rel' : 'java.lang.String',
+                href = 'href' : 'java.lang.String'
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE ds_visa_ip_elements_elements AS REGISTER OF (id:int, sum_1:int, sum:int, cal:int);
+
+CREATE OR REPLACE TYPE ds_visa_ip_elements AS ARRAY OF ds_visa_ip_elements_elements;
+
+CREATE OR REPLACE TYPE ds_visa_ip_links_links AS REGISTER OF (rel:text, href:text);
+
+CREATE OR REPLACE TYPE ds_visa_ip_links AS ARRAY OF ds_visa_ip_links_links;
+
+CREATE OR REPLACE TABLE ds_visa_ip I18N us_est (
+        "INPUT":text (extern),
+        name:text,
+        elements:ds_visa_ip_elements,
+        links:ds_visa_ip_links
+    )
+    FOLDER = '/01-data source'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_visa_ip(
+        I18N us_est
+        CONSTRAINTS (
+             ADD "INPUT" (=) OBL ONE
+             ADD name NOS ZERO ()
+             ADD elements NOS ZERO ()
+             ADD elements NOS ZERO ()
+             ADD elements.id NOS ZERO ()
+             ADD elements.sum_1 NOS ZERO ()
+             ADD elements.sum NOS ZERO ()
+             ADD elements.cal NOS ZERO ()
+             ADD links NOS ZERO ()
+             ADD links NOS ZERO ()
+             ADD links.rel NOS ZERO ()
+             ADD links.href NOS ZERO ()
+        )
+        OUTPUTLIST (elements, links, name
+        )
+        WRAPPER (json ds_visa_ip)
+    );
+

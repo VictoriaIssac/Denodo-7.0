@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_google_translate_json_multiple_translations_regexp FOLDER = '/2 - integration' AS SELECT bv_google_translate_json_multiple_translations.target_lang AS target_lang, bv_google_translate_json_multiple_translations.source_lang AS source_lang, bv_google_translate_json_multiple_translations.text_to_translate AS text_to_translate, regexp(bv_google_translate_json_multiple_translations.column0, '.*\["(.*)",".*",null,null,[0-9].*', '$$1<valid_line>') AS column0 FROM bv_google_translate_json_multiple_translations CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW iv_google_translate_json_multiple_translations_regexp
+ LAYOUT (bv_google_translate_json_multiple_translations = [20, 20, 329, 105]);
+

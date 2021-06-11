@@ -1,0 +1,24 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_sp_iad
+    DATASOURCENAME=ds_human
+    SCHEMANAME='${databases.admin.views.jdbc.bv_sp_iad.SCHEMANAME}' ESCAPE
+    RELATIONNAME='BV_SP_IAD' 
+    OUTPUTSCHEMA (
+        name = 'NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_sp_iad I18N au_cst (
+        name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20')
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_sp_iad(
+        I18N au_cst
+        CONSTRAINTS (
+             ADD name (any) OPT ANY
+        )
+        OUTPUTLIST (name
+        )
+        WRAPPER (jdbc bv_sp_iad)
+    );
+

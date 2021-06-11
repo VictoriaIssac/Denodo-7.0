@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW "p_bv_BAKer2er" AS SELECT "bv_BAK"."ALP" AS "ALP", "bv_BAK"."NAME" AS "NAME", "bv_BAK"."IDDD" AS "IDDD" FROM "bv_BAK";
+
+ALTER VIEW "p_bv_BAKer2er"
+ LAYOUT ("bv_BAK" = [20, 20, 200, 85]);
+

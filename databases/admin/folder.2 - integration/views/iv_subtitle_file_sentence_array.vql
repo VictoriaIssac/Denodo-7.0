@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_subtitle_file_sentence_array FOLDER = '/2 - integration' AS SELECT path AS path, split('\.', regexp(array_to_string(' ', nest(((('#'||id)||' ')||new_ttext))), '\{{(.*)\}}', '$$1')) AS sentences FROM iv_subtitle_file_sentence_splittext GROUP BY path CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW iv_subtitle_file_sentence_array
+ LAYOUT (iv_subtitle_file_sentence_splittext = [20, 20, 200, 105]);
+

@@ -1,0 +1,40 @@
+﻿CREATE OR REPLACE REST WEBSERVICE ws_intel
+    CONNECTION (
+        CHUNKSIZE = 1000
+        CHUNKTIMEOUT = 90000
+        QUERYTIMEOUT = 900000
+        POOLENABLED = true
+        POOLINITSIZE = 0
+        POOLMAXACTIVE = 30
+    )
+    DEFAULTREPRESENTATION = HTML
+    SUPPORTEDREPRESENTATIONS (HTML, XML, JSON)
+    RESOURCES (
+        VIEW bv_intel FIELDS (
+            input_database_name : 'text', 
+            input_name : 'text', 
+            input_type : 'text', 
+            input_user_creator : 'text', 
+            input_last_user_modifier : 'text', 
+            input_init_create_date : 'timestamptz', 
+            input_end_create_date : 'timestamptz', 
+            input_init_last_modification_date : 'timestamptz', 
+            input_end_last_modification_date : 'timestamptz', 
+            input_description : 'text', 
+            database_name : 'text', 
+            name : 'text', 
+            type : 'text', 
+            subtype : 'text', 
+            user_creator : 'text', 
+            last_user_modifier : 'text', 
+            create_date : 'timestamptz', 
+            last_modification_date : 'timestamptz', 
+            description : 'text', 
+            folder : 'text', 
+            base_view_type : 'text'
+        )
+    )
+    OPTIONS ( NULLVALUESASEMPTYXMLELEMENTS = false
+        PROCESS_FUNCTIONS_IN_SELECT_PARAMETER = true ) 
+    OPENAPI2 ( API_VERSION = '1.0.0' ) ;
+

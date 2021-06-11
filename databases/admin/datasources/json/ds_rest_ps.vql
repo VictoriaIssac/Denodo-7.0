@@ -1,0 +1,6 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON ds_rest_ps
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.admin.datasources.json.ds_rest_ps.ROUTE.HTTP.URL}'
+    AUTHENTICATION OFF
+    PROXY OFF;
+

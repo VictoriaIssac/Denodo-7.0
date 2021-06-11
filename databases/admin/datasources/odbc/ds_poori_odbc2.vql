@@ -1,0 +1,24 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE ODBC ds_poori_odbc2
+    DSN = '${databases.admin.datasources.odbc.ds_poori_odbc2.DSN}'
+    USERNAME = '${databases.admin.datasources.odbc.ds_poori_odbc2.USERNAME}'
+    USERPASSWORD = '${databases.admin.datasources.odbc.ds_poori_odbc2.USERPASSWORD}' ${databases.admin.datasources.odbc.ds_poori_odbc2.USERPASSWORD.ENCRYPTED}
+    CLASSPATH = 'jdbc-odbc'
+    DATABASENAME = 'Generic'
+    DATABASEVERSION = ''
+    FETCHSIZE = 1000
+    VALIDATIONQUERY = ''
+    INITIALSIZE = 4
+    MAXIDLE = -1
+    MINIDLE = 0
+    MAXACTIVE = 20
+    EXHAUSTEDACTION = 1
+    TESTONBORROW = true
+    TESTONRETURN = false
+    TESTWHILEIDLE = false
+    TIMEBETWEENEVICTION = -1
+    NUMTESTPEREVICTION = 3
+    MINEVICTABLETIME = 1800000
+    POOLPREPAREDSTATEMENTS = false
+    MAXOPENPREPAREDSTATEMENTS = -1;
+

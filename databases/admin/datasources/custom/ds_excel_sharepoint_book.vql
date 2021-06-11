@@ -1,0 +1,35 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE CUSTOM ds_excel_sharepoint_book
+    CLASSNAME='com.denodo.vdb.contrib.wrapper.xls.ExcelWrapper'
+    CLASSPATH='';
+
+CREATE OR REPLACE WRAPPER CUSTOM ds_excel_sharepoint_book
+    DATASOURCENAME=ds_excel_sharepoint_book
+    PARAMETERS (
+      'Type of file' = 'Excel 2007 or later (*.xlsx)',
+      'File location' = ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.URL}'
+        AUTHENTICATION OAUTH20 ( 
+          ACCESSTOKEN = '${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.ACCESSTOKEN}' ${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.ACCESSTOKEN.ENCRYPTED}
+          REQUESTSIGNINGMETHOD = ${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.REQUESTSIGNINGMETHOD}
+          AUTHENTICATION_GRANT = ${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.AUTHENTICATION.GRANT}
+          TOKENENDPOINTURL = '${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.TOKENENDPOINTURL}'
+          CLIENTIDENTIFIER = '${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.CLIENTIDENTIFIER}'
+          CLIENTSECRET = '${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.CLIENTSECRET}' ${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.CLIENTSECRET.ENCRYPTED}
+          REFRESHTOKEN = '${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.REFRESHTOKEN}' ${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.REFRESHTOKEN.ENCRYPTED}
+          ACCESSTOKENEXPIRESIN = ${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.ACCESSTOKENEXPIRESIN}
+          AUTHORIZATIONSERVERURL = '${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.AUTHORIZATIONSERVERURL}'
+          REDIRECTIONENDPOINTURL = '${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.REDIRECTIONENDPOINTURL}'
+          SCOPES = ${databases.admin.datasources.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.SCOPES}
+          SETSTATEPARAMETER = ${databases.admin.views.custom.ds_excel_sharepoint_book.File location.ROUTE.HTTP.SETSTATEPARAMETER}
+        )
+        PROXY OFF,
+      'Extract data from all sheets' = false,
+      'Extract sheet name as a new column' = false,
+      'Has headers' = true,
+      'Stream tuples' = true
+    )
+    OUTPUTSCHEMA (
+        "Field1" = 'Field1' : 'java.lang.String' (OPT) (sourcetypeid='12')  SORTABLE,
+        "Field2" = 'Field2' : 'java.lang.String' (OPT) (sourcetypeid='12')  SORTABLE
+    );
+

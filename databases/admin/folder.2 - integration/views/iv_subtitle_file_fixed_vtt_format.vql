@@ -1,0 +1,15 @@
+﻿CREATE OR REPLACE VIEW iv_subtitle_file_fixed_vtt_format FOLDER = '/2 - integration' AS SELECT path AS path, ('WEBVTT
+
+'||substring(array_to_string('
+
+', nest(((((((id||'
+')||start_time)||' --> ')||end_time)||'
+')||text))), 1, (len(array_to_string('
+
+', nest(((((((id||'
+')||start_time)||' --> ')||end_time)||'
+')||text))))-1))) AS file_content, regexp(path, '(.*).srt', '$$1\.vtt') AS output_path FROM iv_subtitle_file_fixed_vtt GROUP BY path CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW iv_subtitle_file_fixed_vtt_format
+ LAYOUT (iv_subtitle_file_fixed_vtt = [20, 20, 200, 126]);
+

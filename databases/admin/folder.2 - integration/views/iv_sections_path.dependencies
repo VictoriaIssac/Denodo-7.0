@@ -1,0 +1,7 @@
+﻿/databases/admin/folder.2 - integration/2 - integration.vql
+/databases/admin/folder.1 - connectivity/1 - connectivity.vql
+/databases/admin/folder.1 - connectivity/folder.2 - base views/2 - base views.vql
+/extensions/jars/denodo-filesystem-customwrapper.vql
+/databases/admin/folder.1 - connectivity/folder.1 - data sources/1 - data sources.vql
+/databases/admin/folder.1 - connectivity/folder.1 - data sources/datasources/custom/readsystem.vql
+/databases/admin/folder.1 - connectivity/folder.2 - base views/views/readsystem.vql

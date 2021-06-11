@@ -1,0 +1,18 @@
+﻿CREATE OR REPLACE TABLE ds_bio I18N us_est (
+        ftes:decimal (sourcetypeid = '8'),
+        source:text (sourcetypeid = '12')
+    )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_bio(
+        I18N us_est
+        CONSTRAINTS (
+             ADD ftes (any) OPT ANY
+             ADD source (any) OPT ANY
+        )
+        OUTPUTLIST (ftes, source
+        )
+        WRAPPER (custom ds_bio)
+    );
+

@@ -1,0 +1,10 @@
+﻿CREATE OR REPLACE VIEW create_translated_subtitles FOLDER = '/4 - report views' DESCRIPTION = 'This view will read a folder and it will search (recursevely) for subtitles in "srt" format and english language to translate it to different languages as input.
+
+Then it will generate a srt and vtt file.
+
+Example of execution for getting subtitles in japanese "ja" and chinese "zh-CN" languages:
+inputlanguage = ''ja,zh-CN'' and parentfolder = ''C:\Training\On-demand\DEN70EDUD1102 - Data Sources. Delimited Files'''  AS SELECT iv_final_create_subtittles_file_by_path_group_by.parentfolder AS parentfolder, iv_language_management.inputlanguage AS inputlanguage FROM iv_language_management AS iv_language_management NESTED LEFT OUTER JOIN iv_final_create_subtittles_file_by_path_group_by AS iv_final_create_subtittles_file_by_path_group_by ON iv_language_management.language = iv_final_create_subtittles_file_by_path_group_by.target_lang  GROUP BY iv_final_create_subtittles_file_by_path_group_by.parentfolder, iv_language_management.inputlanguage CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW create_translated_subtitles
+ LAYOUT (iv_language_management = [70, 50, 200, 66], iv_final_create_subtittles_file_by_path_group_by = [340, 60, 200, 66]);
+

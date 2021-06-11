@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW dv_dmt AS SELECT bv_dmt.id AS id, case WHEN (dt = '00000000') THEN NULL ELSE to_timestamp('yyyyMMdd', bv_dmt.dt) END AS dt FROM bv_dmt CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW dv_dmt
+ LAYOUT (bv_dmt = [20, 20, 200, 65]);
+

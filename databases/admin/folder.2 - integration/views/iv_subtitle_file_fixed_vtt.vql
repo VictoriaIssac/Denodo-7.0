@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_subtitle_file_fixed_vtt FOLDER = '/2 - integration' AS SELECT bv_subtitle_file.path AS path, bv_subtitle_file.id AS id, replace(bv_subtitle_file.start_time, ',', '.') AS start_time, replace(case WHEN (bv_subtitle_file1.start_time is not null ) THEN bv_subtitle_file1.start_time ELSE bv_subtitle_file.end_time END, ',', '.') AS end_time, bv_subtitle_file.text AS text FROM bv_subtitle_file AS bv_subtitle_file LEFT OUTER JOIN bv_subtitle_file AS bv_subtitle_file1 ON (bv_subtitle_file.path = bv_subtitle_file1.path AND bv_subtitle_file.id = (bv_subtitle_file1.id-1))  CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW iv_subtitle_file_fixed_vtt
+ LAYOUT (bv_subtitle_file = [20, 20, 200, 126], bv_subtitle_file = [553, 202, 200, 126]);
+

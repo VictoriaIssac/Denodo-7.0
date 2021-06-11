@@ -1,0 +1,24 @@
+﻿CREATE OR REPLACE WRAPPER DF ds_denodo_csv
+    DATASOURCENAME=ds_denodo_csv
+    OUTPUTSCHEMA (
+        column0 = 'Column0' (OPT),
+        column1 = 'Column1' (OPT)
+    );
+
+CREATE OR REPLACE TABLE ds_denodo_csv I18N us_est (
+        column0:text,
+        column1:text
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_denodo_csv(
+        I18N us_est
+        CONSTRAINTS (
+             ADD column0 (=,in) OPT ANY
+             ADD column1 (=,in) OPT ANY
+        )
+        OUTPUTLIST (column0, column1
+        )
+        WRAPPER (df ds_denodo_csv)
+    );
+

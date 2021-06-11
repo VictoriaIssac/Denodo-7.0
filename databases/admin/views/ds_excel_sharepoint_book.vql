@@ -1,0 +1,17 @@
+﻿CREATE OR REPLACE TABLE ds_excel_sharepoint_book I18N us_pst (
+        "Field1":text (sourcetypeid = '12'),
+        "Field2":text (sourcetypeid = '12')
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_excel_sharepoint_book(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD "Field1" (any) OPT ANY
+             ADD "Field2" (any) OPT ANY
+        )
+        OUTPUTLIST ("Field1", "Field2"
+        )
+        WRAPPER (custom ds_excel_sharepoint_book)
+    );
+

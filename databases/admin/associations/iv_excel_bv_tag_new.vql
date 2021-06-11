@@ -1,0 +1,8 @@
+﻿CREATE OR REPLACE ASSOCIATION iv_excel_bv_tag_new REFERENTIAL CONSTRAINT 
+    ENDPOINT bv_tag_new iv_excel PRINCIPAL (1)
+    ENDPOINT iv_excel ps.bv_tag_new (0,*)
+    ADD MAPPING column_1=tag_desc;
+
+ALTER ASSOCIATION iv_excel_bv_tag_new
+ LAYOUT (iv_excel = [50, 20, 210, 82], bv_tag_new = [394, 49, 200, 66]);
+

@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WEBSERVICE dsexcelzip;
+
+DEPLOY WEBSERVICE dsexcelzip LOGIN = '${databases.admin.webcontainer.webservices.dsexcelzip.LOGIN}' PASSWORD = '${databases.admin.webcontainer.webservices.dsexcelzip.PASSWORD}' ${databases.admin.webcontainer.webservices.dsexcelzip.PASSWORD.ENCRYPTED};
+

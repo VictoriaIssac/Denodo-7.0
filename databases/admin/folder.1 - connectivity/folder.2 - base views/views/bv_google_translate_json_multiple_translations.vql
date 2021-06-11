@@ -1,0 +1,32 @@
+﻿CREATE OR REPLACE WRAPPER DF ds_google_translate_json_copy2
+    FOLDER = '/1 - connectivity/2 - base views'
+    DATASOURCENAME=ds_google_translate_json_copy2
+    OUTPUTSCHEMA (
+        target_lang = 'target_lang' (OBL) (DEFAULTVALUE='es') EXTERN,
+        source_lang = 'source_lang' (OBL) (DEFAULTVALUE='en') EXTERN,
+        text_to_translate = 'text' (OBL) (DEFAULTVALUE='Hello! and welcome to the Denodo On-demand Training video. ') EXTERN,
+        column0 = 'Column0' (OPT)
+    );
+
+CREATE OR REPLACE TABLE bv_google_translate_json_multiple_translations I18N us_pst (
+        target_lang:text (extern),
+        source_lang:text (extern),
+        text_to_translate:text (extern),
+        column0:text
+    )
+    FOLDER = '/1 - connectivity/2 - base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_google_translate_json_copy2(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD column0 (any) OPT ANY
+             ADD target_lang (=) OBL ONE
+             ADD source_lang (=) OBL ONE
+             ADD text_to_translate (=) OBL ONE
+        )
+        OUTPUTLIST (column0
+        )
+        WRAPPER (df ds_google_translate_json_copy2)
+    );
+

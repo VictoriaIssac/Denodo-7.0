@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_reg_countries AS SELECT reg_countries.country_id AS country_id, reg_countries.country_name AS country_name, reg_countries.reg AS reg, register(reg_countries.reg) AS reg_array FROM reg_countries CONTEXT ('I18N' = 'us_cst');
+
+ALTER VIEW p_reg_countries
+ LAYOUT (reg_countries = [20, 20, 288, 105]);
+

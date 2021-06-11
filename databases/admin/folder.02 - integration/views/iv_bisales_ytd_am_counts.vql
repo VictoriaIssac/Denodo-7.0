@@ -1,0 +1,63 @@
+﻿CREATE OR REPLACE VIEW iv_bisales_ytd_am_counts FOLDER = '/02 - integration' AS WITH bi_sales AS (
+  SELECT
+    s."NewSiteA" AS new_site_a,
+    s."ExistSiteB" AS exist_site_b,
+    s."ExistSiteC" AS exist_site_c,
+    s."Redemptions" AS redemptions,(s."NewSiteA" + s."ExistSiteB" + s."ExistSiteC") - s."Redemptions" AS net,
+    s."current" AS active,
+    s."BudNewSiteA" AS budget_new,
+    s."BudRedmpt" AS budget_redemption,
+    s."BudNewSiteA" - s."BudRedmpt" AS budget_net,
+    am."Username" AS area_manager,
+    CAST(t."EndPeriodDate" AS DATE) AS end_period_date
+  FROM
+    "bv_ldwh_BISales" s
+    INNER JOIN "bv_ldwh_Region" r ON r."RegionID" = s."RegionID"
+    INNER JOIN "bv_ldwh_Users" am ON am."UserID" = r."UserID"
+    INNER JOIN "bv_ldwh_TimePeriod" t ON t."TimeID" = s."time"
+  WHERE
+    s."Currency" = 'OWN'
+    AND (
+      (
+        am."AccessLevel" = 2
+        AND am."UserType" = 'Sales Manager'
+      )
+      OR (
+        am."AccessLevel" = 3
+        AND am."UserType" = 'CSL Area Managers'
+      )
+    )
+    AND am."Active" = 1
+)
+SELECT
+  s.area_manager,
+  SUM(s.new_site_a) AS new_site_a,
+  SUM(s.exist_site_b) AS exist_site_b,
+  SUM(s.exist_site_c) AS exist_site_c,
+  SUM(s.redemptions) AS redemptions,
+  SUM(s.net) AS net,
+  SUM(s.budget_new) AS budget_new,
+  SUM(s.budget_redemption) AS budget_redemption,
+  SUM(s.budget_net) AS budget_net,
+  MAX(act.active) AS active,
+  MAX(s.end_period_date) AS end_period_date
+FROM
+  bi_sales s
+  INNER JOIN (
+    SELECT
+      SUM(s.active) AS active,
+      s.area_manager
+    FROM
+      bi_sales s
+    WHERE
+      s.end_period_date = LASTDAYOFMONTH(report_date)
+    GROUP BY
+      s.area_manager
+  ) act ON act.area_manager = s.area_manager
+WHERE
+  s.end_period_date <= LASTDAYOFMONTH(report_date)
+GROUP BY
+  s.area_manager USING PARAMETERS (
+    report_date: localdate LASTDAYOFMONTH(ADDMONTH(current_date(), -1))
+  ) CONTEXT ('I18N' = 'au_cst', 'formatted' = 'yes');
+

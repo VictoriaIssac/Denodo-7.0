@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_ds_xml AS SELECT nest("Column0", "Column1") AS arr FROM ds_xml GROUP BY "Column0", "Column1" CONTEXT ('I18N' = 'at');
+
+ALTER VIEW p_ds_xml
+ LAYOUT (ds_xml = [20, 20, 200, 66]);
+

@@ -1,0 +1,7 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF ds_poori_widht
+    ROUTE LOCAL 'LocalConnection' '${databases.admin.datasources.df.ds_poori_widht.ROUTE.LOCAL.PATH}'
+    TUPLEPATTERN = '(.{{21}})(.{{19}})(.{{1,21}})'
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = FALSE;
+

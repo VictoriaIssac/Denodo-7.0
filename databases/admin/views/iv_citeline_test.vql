@@ -1,0 +1,7 @@
+﻿CREATE OR REPLACE VIEW iv_citeline_test AS
+SELECT
+ 
+
+*
+FROM ds_csv   CONTEXT ('I18N' = 'au_cst', 'formatted' = 'yes');
+

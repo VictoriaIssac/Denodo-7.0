@@ -1,0 +1,158 @@
+﻿CREATE OR REPLACE WRAPPER DF ds_csv_covid_1
+    FOLDER = '/01-data source'
+    DATASOURCENAME=ds_csv_covid
+    OUTPUTSCHEMA (
+        country = 'Country' (OPT),
+        location = 'location' (OPT),
+        category = 'category' (OPT),
+        id_42 = '2020-02-23' (OPT),
+        id_41 = '2020-02-24' (OPT),
+        id_40 = '2020-02-25' (OPT),
+        id_39 = '2020-02-26' (OPT),
+        id_38 = '2020-02-27' (OPT),
+        id_37 = '2020-02-28' (OPT),
+        id_36 = '2020-02-29' (OPT),
+        id_35 = '2020-03-01' (OPT),
+        id_34 = '2020-03-02' (OPT),
+        id_33 = '2020-03-03' (OPT),
+        id_32 = '2020-03-04' (OPT),
+        id_31 = '2020-03-05' (OPT),
+        id_30 = '2020-03-06' (OPT),
+        id_29 = '2020-03-07' (OPT),
+        id_28 = '2020-03-08' (OPT),
+        id_27 = '2020-03-09' (OPT),
+        id_26 = '2020-03-10' (OPT),
+        id_25 = '2020-03-11' (OPT),
+        id_24 = '2020-03-12' (OPT),
+        id_23 = '2020-03-13' (OPT),
+        id_22 = '2020-03-14' (OPT),
+        id_21 = '2020-03-15' (OPT),
+        id_20 = '2020-03-16' (OPT),
+        id_19 = '2020-03-17' (OPT),
+        id_18 = '2020-03-18' (OPT),
+        id_17 = '2020-03-19' (OPT),
+        id_16 = '2020-03-20' (OPT),
+        id_15 = '2020-03-21' (OPT),
+        id_14 = '2020-03-22' (OPT),
+        id_13 = '2020-03-23' (OPT),
+        id_12 = '2020-03-24' (OPT),
+        id_11 = '2020-03-25' (OPT),
+        id_10 = '2020-03-26' (OPT),
+        id_9 = '2020-03-27' (OPT),
+        id_8 = '2020-03-28' (OPT),
+        id_7 = '2020-03-29' (OPT),
+        id_6 = '2020-03-30' (OPT),
+        id_5 = '2020-03-31' (OPT),
+        id_4 = '2020-04-01' (OPT),
+        id_3 = '2020-04-02' (OPT),
+        id_2 = '2020-04-03' (OPT),
+        id_1 = '2020-04-04' (OPT),
+        id_0 = '2020-04-05' (OPT)
+    );
+
+CREATE OR REPLACE TABLE ds_csv_covid_1 I18N at (
+        country:text,
+        location:text,
+        category:text,
+        id_42:text,
+        id_41:text,
+        id_40:text,
+        id_39:text,
+        id_38:text,
+        id_37:text,
+        id_36:text,
+        id_35:text,
+        id_34:text,
+        id_33:text,
+        id_32:text,
+        id_31:text,
+        id_30:text,
+        id_29:text,
+        id_28:text,
+        id_27:text,
+        id_26:text,
+        id_25:text,
+        id_24:text,
+        id_23:text,
+        id_22:text,
+        id_21:text,
+        id_20:text,
+        id_19:text,
+        id_18:text,
+        id_17:text,
+        id_16:text,
+        id_15:text,
+        id_14:text,
+        id_13:text,
+        id_12:text,
+        id_11:text,
+        id_10:text,
+        id_9:text,
+        id_8:text,
+        id_7:text,
+        id_6:text,
+        id_5:text,
+        id_4:text,
+        id_3:text,
+        id_2:text,
+        id_1:text,
+        id_0:text
+    )
+    FOLDER = '/01-data source'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_csv_covid_1(
+        I18N at
+        CONSTRAINTS (
+             ADD country (=,in) OPT ANY
+             ADD location (=,in) OPT ANY
+             ADD category (=,in) OPT ANY
+             ADD id_42 (=,in) OPT ANY
+             ADD id_41 (=,in) OPT ANY
+             ADD id_40 (=,in) OPT ANY
+             ADD id_39 (=,in) OPT ANY
+             ADD id_38 (=,in) OPT ANY
+             ADD id_37 (=,in) OPT ANY
+             ADD id_36 (=,in) OPT ANY
+             ADD id_35 (=,in) OPT ANY
+             ADD id_34 (=,in) OPT ANY
+             ADD id_33 (=,in) OPT ANY
+             ADD id_32 (=,in) OPT ANY
+             ADD id_31 (=,in) OPT ANY
+             ADD id_30 (=,in) OPT ANY
+             ADD id_29 (=,in) OPT ANY
+             ADD id_28 (=,in) OPT ANY
+             ADD id_27 (=,in) OPT ANY
+             ADD id_26 (=,in) OPT ANY
+             ADD id_25 (=,in) OPT ANY
+             ADD id_24 (=,in) OPT ANY
+             ADD id_23 (=,in) OPT ANY
+             ADD id_22 (=,in) OPT ANY
+             ADD id_21 (=,in) OPT ANY
+             ADD id_20 (=,in) OPT ANY
+             ADD id_19 (=,in) OPT ANY
+             ADD id_18 (=,in) OPT ANY
+             ADD id_17 (=,in) OPT ANY
+             ADD id_16 (=,in) OPT ANY
+             ADD id_15 (=,in) OPT ANY
+             ADD id_14 (=,in) OPT ANY
+             ADD id_13 (=,in) OPT ANY
+             ADD id_12 (=,in) OPT ANY
+             ADD id_11 (=,in) OPT ANY
+             ADD id_10 (=,in) OPT ANY
+             ADD id_9 (=,in) OPT ANY
+             ADD id_8 (=,in) OPT ANY
+             ADD id_7 (=,in) OPT ANY
+             ADD id_6 (=,in) OPT ANY
+             ADD id_5 (=,in) OPT ANY
+             ADD id_4 (=,in) OPT ANY
+             ADD id_3 (=,in) OPT ANY
+             ADD id_2 (=,in) OPT ANY
+             ADD id_1 (=,in) OPT ANY
+             ADD id_0 (=,in) OPT ANY
+        )
+        OUTPUTLIST (category, country, id_0, id_1, id_10, id_11, id_12, id_13, id_14, id_15, id_16, id_17, id_18, id_19, id_2, id_20, id_21, id_22, id_23, id_24, id_25, id_26, id_27, id_28, id_29, id_3, id_30, id_31, id_32, id_33, id_34, id_35, id_36, id_37, id_38, id_39, id_4, id_40, id_41, id_42, id_5, id_6, id_7, id_8, id_9, location
+        )
+        WRAPPER (df ds_csv_covid_1)
+    );
+

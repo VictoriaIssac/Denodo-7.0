@@ -1,0 +1,36 @@
+﻿CREATE OR REPLACE INTERFACE VIEW member_bi_report (
+        area_manager:text (sourcetypedecimals = '0', sourcetyperadix = '0', sourcetypesize = '60', sourcetypeid = '12', description = 'The name of the Area manager or Commercial manager (AM)'),
+        newsite_a:int (description = 'Number of New businesses'),
+        existsite_b:int (description = 'Number of New accounts due to Change of Ownership'),
+        existsite_c:int (description = 'Number of New accounts due to Change of Entity / Staff account'),
+        redemption:int (description = 'Number of Member terminations'),
+        net:int (description = 'Total of Newsite_A, ExistSiteB and ExistSiteC less Redemptions'),
+        budget_new:float (description = 'Budget set for New members'),
+        budget_redemption:float (description = 'Budget set for Redemptions'),
+        budget_net:float (description = 'Budget set for Net memebrs'),
+        active:int (description = 'Number of Current active accounts'),
+        end_period_date:localdate (description = 'End of month date till when the report shows YTD member counts of each Area Manager or Commercial Manager (AM).
+When report_date is default, end_period_date is same as ''report_date''.'),
+        report_date:localdate (description = '"Date as on User wishes to see YTDmember counts of each Area Manager or Commercial Manager (AM).
+Default is ''Last date of previous month based on Current Date''."')
+    )
+    SET IMPLEMENTATION iv_bisales_ytd_am_counts(
+        area_manager = area_manager,
+        newsite_a = new_site_a,
+        existsite_b = exist_site_b,
+        existsite_c = exist_site_c,
+        redemption = redemptions,
+        net = net,
+        budget_new = budget_new,
+        budget_redemption = budget_redemption,
+        budget_net = budget_net,
+        active = active,
+        end_period_date = end_period_date,
+        report_date = report_date    
+)
+    FOLDER = '/05 - capricorn reports'
+    DESCRIPTION = 'This table contains summary of New members and Redemptions by Area Manager' ;
+
+ALTER VIEW member_bi_report
+ LAYOUT (iv_bisales_ytd_am_counts = [610, 20, 225, 105]);
+

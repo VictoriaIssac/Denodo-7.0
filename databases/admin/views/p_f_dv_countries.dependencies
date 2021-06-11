@@ -1,0 +1,4 @@
+﻿/databases/admin/datasources/jdbc/ds_human.vql
+/databases/admin/views/countries.vql
+/databases/admin/views/dv_countries.vql
+/databases/admin/views/f_dv_countries.vql

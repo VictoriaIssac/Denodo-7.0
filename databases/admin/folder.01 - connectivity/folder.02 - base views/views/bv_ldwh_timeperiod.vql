@@ -1,0 +1,61 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_ldwh_TimePeriod"
+    FOLDER = '/01 - connectivity/02 - base views'
+    DATASOURCENAME=ds_ldwh
+    CATALOGNAME='${databases.admin.folder.01 - connectivity.folder.02 - base views.views.jdbc.bv_ldwh_timeperiod.CATALOGNAME}' 
+    SCHEMANAME='${databases.admin.folder.01 - connectivity.folder.02 - base views.views.jdbc.bv_ldwh_timeperiod.SCHEMANAME}' 
+    RELATIONNAME='TimePeriod' 
+    OUTPUTSCHEMA (
+        "TimeID" = 'TimeID' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetyperadix='0', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  NOT NULL SORTABLE,
+        "CalendarYear" = 'CalendarYear' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        "FinancialYear" = 'FinancialYear' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        "QuarterName" = 'QuarterName' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "MonthNumber" = 'MonthNumber' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        "PeriodMonthNumber" = 'PeriodMonthNumber' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        "MonthName" = 'MonthName' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='20', sourcetypeid='12', sourcetypename='nvarchar')  SORTABLE,
+        "PeriodID" = 'PeriodID' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='6', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        "FinancialPeriod" = 'FinancialPeriod' :'java.lang.Short' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='5', sourcetypeid='5', sourcetypename='smallint')  SORTABLE,
+        "EndPeriodDate" = 'EndPeriodDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='16', sourcetypeid='93', sourcetypename='smalldatetime')  NOT SORTABLE,
+        "Quarter" = 'Quarter' :'java.lang.Short' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='5', sourcetypeid='5', sourcetypename='smallint')  SORTABLE
+    )
+    CONSTRAINT 'PK_TimePeriod' PRIMARY KEY ( 'TimeID' )
+    INDEX 'PK_TimePeriod' CLUSTER UNIQUE PRIMARY ( 'TimeID' )
+    INDEX 'NCIX_TimePeriod_FY_FP_EPD_Quarter' OTHER ( 'PeriodID' );
+
+CREATE OR REPLACE TABLE "bv_ldwh_TimePeriod" I18N au_wst (
+        "TimeID":timestamp (sourcetypeid = '93', sourcetyperadix = '0', sourcetypedecimals = '3', sourcetypesize = '23'),
+        "CalendarYear":int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "FinancialYear":int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "QuarterName":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '50'),
+        "MonthNumber":int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "PeriodMonthNumber":int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "MonthName":text (sourcetypeid = '-9', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '20'),
+        "PeriodID":text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '6'),
+        "FinancialPeriod":int (sourcetypeid = '5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '5'),
+        "EndPeriodDate":timestamp (sourcetypeid = '93', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '16'),
+        "Quarter":int (sourcetypeid = '5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '5')
+    )
+    FOLDER = '/01 - connectivity/02 - base views'
+    CONSTRAINT 'PK_TimePeriod' PRIMARY KEY ( 'TimeID' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_ldwh_TimePeriod"(
+        I18N au_wst
+        CONSTRAINTS (
+             ADD "TimeID" (any) OPT ANY
+             ADD "CalendarYear" (any) OPT ANY
+             ADD "FinancialYear" (any) OPT ANY
+             ADD "QuarterName" (any) OPT ANY
+             ADD "MonthNumber" (any) OPT ANY
+             ADD "PeriodMonthNumber" (any) OPT ANY
+             ADD "MonthName" (any) OPT ANY
+             ADD "PeriodID" (any) OPT ANY
+             ADD "FinancialPeriod" (any) OPT ANY
+             ADD "EndPeriodDate" (any) OPT ANY
+             ADD "Quarter" (any) OPT ANY
+        )
+        OUTPUTLIST ("CalendarYear", "EndPeriodDate", "FinancialPeriod", "FinancialYear", "MonthName", "MonthNumber", "PeriodID", "PeriodMonthNumber", "Quarter", "QuarterName", "TimeID"
+        )
+        WRAPPER (jdbc "bv_ldwh_TimePeriod")
+    );
+
