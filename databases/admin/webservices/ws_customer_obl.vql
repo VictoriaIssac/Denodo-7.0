@@ -1,0 +1,38 @@
+﻿CREATE OR REPLACE REST WEBSERVICE ws_customer_obl
+    CONNECTION (
+        CHUNKSIZE = 1000
+        CHUNKTIMEOUT = 90000
+        QUERYTIMEOUT = 9223372036854775807
+        POOLENABLED = true
+        POOLINITSIZE = 0
+        POOLMAXACTIVE = 30
+    )
+    DEFAULTREPRESENTATION = HTML
+    SUPPORTEDREPRESENTATIONS (HTML, XML, JSON)
+    RESOURCES (
+        VIEW dv_customer_obl FIELDS (
+            "C_CUSTOMER_SK" : 'decimal', 
+            "C_CUSTOMER_ID" : 'text', 
+            "C_CURRENT_CDEMO_SK" : 'decimal', 
+            "C_CURRENT_HDEMO_SK" : 'decimal', 
+            "C_CURRENT_ADDR_SK" : 'decimal', 
+            "C_FIRST_SHIPTO_DATE_SK" : 'decimal', 
+            "C_FIRST_SALES_DATE_SK" : 'decimal', 
+            "C_SALUTATION" : 'text', 
+            first_name : 'text', 
+            "C_LAST_NAME" : 'text' OBL, 
+            "C_PREFERRED_CUST_FLAG" : 'text', 
+            "C_BIRTH_DAY" : 'decimal', 
+            "C_BIRTH_MONTH" : 'decimal', 
+            "C_BIRTH_YEAR" : 'decimal', 
+            "C_BIRTH_COUNTRY" : 'text', 
+            "C_LOGIN" : 'text' OBL, 
+            "C_EMAIL_ADDRESS" : 'text', 
+            "C_LAST_REVIEW_DATE" : 'text', 
+            name : 'text' OBL
+        )
+    )
+    OPTIONS ( NULLVALUESASEMPTYXMLELEMENTS = false
+        PROCESS_FUNCTIONS_IN_SELECT_PARAMETER = true ) 
+    OPENAPI2 ( API_VERSION = '1.0.0' ) ;
+

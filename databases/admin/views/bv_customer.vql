@@ -1,0 +1,78 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_CUSTOMER"
+    DATASOURCENAME=ds_human
+    SCHEMANAME='${databases.admin.views.jdbc.bv_customer.SCHEMANAME}' ESCAPE
+    RELATIONNAME='CUSTOMER' 
+    OUTPUTSCHEMA (
+        "C_CUSTOMER_SK" = 'C_CUSTOMER_SK' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "C_CUSTOMER_ID" = 'C_CUSTOMER_ID' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='16', sourcetypeid='1', sourcetypename='CHAR')  NOT NULL SORTABLE,
+        "C_CURRENT_CDEMO_SK" = 'C_CURRENT_CDEMO_SK' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "C_CURRENT_HDEMO_SK" = 'C_CURRENT_HDEMO_SK' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "C_CURRENT_ADDR_SK" = 'C_CURRENT_ADDR_SK' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "C_FIRST_SHIPTO_DATE_SK" = 'C_FIRST_SHIPTO_DATE_SK' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "C_FIRST_SALES_DATE_SK" = 'C_FIRST_SALES_DATE_SK' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "C_SALUTATION" = 'C_SALUTATION' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        "C_LAST_NAME" = 'C_LAST_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='30', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        "C_PREFERRED_CUST_FLAG" = 'C_PREFERRED_CUST_FLAG' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='1', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        "C_BIRTH_DAY" = 'C_BIRTH_DAY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "C_BIRTH_MONTH" = 'C_BIRTH_MONTH' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "C_BIRTH_YEAR" = 'C_BIRTH_YEAR' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "C_BIRTH_COUNTRY" = 'C_BIRTH_COUNTRY' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "C_LOGIN" = 'C_LOGIN' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='13', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        "C_EMAIL_ADDRESS" = 'C_EMAIL_ADDRESS' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        "C_LAST_REVIEW_DATE" = 'C_LAST_REVIEW_DATE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        first_name = 'C_FIRST_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE
+    )
+    CONSTRAINT 'SYS_C008728' PRIMARY KEY ( 'C_CUSTOMER_SK' )
+    INDEX 'SYS_C008728' CLUSTER UNIQUE PRIMARY ( 'C_CUSTOMER_SK' );
+
+CREATE OR REPLACE TABLE "bv_CUSTOMER" I18N ca_est (
+        "C_CUSTOMER_SK":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "C_CUSTOMER_ID":text (notnull, sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '16'),
+        "C_CURRENT_CDEMO_SK":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "C_CURRENT_HDEMO_SK":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "C_CURRENT_ADDR_SK":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "C_FIRST_SHIPTO_DATE_SK":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "C_FIRST_SALES_DATE_SK":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "C_SALUTATION":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '10'),
+        first_name:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '20'),
+        "C_LAST_NAME":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '30'),
+        "C_PREFERRED_CUST_FLAG":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '1'),
+        "C_BIRTH_DAY":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "C_BIRTH_MONTH":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "C_BIRTH_YEAR":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "C_BIRTH_COUNTRY":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        "C_LOGIN":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '13'),
+        "C_EMAIL_ADDRESS":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '50'),
+        "C_LAST_REVIEW_DATE":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '10')
+    )
+    CONSTRAINT 'SYS_C008728' PRIMARY KEY ( 'C_CUSTOMER_SK' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_CUSTOMER"(
+        I18N ca_est
+        CONSTRAINTS (
+             ADD "C_CUSTOMER_SK" (any) OPT ANY
+             ADD "C_CUSTOMER_ID" (any) OPT ANY
+             ADD "C_CURRENT_CDEMO_SK" (any) OPT ANY
+             ADD "C_CURRENT_HDEMO_SK" (any) OPT ANY
+             ADD "C_CURRENT_ADDR_SK" (any) OPT ANY
+             ADD "C_FIRST_SHIPTO_DATE_SK" (any) OPT ANY
+             ADD "C_FIRST_SALES_DATE_SK" (any) OPT ANY
+             ADD "C_SALUTATION" (any) OPT ANY
+             ADD first_name (any) OPT ANY
+             ADD "C_LAST_NAME" (any) OPT ANY
+             ADD "C_PREFERRED_CUST_FLAG" (any) OPT ANY
+             ADD "C_BIRTH_DAY" (any) OPT ANY
+             ADD "C_BIRTH_MONTH" (any) OPT ANY
+             ADD "C_BIRTH_YEAR" (any) OPT ANY
+             ADD "C_BIRTH_COUNTRY" (any) OPT ANY
+             ADD "C_LOGIN" (any) OPT ANY
+             ADD "C_EMAIL_ADDRESS" (any) OPT ANY
+             ADD "C_LAST_REVIEW_DATE" (any) OPT ANY
+        )
+        OUTPUTLIST ("C_BIRTH_COUNTRY", "C_BIRTH_DAY", "C_BIRTH_MONTH", "C_BIRTH_YEAR", "C_CURRENT_ADDR_SK", "C_CURRENT_CDEMO_SK", "C_CURRENT_HDEMO_SK", "C_CUSTOMER_ID", "C_CUSTOMER_SK", "C_EMAIL_ADDRESS", "C_FIRST_SALES_DATE_SK", "C_FIRST_SHIPTO_DATE_SK", "C_LAST_NAME", "C_LAST_REVIEW_DATE", "C_LOGIN", "C_PREFERRED_CUST_FLAG", "C_SALUTATION", first_name
+        )
+        WRAPPER (jdbc "bv_CUSTOMER")
+    );
+
