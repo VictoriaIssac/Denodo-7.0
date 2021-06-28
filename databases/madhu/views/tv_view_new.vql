@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW "Tv_view_new" AS SELECT 1 AS "FF" FROM dual() CONTEXT ('I18N' = 'au_cst');
+
