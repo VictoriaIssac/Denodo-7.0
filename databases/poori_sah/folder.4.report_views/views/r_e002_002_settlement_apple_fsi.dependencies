@@ -1,0 +1,9 @@
+﻿/databases/poori_sah/folder.4.report_views/4.report_views.vql
+/databases/poori_sah/folder.3.business_entities/3.business_entities.vql
+/databases/poori_sah/folder.3.business_entities/views/d_trnsctn_type.vql
+/databases/poori_sah/folder.3.business_entities/views/f_prtnr_payout.vql
+/databases/poori_sah/folder.3.business_entities/views/b_prtnr_payout_prtnr_sttlmnt.vql
+/databases/poori_sah/folder.3.business_entities/views/f_prtnr_sttlmnt.vql
+/databases/poori_sah/folder.3.business_entities/views/d_merchant.vql
+/databases/poori_sah/folder.3.business_entities/views/d_cntrct.vql
+/databases/poori_sah/folder.3.business_entities/views/d_prd_agreement.vql

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW f_prtnr_sttlmnt FOLDER = '/3.business_entities' AS SELECT sah.f_prtnr_sttlmnt.id_prtnr_sttlmnt AS id_prtnr_sttlmnt, sah.f_prtnr_sttlmnt.id_src_system AS id_src_system, sah.f_prtnr_sttlmnt.src_trnsctn_code AS src_trnsctn_code, sah.f_prtnr_sttlmnt.id_cntrct AS id_cntrct, sah.f_prtnr_sttlmnt.id_date_reg AS id_date_reg, sah.f_prtnr_sttlmnt.id_date_sttlmnt AS id_date_sttlmnt, sah.f_prtnr_sttlmnt.id_trnsctn_type AS id_trnsctn_type, sah.f_prtnr_sttlmnt.sales_amt AS sales_amt, sah.f_prtnr_sttlmnt.sales_cnt AS sales_cnt, sah.f_prtnr_sttlmnt.sttlmnt_trnsctn_unique_ref AS sttlmnt_trnsctn_unique_ref, sah.f_prtnr_sttlmnt.sttlmnt_trnsctn_ref_nmbr AS sttlmnt_trnsctn_ref_nmbr, sah.f_prtnr_sttlmnt.sttlmnt_trnsctn_desc AS sttlmnt_trnsctn_desc, sah.f_prtnr_sttlmnt.sttlmnt_trnsctn_billing_ccy_code AS sttlmnt_trnsctn_billing_ccy_code, sah.f_prtnr_sttlmnt.create_datetime AS create_datetime, sah.f_prtnr_sttlmnt.update_datetime AS update_datetime, sah.f_prtnr_sttlmnt.changed_by AS changed_by FROM sah.f_prtnr_sttlmnt CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW f_prtnr_sttlmnt
+ LAYOUT (f_prtnr_sttlmnt = [20, 20, 305, 346]);
+

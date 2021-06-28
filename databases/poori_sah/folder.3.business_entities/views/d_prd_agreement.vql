@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW d_prd_agreement FOLDER = '/3.business_entities' AS SELECT sah.d_prd_agreement.id_prd_agreement AS id_prd_agreement, sah.d_prd_agreement.id_src_system AS id_src_system, sah.d_prd_agreement.prd_agreement_code AS prd_agreement_code, sah.d_prd_agreement.prd_agreement_business_code AS prd_agreement_business_code, sah.d_prd_agreement.prd_agreement_name_no AS prd_agreement_name_no, sah.d_prd_agreement.prd_agreement_name_en AS prd_agreement_name_en, sah.d_prd_agreement.prd_hier_lvl_3_code AS prd_hier_lvl_3_code, sah.d_prd_agreement.prd_hier_lvl_3_name_no AS prd_hier_lvl_3_name_no, sah.d_prd_agreement.prd_hier_lvl_2_code AS prd_hier_lvl_2_code, sah.d_prd_agreement.prd_hier_lvl_2_name_no AS prd_hier_lvl_2_name_no, sah.d_prd_agreement.prd_hier_lvl_1_code AS prd_hier_lvl_1_code, sah.d_prd_agreement.prd_hier_lvl_1_name_no AS prd_hier_lvl_1_name_no, sah.d_prd_agreement.prd_hier_code AS prd_hier_code, sah.d_prd_agreement.prd_hier_name_no AS prd_hier_name_no, sah.d_prd_agreement.prd_hier_name_en AS prd_hier_name_en FROM sah.d_prd_agreement CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW d_prd_agreement
+ LAYOUT (d_prd_agreement = [20, 20, 304, 105]);
+

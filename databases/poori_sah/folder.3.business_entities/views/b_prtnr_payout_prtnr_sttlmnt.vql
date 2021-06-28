@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW b_prtnr_payout_prtnr_sttlmnt FOLDER = '/3.business_entities' AS SELECT sah.b_prtnr_payout_prtnr_sttlmnt.id_prtnr_payout AS id_prtnr_payout, sah.b_prtnr_payout_prtnr_sttlmnt.id_prtnr_sttlmnt AS id_prtnr_sttlmnt, sah.b_prtnr_payout_prtnr_sttlmnt.create_datetime AS create_datetime, sah.b_prtnr_payout_prtnr_sttlmnt.update_datetime AS update_datetime, sah.b_prtnr_payout_prtnr_sttlmnt.changed_by AS changed_by FROM sah.b_prtnr_payout_prtnr_sttlmnt CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW b_prtnr_payout_prtnr_sttlmnt
+ LAYOUT (b_prtnr_payout_prtnr_sttlmnt = [20, 20, 226, 126]);
+

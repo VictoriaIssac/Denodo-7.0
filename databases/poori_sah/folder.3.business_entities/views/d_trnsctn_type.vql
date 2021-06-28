@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW d_trnsctn_type FOLDER = '/3.business_entities' AS SELECT sah.d_trnsctn_type.id_trnsctn_type_src AS id_trnsctn_type_src, sah.d_trnsctn_type.id_src_system AS id_src_system, sah.d_trnsctn_type.trnsctn_type_src_code AS trnsctn_type_src_code, sah.d_trnsctn_type.trnsctn_type_src_name AS trnsctn_type_src_name, sah.d_trnsctn_type.trnsctn_type_src_desc AS trnsctn_type_src_desc, sah.d_trnsctn_type.trnsctn_closed_loop_ind AS trnsctn_closed_loop_ind, sah.d_trnsctn_type.trnsctn_bax_ind AS trnsctn_bax_ind, sah.d_trnsctn_type.trnsctn_type_group_code AS trnsctn_type_group_code, sah.d_trnsctn_type.trnsctn_type_group_desc AS trnsctn_type_group_desc FROM sah.d_trnsctn_type CONTEXT ('I18N' = 'au_cst');
+
+ALTER VIEW d_trnsctn_type
+ LAYOUT (d_trnsctn_type = [20, 20, 296, 105]);
+

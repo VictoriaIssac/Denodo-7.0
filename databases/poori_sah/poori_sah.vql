@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE DATABASE poori_sah '';
+
+ALTER DATABASE poori_sah
+  CHARSET DEFAULT;
+
